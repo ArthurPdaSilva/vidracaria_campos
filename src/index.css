@@ -1,0 +1,35 @@
+:root {
+  --primary: #2196f3;
+  --primary-dark: #1976d2;
+  --primary-light: #bbdefb;
+  --background: #fff;
+  --color-text: #000;
+  --raddi: 20px;
+}
+
+*::-webkit-scrollbar {
+  background-color: none;
+  width: 10px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(156, 156, 156);
+  border-radius: 10px;
+}
+
+.desktop {
+  display: block;
+}
+.mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
+}
