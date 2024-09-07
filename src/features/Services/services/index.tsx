@@ -63,6 +63,7 @@ const usePutServiceById = () => {
         status: params.data.status,
         paymentMethod: params.data.paymentMethod,
         deliveryForecast: params.data.deliveryForecast,
+        userManual: params.data.userManual,
         discount: params.data.discount,
         observation: params.data.observation,
         downPayment: params.data.downPayment,
@@ -142,6 +143,7 @@ const useCreateService = () => {
         images: urls,
         observation: service.observation,
         paymentMethod: 'DINHEIRO',
+        userManual: service.userManual,
         items: service.products.map((product) => {
           return {
             idProduct: product.id,
@@ -222,6 +224,24 @@ const useGenerateBudgetPdf = () => {
   });
 };
 
+const useGenerateDashPdf = () => {
+  return useMutation({
+    mutationFn: async (data: { startDate: string; endDate: string }) => {
+      const res = await api.post(`/reports/generateResume`, data, {
+        ...config,
+        responseType: 'blob',
+      });
+      const blob = new Blob([res.data], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Relatório Faturamento ${data.startDate} até ${data.endDate}.pdf`;
+      a.click();
+      URL.revokeObjectURL(url);
+    },
+  });
+};
+
 const useGetImagesByServiceId = (id?: string) => {
   return useQuery<Image[]>({
     queryKey: ['/services-images', id],
@@ -244,4 +264,5 @@ export {
   useGetProducstByServiceId,
   useGetServiceById,
   usePutServiceById,
+  useGenerateDashPdf,
 };

@@ -384,6 +384,23 @@ function ServicesCreateForm() {
               rows={3}
               sx={{
                 resize: 'none',
+                marginBottom: '20px',
+              }}
+            />
+          )}
+        />
+
+        <Controller
+          name="userManual"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              multiline
+              label="Manual de uso"
+              {...field}
+              rows={3}
+              sx={{
+                resize: 'none',
               }}
             />
           )}

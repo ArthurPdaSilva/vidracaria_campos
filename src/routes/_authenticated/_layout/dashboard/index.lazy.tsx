@@ -8,6 +8,7 @@ import { FinancialReportSchema } from '@/features/Dashboard/schemas';
 import { useChartsCounters } from '@/features/Dashboard/services';
 import { boxCards, mainStyles } from '@/features/Dashboard/styles';
 import { FinancialReport } from '@/features/Dashboard/types';
+import { useGenerateDashPdf } from '@/features/Services/services';
 import useMask from '@/hooks/useMask';
 import { buttonStyles } from '@/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -23,9 +24,10 @@ dayjs.extend(customParseFormat);
 function Dashboard() {
   const { data, isFetching } = useChartsCounters();
   const { realFormater, arrDateToDate, addPercent } = useMask();
+  const { mutate: generate, isPending } = useGenerateDashPdf();
 
   const onSubmit: SubmitHandler<FinancialReport> = (data) => {
-    console.log(data);
+    generate(data);
   };
 
   const {
@@ -173,7 +175,7 @@ function Dashboard() {
             type="submit"
             variant="contained"
             sx={{ ...buttonStyles, height: '33px', flex: '1' }}
-            loading={false}
+            loading={isPending}
           >
             Emitir
           </LoadingButton>

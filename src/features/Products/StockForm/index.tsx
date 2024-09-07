@@ -18,31 +18,47 @@ import { modalHeaderStyles, modalTitleStyles } from '../styles';
 import { TransactionStockSchema } from './schemas';
 import { useGetAllProductsWithNameAndId, useReceiveProduct } from './services';
 import { stockProductStyles } from './styles';
-import { ProductWithNameAndId, TransactionStock } from './types';
+import {
+  ProductWithNameAndId,
+  TransactionStock,
+  TransactionType,
+} from './types';
 
 interface StockFormProps {
   open: boolean;
   onClose: () => void;
+  variant: 'DOWN' | 'ENTER';
 }
 
-export default function StockForm({ onClose, open }: StockFormProps) {
+export default function StockForm({ onClose, open, variant }: StockFormProps) {
   const [selectedProduct, setSelectedProduct] =
     useState<ProductWithNameAndId | null>(null);
   const { data: product } = useGetAllProductsWithNameAndId();
   const { mutate: receiveProduct, isPending, isSuccess } = useReceiveProduct();
-
   const {
     handleSubmit,
     control,
     formState: { errors },
+    setValue,
   } = useForm({
     resolver: yupResolver(TransactionStockSchema),
     defaultValues: {
       idProduct: '',
       movementQuantity: 0,
-      transactionType: 'ENTRADA',
+      transactionType:
+        variant === 'ENTER'
+          ? TransactionType.ENTRADA
+          : TransactionType.BAIXAESTOQUE,
     },
   });
+  useEffect(() => {
+    setValue(
+      'transactionType',
+      variant === 'ENTER'
+        ? TransactionType.ENTRADA
+        : TransactionType.BAIXAESTOQUE,
+    );
+  }, [variant]);
 
   const onSubmit: SubmitHandler<TransactionStock> = (data) => {
     receiveProduct(data);
@@ -72,7 +88,7 @@ export default function StockForm({ onClose, open }: StockFormProps) {
             </Box>
 
             <Typography sx={modalTitleStyles} variant="h5">
-              Entrada de Estoque
+              {variant === 'DOWN' ? 'Baixa de estoque' : 'Entrada de Estoque'}
             </Typography>
             <Divider />
             <Controller

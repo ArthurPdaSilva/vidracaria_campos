@@ -14,7 +14,7 @@ const useReceiveProduct = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/all-products'] });
-      enqueueSnackbar('Quantidade adicionada com sucesso!', {
+      enqueueSnackbar('Operação realizada com sucesso!', {
         variant: 'success',
       });
     },

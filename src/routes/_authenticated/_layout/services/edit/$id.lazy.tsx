@@ -30,6 +30,7 @@ import {
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import {
+  Alert,
   Box,
   Chip,
   FormControl,
@@ -62,7 +63,6 @@ function ServicesEditForm() {
   const [product, setProduct] = useState<ProductInfo>();
   const { AddCircleOutlineRoundedIcon } = useGetIcons();
   const [persistedImagesState, setPersitedImagesState] = useState<any[]>([]);
-
   const onSubmit: SubmitHandler<EditServiceValidation> = (data) => {
     putService({
       data: {
@@ -86,9 +86,10 @@ function ServicesEditForm() {
       setValue('discount', service.discount);
       setValue('images', service.images);
       setValue('ownerName', service.ownerName);
-      setValue('observation', service.observation);
-      setValue('downPayment', service.downPayment);
-      setValue('paymentMethod', service.paymentMethod);
+      setValue('observation', service.observation ?? undefined);
+      setValue('userManual', service.userManual);
+      setValue('downPayment', service.downPayment ?? undefined);
+      setValue('paymentMethod', service.paymentMethod ?? undefined);
       setValue('total', service.total);
       setValue('status', service.status);
       setValue('id', service.id);
@@ -120,6 +121,8 @@ function ServicesEditForm() {
       id: service?.id,
     },
   });
+
+  const disableFields = service?.status === 'FINALIZADO';
 
   useEffect(() => {
     let discount = watch('discount');
@@ -183,6 +186,18 @@ function ServicesEditForm() {
       <form onSubmit={handleSubmit(onSubmit)} style={formStyles}>
         <PageHeader title="Editar Serviço" backTo="/services" />
         <SectionHeader label="Informações" />
+        {disableFields && (
+          <Alert
+            variant="standard"
+            color="info"
+            sx={{
+              marginBottom: '20px',
+            }}
+          >
+            Este serviço já foi finalizado, portanto não é possível realizar
+            qualquer alteração.
+          </Alert>
+        )}
         <Controller
           name="ownerName"
           control={control}
@@ -225,6 +240,7 @@ function ServicesEditForm() {
               control={control}
               render={({ field }) => (
                 <ImageInput
+                  disabled={disableFields}
                   images={images}
                   setImages={setImages}
                   field={field}
@@ -243,13 +259,17 @@ function ServicesEditForm() {
                   <Chip
                     key={key}
                     label={'Imagem salva ' + img.id}
-                    onDelete={() => {
-                      setPersitedImagesState(
-                        persistedImagesState?.filter(
-                          (imgP) => imgP.id !== img.id,
-                        ),
-                      );
-                    }}
+                    onDelete={
+                      !disableFields
+                        ? () => {
+                            setPersitedImagesState(
+                              persistedImagesState?.filter(
+                                (imgP) => imgP.id !== img.id,
+                              ),
+                            );
+                          }
+                        : undefined
+                    }
                   />
                 ))}
               {images &&
@@ -258,9 +278,11 @@ function ServicesEditForm() {
                     key={key}
                     label={img.name.slice(0, 6)}
                     onDelete={() =>
-                      setImages((prev) =>
-                        prev.filter((_img, index) => key !== index),
-                      )
+                      !disableFields
+                        ? setImages((prev) =>
+                            prev.filter((_img, index) => key !== index),
+                          )
+                        : undefined
                     }
                   />
                 ))}
@@ -283,6 +305,7 @@ function ServicesEditForm() {
                 <TextField
                   type="date"
                   id="date"
+                  disabled={disableFields}
                   label="Previsão de entrega"
                   {...field}
                   value={
@@ -310,6 +333,7 @@ function ServicesEditForm() {
                 <Select
                   labelId="select-status-label"
                   id="select-status"
+                  disabled={disableFields}
                   label="Status"
                   {...field}
                   value={watch('status')}
@@ -357,6 +381,7 @@ function ServicesEditForm() {
                 <Select
                   labelId="select-payment-label"
                   id="select-payment"
+                  disabled={disableFields}
                   label="Método de Pagamento"
                   {...field}
                   value={watch('paymentMethod')}
@@ -384,6 +409,7 @@ function ServicesEditForm() {
               render={({ field }) => (
                 <TextField
                   type="number"
+                  disabled={disableFields}
                   label="Entrada em R$"
                   {...field}
                   value={field.value || ''}
@@ -400,6 +426,7 @@ function ServicesEditForm() {
             <Select
               labelId="select-product-label"
               id="select-product"
+              disabled={disableFields}
               label="Produto"
               onChange={(e) => {
                 const prodSelected = products?.find(
@@ -437,6 +464,7 @@ function ServicesEditForm() {
               >
                 <TextField
                   id="heightTxt"
+                  disabled={disableFields}
                   value={
                     Number(product?.height) === 0 ? 0 : Number(product?.height)
                   }
@@ -465,6 +493,7 @@ function ServicesEditForm() {
                 <TextField
                   id="widthTxt"
                   name="width"
+                  disabled={disableFields}
                   value={
                     Number(product?.width) === 0 ? 0 : Number(product?.width)
                   }
@@ -491,6 +520,7 @@ function ServicesEditForm() {
                   id="select-depth-label"
                   labelId="select-depth-label"
                   name="depth"
+                  disabled={disableFields}
                   label={'Espessura'}
                   value={product ? product.depth : ''}
                   onChange={(e) => {
@@ -510,12 +540,13 @@ function ServicesEditForm() {
               </FormControl>
             </>
           )}
-          <IconButton onClick={handleAddProduct}>
+          <IconButton onClick={handleAddProduct} disabled={disableFields}>
             <AddCircleOutlineRoundedIcon />
           </IconButton>
         </Box>
         <TableProductInfo
           data={watch('products') ? watch('products') || [] : []}
+          disableActions={disableFields}
           onDecrementDispatch={(id) =>
             setValue(
               'products',
@@ -554,9 +585,27 @@ function ServicesEditForm() {
               multiline
               label="Descrição"
               {...field}
+              disabled={disableFields}
               InputLabelProps={{
                 shrink: !!field.value,
               }}
+              rows={3}
+              sx={{
+                resize: 'none',
+                marginBottom: '20px',
+              }}
+            />
+          )}
+        />
+
+        <Controller
+          name="userManual"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              multiline
+              label="Manual de uso"
+              {...field}
               rows={3}
               sx={{
                 resize: 'none',
@@ -572,6 +621,7 @@ function ServicesEditForm() {
           render={({ field }) => (
             <TextField
               type="number"
+              disabled={disableFields}
               label="Desconto em R$"
               sx={{ minWidth: 160, mb: 2 }}
               {...field}
@@ -596,6 +646,7 @@ function ServicesEditForm() {
         <LoadingButton
           id="btn-save"
           type="submit"
+          disabled={disableFields}
           variant="contained"
           sx={buttonStyles}
           loading={isPending}

@@ -6,9 +6,9 @@ export const EditServiceSchema = Yup.object().shape({
   deliveryForecast: Yup.string().nullable(),
   status: Yup.mixed<Status>().required('Campo obrigatório'),
   ownerName: Yup.string().required('Campo obrigatório'),
-  discount: Yup.number().min(0, 'O desconto deve ser no mínimo 0'),
+  discount: Yup.number().optional().min(0, 'O desconto deve ser no mínimo 0'),
   downPayment: Yup.number().optional(),
-  paymentMethod: Yup.mixed<PaymentMethod>().required('Campo obrigatório'),
+  paymentMethod: Yup.mixed<PaymentMethod>().optional(),
   products: Yup.array()
     .required('Campo obrigatório')
     .of(
@@ -29,7 +29,7 @@ export const EditServiceSchema = Yup.object().shape({
 
 export const CreateServiceSchema = Yup.object().shape({
   total: Yup.number(),
-  discount: Yup.number().min(0, 'O desconto deve ser no mínimo 0'),
+  discount: Yup.number().optional().min(0, 'O desconto deve ser no mínimo 0'),
   status: Yup.mixed<Status>().required('Campo obrigatório'),
   client: Yup.string().required('Campo obrigatório'),
   products: Yup.array()

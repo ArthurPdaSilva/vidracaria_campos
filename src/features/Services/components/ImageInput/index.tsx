@@ -8,9 +8,15 @@ interface FieldProps {
   field: ControllerRenderProps<any, 'images'>;
   images: File[];
   setImages: (images: File[]) => void;
+  disabled?: boolean;
 }
 
-export default function ImageInput({ field, images, setImages }: FieldProps) {
+export default function ImageInput({
+  field,
+  images,
+  setImages,
+  disabled = false,
+}: FieldProps) {
   const addImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileInput = event.target as HTMLInputElement;
     const file = fileInput.files?.[0];
@@ -32,6 +38,7 @@ export default function ImageInput({ field, images, setImages }: FieldProps) {
       <label htmlFor="images">
         <Button
           variant="contained"
+          disabled={disabled}
           component="span"
           startIcon={<PhotoCamera />}
           sx={{ padding: '1rem', width: '100%' }}

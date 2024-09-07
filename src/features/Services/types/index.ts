@@ -17,6 +17,7 @@ export interface ServiceValidation {
   files?: File[];
   total?: number;
   observation?: string;
+  userManual?: string;
 }
 
 export interface ServiceValidationTable {
@@ -35,7 +36,7 @@ export interface EditServiceValidation extends ServiceValidation {
   deliveryForecast?: string | null;
   ownerName: string;
   downPayment?: number;
-  paymentMethod: PaymentMethod;
+  paymentMethod?: PaymentMethod;
   id: string;
   address?: AddressValidation;
 }

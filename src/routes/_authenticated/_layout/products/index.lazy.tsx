@@ -12,6 +12,7 @@ export const Route = createLazyFileRoute('/_authenticated/_layout/products/')({
 
 function Products() {
   const [open, setOpen] = useState(false);
+  const [openDown, setOpenDown] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
@@ -19,12 +20,24 @@ function Products() {
 
   return (
     <>
-      <StockForm open={open} onClose={handleClose} />
+      <StockForm variant="ENTER" open={open} onClose={handleClose} />
+      <StockForm
+        variant="DOWN"
+        open={openDown}
+        onClose={() => setOpenDown(false)}
+      />
       <TableContainer
         title="Produtos"
         table={<Table />}
         rightActionComponent={
           <Box display="flex" gap=".5rem">
+            <Button
+              variant="outlined"
+              color="error"
+              onClick={() => setOpenDown(true)}
+            >
+              Realizar baixa
+            </Button>
             <Button
               variant="contained"
               color="primary"

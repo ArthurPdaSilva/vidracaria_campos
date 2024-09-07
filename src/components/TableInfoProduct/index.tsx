@@ -13,6 +13,7 @@ interface TableProductInfoProps {
   onIncrementDispatch: (id: string) => void;
   onDecrementDispatch: (id: string) => void;
   onDeleteDispatch: (id: string) => void;
+  disableActions?: boolean;
 }
 
 export default function TableProductInfo({
@@ -20,6 +21,7 @@ export default function TableProductInfo({
   onDecrementDispatch,
   onDeleteDispatch,
   onIncrementDispatch,
+  disableActions = false,
 }: TableProductInfoProps) {
   const { AddOutlinedIcon, RemoveOutlinedIcon, DeleteIcon } = useGetIcons();
 
@@ -79,6 +81,7 @@ export default function TableProductInfo({
           return (
             <Box sx={{ display: 'flex', gap: 0.5 }}>
               <IconButton
+                disabled={disableActions}
                 onClick={() =>
                   onIncrementDispatch(options.row.original.rowId as string)
                 }
@@ -86,6 +89,7 @@ export default function TableProductInfo({
                 <AddOutlinedIcon />
               </IconButton>
               <IconButton
+                disabled={disableActions}
                 onClick={() =>
                   onDeleteDispatch(options.row.original.rowId as string)
                 }
@@ -93,6 +97,7 @@ export default function TableProductInfo({
                 <DeleteIcon color="error" />
               </IconButton>
               <IconButton
+                disabled={disableActions}
                 onClick={() =>
                   onDecrementDispatch(options.row.original.rowId as string)
                 }
