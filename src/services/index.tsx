@@ -2,7 +2,7 @@ import axios from 'axios';
 import { enqueueSnackbar } from 'notistack';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_URL,
+  baseURL: 'http://localhost:8080',
 });
 
 export const config = {
