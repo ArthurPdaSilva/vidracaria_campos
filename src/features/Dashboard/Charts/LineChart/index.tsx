@@ -1,9 +1,9 @@
+import useMask from '@/hooks/useMask';
 import { Box, Typography } from '@mui/material';
 import {
   LineChart as LineChartImported,
   LineChartProps,
 } from '@opd/g2plot-react';
-import useMask from '../../../../hooks/useMask';
 
 interface propsLineChart {
   data: { date: string; month: string; value: number }[];

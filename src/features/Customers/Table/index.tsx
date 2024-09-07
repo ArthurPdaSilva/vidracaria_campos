@@ -1,3 +1,5 @@
+import TableCellActions from '@/components/TableCellActions';
+import useMask from '@/hooks/useMask';
 import { Box } from '@mui/material';
 import {
   MaterialReactTable,
@@ -5,8 +7,6 @@ import {
   type MRT_ColumnDef,
 } from 'material-react-table';
 import { useMemo, useState } from 'react';
-import TableCellActions from '../../../components/TableCellActions';
-import useMask from '../../../hooks/useMask';
 import CustomerInfoForm from '../CustomerInfoForm';
 import { useDeleteCustomerById, useGetAllCustomers } from '../services';
 import { CustomerValidation } from '../types';

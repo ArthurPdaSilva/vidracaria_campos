@@ -1,5 +1,5 @@
+import useGetIcons from '@/hooks/useGetIcons';
 import { List } from '@mui/material';
-import useGetIcons from '../../../hooks/useGetIcons';
 import { navListStyles } from '../styles';
 import MenuItem from './MenuItem';
 

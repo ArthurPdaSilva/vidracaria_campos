@@ -1,3 +1,4 @@
+import TableCellActions from '@/components/TableCellActions';
 import { Box } from '@mui/material';
 import { useNavigate } from '@tanstack/react-router';
 import {
@@ -6,11 +7,10 @@ import {
   type MRT_ColumnDef,
 } from 'material-react-table';
 import { useMemo } from 'react';
-import TableCellActions from '../../../components/TableCellActions';
 import {
   useDeleteServiceById,
-  useGetAllServices,
   useGenerateBudgetPdf,
+  useGetAllServices,
 } from '../services';
 import { ServiceValidationTable } from '../types';
 import { converterStatus } from '../utils/converterStatus';

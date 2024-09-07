@@ -1,3 +1,14 @@
+import ReturnButton from '@/components/ReturnButton';
+import { AddressValidation } from '@/features/Customers/types';
+import {
+  useGetImagesByServiceId,
+  useGetProducstByServiceId,
+  useGetServiceById,
+} from '@/features/Services/services';
+import Carousel from '@/features/Services/ServicesInfo/Carousel';
+import UserInfo from '@/features/Services/ServicesInfo/UserInfo';
+import { BudgetItem } from '@/features/Services/types';
+import { boxStyles, formStyles } from '@/styles';
 import {
   Avatar,
   Box,
@@ -14,17 +25,6 @@ import {
 import { green, red } from '@mui/material/colors';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { useMemo } from 'react';
-import ReturnButton from '../../../../../components/ReturnButton';
-import { AddressValidation } from '../../../../../features/Customers/types';
-import {
-  useGetImagesByServiceId,
-  useGetProducstByServiceId,
-  useGetServiceById,
-} from '../../../../../features/Services/services';
-import Carousel from '../../../../../features/Services/ServicesInfo/Carousel';
-import UserInfo from '../../../../../features/Services/ServicesInfo/UserInfo';
-import { BudgetItem } from '../../../../../features/Services/types';
-import { boxStyles, formStyles } from '../../../../../styles';
 
 function ServicesInfo() {
   const { id } = Route.useParams();

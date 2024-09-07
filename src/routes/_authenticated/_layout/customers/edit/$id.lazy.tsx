@@ -1,3 +1,19 @@
+import PageHeader from '@/components/PageHeader/index.tsx';
+import useGetState from '@/features/Customers/hooks/useGetState.tsx';
+import { ClientSchema } from '@/features/Customers/schemas/index.ts';
+import {
+  useGetCustomerById,
+  useUpdateCustomer,
+} from '@/features/Customers/services/index.tsx';
+import { boxStylesForm } from '@/features/Customers/styles/index.ts';
+import { CustomerValidation } from '@/features/Customers/types/index.ts';
+import useMask from '@/hooks/useMask.tsx';
+import {
+  boxStyles,
+  buttonStyles,
+  formStyles,
+  textFieldStyles,
+} from '@/styles/index.ts';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import {
@@ -11,22 +27,6 @@ import {
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import PageHeader from '../../../../../components/PageHeader/index.tsx';
-import useGetState from '../../../../../features/Customers/hooks/useGetState.tsx';
-import { ClientSchema } from '../../../../../features/Customers/schemas/index.ts';
-import {
-  useGetCustomerById,
-  useUpdateCustomer,
-} from '../../../../../features/Customers/services/index.tsx';
-import { boxStylesForm } from '../../../../../features/Customers/styles/index.ts';
-import { CustomerValidation } from '../../../../../features/Customers/types/index.ts';
-import useMask from '../../../../../hooks/useMask.tsx';
-import {
-  boxStyles,
-  buttonStyles,
-  formStyles,
-  textFieldStyles,
-} from '../../../../../styles/index.ts';
 
 export const Route = createLazyFileRoute(
   '/_authenticated/_layout/customers/edit/$id',

@@ -1,3 +1,16 @@
+import PageHeader from '@/components/PageHeader/index.tsx';
+import useGetState from '@/features/Customers/hooks/useGetState.tsx';
+import { ClientSchema } from '@/features/Customers/schemas/index.ts';
+import { useCreateCustomer } from '@/features/Customers/services/index.tsx';
+import { boxStylesForm } from '@/features/Customers/styles/index.ts';
+import { CustomerValidation } from '@/features/Customers/types/index.ts';
+import useMask from '@/hooks/useMask.tsx';
+import {
+  boxStyles,
+  buttonStyles,
+  formStyles,
+  textFieldStyles,
+} from '@/styles/index.ts';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import {
@@ -10,19 +23,6 @@ import {
 } from '@mui/material';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import PageHeader from '../../../../../components/PageHeader/index.tsx';
-import useGetState from '../../../../../features/Customers/hooks/useGetState.tsx';
-import { ClientSchema } from '../../../../../features/Customers/schemas/index.ts';
-import { useCreateCustomer } from '../../../../../features/Customers/services/index.tsx';
-import { boxStylesForm } from '../../../../../features/Customers/styles/index.ts';
-import { CustomerValidation } from '../../../../../features/Customers/types/index.ts';
-import useMask from '../../../../../hooks/useMask.tsx';
-import {
-  boxStyles,
-  buttonStyles,
-  formStyles,
-  textFieldStyles,
-} from '../../../../../styles/index.ts';
 
 function CustomerCreateForm() {
   const states = useGetState();

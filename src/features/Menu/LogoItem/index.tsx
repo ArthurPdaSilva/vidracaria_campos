@@ -1,6 +1,6 @@
+import logo from '@/assets/images/logo-icon.webp';
 import { Grid, Typography } from '@mui/material';
 import { memo } from 'react';
-import logo from '../../../assets/images/logo-icon.webp';
 
 interface LogoItemProps {
   colapsed: boolean;

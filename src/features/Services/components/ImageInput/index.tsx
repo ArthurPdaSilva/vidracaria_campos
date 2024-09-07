@@ -1,8 +1,8 @@
+import { textFieldStyles } from '@/styles';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { Button, FormControl } from '@mui/material';
 import React from 'react';
 import { ControllerRenderProps } from 'react-hook-form';
-import { textFieldStyles } from '../../../../styles';
 
 interface FieldProps {
   field: ControllerRenderProps<any, 'images'>;

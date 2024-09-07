@@ -1,5 +1,5 @@
+import api, { config } from '@/services';
 import { useQuery } from '@tanstack/react-query';
-import api, { config } from '../../../services';
 import { DashCounters } from '../types';
 
 const useChartsCounters = () => {

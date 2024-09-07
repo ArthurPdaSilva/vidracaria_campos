@@ -1,6 +1,6 @@
+import { AddressValidation } from '@/features/Customers/types';
 import { Avatar, Box, Typography } from '@mui/material';
 import { green } from '@mui/material/colors';
-import { AddressValidation } from '../../../Customers/types';
 import { Status } from '../../types';
 import { converterStatus } from '../../utils/converterStatus';
 

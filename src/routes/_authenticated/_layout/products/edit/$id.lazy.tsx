@@ -1,3 +1,19 @@
+import PageHeader from '@/components/PageHeader/index.tsx';
+import { EditProductSchema } from '@/features/Products/schemas/index.ts';
+import {
+  useGetProductById,
+  useUpdateProduct,
+} from '@/features/Products/services/index.tsx';
+import {
+  EditProductValidation,
+  GlassVariants,
+} from '@/features/Products/types/index.ts';
+import {
+  boxStyles,
+  buttonStyles,
+  formStyles,
+  textFieldStyles,
+} from '@/styles/index.ts';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import {
@@ -11,22 +27,6 @@ import {
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import PageHeader from '../../../../../components/PageHeader/index.tsx';
-import { EditProductSchema } from '../../../../../features/Products/schemas/index.ts';
-import {
-  useGetProductById,
-  useUpdateProduct,
-} from '../../../../../features/Products/services/index.tsx';
-import {
-  EditProductValidation,
-  GlassVariants,
-} from '../../../../../features/Products/types/index.ts';
-import {
-  boxStyles,
-  buttonStyles,
-  formStyles,
-  textFieldStyles,
-} from '../../../../../styles/index.ts';
 
 export const Route = createLazyFileRoute(
   '/_authenticated/_layout/products/edit/$id',

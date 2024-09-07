@@ -1,6 +1,6 @@
+import api, { config } from '@/services';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { enqueueSnackbar } from 'notistack';
-import api, { config } from '../../../../services';
 import { ProductWithNameAndId, TransactionStock } from '../types';
 
 const useReceiveProduct = () => {

@@ -1,7 +1,7 @@
+import CloseButton from '@/components/CloseButton';
+import CustomLabel from '@/components/CustomLabel';
+import { modalStyles } from '@/styles';
 import { Box, Divider, Modal, Typography } from '@mui/material';
-import CloseButton from '../../../components/CloseButton';
-import CustomLabel from '../../../components/CustomLabel';
-import { modalStyles } from '../../../styles';
 import { modalHeaderStyles, modalTitleStyles } from '../styles';
 import { ProductValidation } from '../types';
 import { productBoxInfoStyles } from './styles';

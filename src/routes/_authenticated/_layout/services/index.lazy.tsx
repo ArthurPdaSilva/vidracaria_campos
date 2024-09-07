@@ -1,7 +1,7 @@
+import AddButton from '@/components/AddButton';
+import TableContainer from '@/components/TableContainer';
+import Table from '@/features/Services/Table';
 import { createLazyFileRoute } from '@tanstack/react-router';
-import AddButton from '../../../../components/AddButton';
-import TableContainer from '../../../../components/TableContainer';
-import Table from '../../../../features/Services/Table';
 
 function Services() {
   return (

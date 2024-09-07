@@ -1,3 +1,6 @@
+import CloseButton from '@/components/CloseButton';
+import Loader from '@/components/Loader';
+import { modalStyles } from '@/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import {
@@ -11,9 +14,6 @@ import {
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import CloseButton from '../../../components/CloseButton';
-import Loader from '../../../components/Loader';
-import { modalStyles } from '../../../styles';
 import { modalHeaderStyles, modalTitleStyles } from '../styles';
 import { TransactionStockSchema } from './schemas';
 import { useGetAllProductsWithNameAndId, useReceiveProduct } from './services';

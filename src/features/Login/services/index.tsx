@@ -1,5 +1,5 @@
+import api from '@/services';
 import { useMutation } from '@tanstack/react-query';
-import api from '../../../services';
 import { UserValidation } from '../types';
 
 const useAuthUser = () => {

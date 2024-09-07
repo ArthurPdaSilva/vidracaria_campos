@@ -1,3 +1,4 @@
+import TableCellActions from '@/components/TableCellActions';
 import { Box } from '@mui/material';
 import {
   MaterialReactTable,
@@ -5,7 +6,6 @@ import {
   type MRT_ColumnDef,
 } from 'material-react-table';
 import { useMemo, useState } from 'react';
-import TableCellActions from '../../../components/TableCellActions';
 import ProducstInfoForm from '../ProductInfoForm';
 import { useDeleteProductById, useGetAllProducts } from '../services';
 import { ProductValidation } from '../types';

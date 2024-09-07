@@ -1,7 +1,7 @@
+import api, { config } from '@/services';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 import { enqueueSnackbar } from 'notistack';
-import api, { config } from '../../../services';
 import {
   CreateProductValidation,
   EditProductValidation,

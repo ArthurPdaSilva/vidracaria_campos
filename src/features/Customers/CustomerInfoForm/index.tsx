@@ -1,8 +1,8 @@
+import userIcon from '@/assets//images/user-icon.webp';
+import CloseButton from '@/components/CloseButton';
+import useGetIcons from '@/hooks/useGetIcons';
+import { modalStyles } from '@/styles';
 import { Box, Modal, Typography } from '@mui/material';
-import userIcon from '../../../assets//images/user-icon.webp';
-import CloseButton from '../../../components/CloseButton';
-import useGetIcons from '../../../hooks/useGetIcons';
-import { modalStyles } from '../../../styles';
 import { modalHeaderStyles } from '../../Products/styles';
 import {
   addressContentStyles,
