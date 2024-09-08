@@ -20,7 +20,7 @@ function MenuDesktop() {
   const logout = () => {
     localStorage.removeItem('token');
     queryClient.clear();
-    navigate({ from: '/dashboard', to: '/' });
+    navigate({ to: '/' });
   };
 
   return (
