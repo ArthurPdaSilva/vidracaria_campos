@@ -10,7 +10,7 @@ export const boxStyles: CSSProperties = {
 };
 
 export const formControlStyles: CSSProperties = {
-  width: '500px',
+  width: '80%',
   marginTop: 3,
   gap: '10px',
 };
