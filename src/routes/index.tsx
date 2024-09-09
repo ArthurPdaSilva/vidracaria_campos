@@ -48,7 +48,12 @@ export function Login() {
       <FormControl
         component="form"
         onSubmit={handleSubmit(onSubmit)}
-        sx={formControlStyles}
+        sx={{
+          ...formControlStyles,
+          '@media (max-width: 800px)': {
+            width: '80%',
+          },
+        }}
       >
         <Controller
           name="email"
