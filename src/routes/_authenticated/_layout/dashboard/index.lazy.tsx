@@ -88,7 +88,7 @@ function Dashboard() {
         maxWidth="500px"
         borderRadius={'.5rem'}
       >
-        <Typography variant="h6">Emitir relatório de faturamento</Typography>
+        <Typography variant="h6">Relatório de faturamento</Typography>
         <form
           onSubmit={handleSubmit(onSubmit)}
           style={{
