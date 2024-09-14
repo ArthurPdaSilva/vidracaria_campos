@@ -1,19 +1,14 @@
-import PageHeader from '@/components/PageHeader/index.tsx';
-import useGetState from '@/features/Customers/hooks/useGetState.tsx';
-import { ClientSchema } from '@/features/Customers/schemas/index.ts';
+import { PageHeader } from '@/components/PageHeader';
+import { ClientSchema } from '@/features/Customers/schemas';
 import {
   useGetCustomerById,
   useUpdateCustomer,
 } from '@/features/Customers/services';
-import { boxStylesForm } from '@/features/Customers/styles/index.ts';
-import { CustomerValidation } from '@/features/Customers/types/index.ts';
+import { boxStylesForm } from '@/features/Customers/styles';
+import { CustomerValidation } from '@/features/Customers/types';
+import { useGetState } from '@/features/Customers/utils/useGetState.tsx';
 import useMask from '@/hooks/useMask.tsx';
-import {
-  boxStyles,
-  buttonStyles,
-  formStyles,
-  textFieldStyles,
-} from '@/styles/index.ts';
+import { boxStyles, buttonStyles, formStyles, textFieldStyles } from '@/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import {

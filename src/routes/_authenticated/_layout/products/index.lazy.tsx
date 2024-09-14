@@ -1,7 +1,7 @@
-import AddButton from '@/components/AddButton/index.tsx';
-import TableContainer from '@/components/TableContainer/index.tsx';
-import StockForm from '@/features/Products/StockForm/index.tsx';
-import Table from '@/features/Products/Table/index.tsx';
+import AddButton from '@/components/AddButton';
+import TableContainer from '@/components/TableContainer';
+import StockForm from '@/features/Products/StockForm';
+import Table from '@/features/Products/Table';
 import { Box, Button } from '@mui/material';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
