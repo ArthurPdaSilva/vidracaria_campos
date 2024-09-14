@@ -1,4 +1,4 @@
-const useRegex = () => {
+export const useRegex = () => {
   function handleChangePhone(
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
@@ -30,5 +30,3 @@ const useRegex = () => {
 
   return { handleChangePhone, handleChangeCpfCnpj };
 };
-
-export default useRegex;

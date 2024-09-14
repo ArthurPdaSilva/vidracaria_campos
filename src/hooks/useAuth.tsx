@@ -1,4 +1,5 @@
-import api from '../services';
+import { clearToken, getToken } from '@/utils/tokens';
+import api from '../services/api';
 
 export const useAuth = () => {
   const verifyToken = async (token: string) => {
@@ -6,13 +7,14 @@ export const useAuth = () => {
       await api
         .post(`/auth/isValidToken?token=${token}`)
         .then((res) => res.data)
-        .catch(() => localStorage.clear());
+        .catch(() => clearToken());
     }
   };
 
   const isAuthenticated = () => {
-    const token = localStorage.getItem('token') || '';
+    const token = getToken() || '';
     verifyToken(token);
+
     return token !== '';
   };
 

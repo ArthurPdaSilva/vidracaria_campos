@@ -1,3 +1,4 @@
+import { clearToken } from '@/utils/tokens';
 import { Box, Button, Drawer, IconButton } from '@mui/material/';
 import { useNavigate, useRouter } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
@@ -18,8 +19,8 @@ function MenuDesktop() {
   const [colapsedMenu, setColapsedMenu] = useState(false);
 
   const logout = () => {
-    localStorage.removeItem('token');
     queryClient.clear();
+    clearToken();
     navigate({ to: '/' });
   };
 

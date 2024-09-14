@@ -8,7 +8,7 @@ interface PageHeaderProps {
   title: string;
 }
 
-export default function PageHeader({ backTo, title }: PageHeaderProps) {
+export const PageHeader = ({ backTo, title }: PageHeaderProps) => {
   return (
     <>
       <GetLocationBreadcrumb />
@@ -20,4 +20,4 @@ export default function PageHeader({ backTo, title }: PageHeaderProps) {
       </Box>
     </>
   );
-}
+};

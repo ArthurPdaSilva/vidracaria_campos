@@ -4,7 +4,7 @@ import { ClientSchema } from '@/features/Customers/schemas/index.ts';
 import {
   useGetCustomerById,
   useUpdateCustomer,
-} from '@/features/Customers/services/index.tsx';
+} from '@/features/Customers/services';
 import { boxStylesForm } from '@/features/Customers/styles/index.ts';
 import { CustomerValidation } from '@/features/Customers/types/index.ts';
 import useMask from '@/hooks/useMask.tsx';

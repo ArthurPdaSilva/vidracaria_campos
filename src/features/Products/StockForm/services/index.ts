@@ -1,4 +1,4 @@
-import api, { config } from '@/services';
+import api, { config } from '@/services/api';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { enqueueSnackbar } from 'notistack';
 import { ProductWithNameAndId, TransactionStock } from '../types';

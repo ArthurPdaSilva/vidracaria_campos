@@ -1,4 +1,4 @@
-export default function useGetState() {
+export const useGetState = () => {
   return [
     'AC',
     'AL',
@@ -28,4 +28,4 @@ export default function useGetState() {
     'SE',
     'TO',
   ];
-}
+};
