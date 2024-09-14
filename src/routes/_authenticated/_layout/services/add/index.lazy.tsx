@@ -336,7 +336,7 @@ function ServicesCreateForm() {
           </IconButton>
         </Box>
 
-        <{ TableProductInfo }
+        <TableProductInfo
           data={watch('products') ? watch('products') || [] : []}
           onDecrementDispatch={(id) =>
             setValue(
