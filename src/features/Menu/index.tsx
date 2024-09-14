@@ -92,7 +92,7 @@ function MenuMobile() {
   );
 }
 
-export default function Menu() {
+export const Menu() {
   return (
     <>
       <Box className="desktop">

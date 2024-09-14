@@ -4,7 +4,7 @@ export interface LoaderProps {
   open: boolean;
 }
 
-export default function Loader({ open }: LoaderProps) {
+export const Loader = ({ open }: LoaderProps) => {
   return (
     <Backdrop
       sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -13,4 +13,4 @@ export default function Loader({ open }: LoaderProps) {
       <CircularProgress color="inherit" />
     </Backdrop>
   );
-}
+};

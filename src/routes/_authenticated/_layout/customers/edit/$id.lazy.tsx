@@ -6,7 +6,7 @@ import {
 } from '@/features/Customers/services';
 import { boxStylesForm } from '@/features/Customers/styles';
 import { CustomerValidation } from '@/features/Customers/types';
-import { useGetState } from '@/features/Customers/utils/useGetState.tsx';
+import { useGetState } from '@/features/Customers/utils/useGetState';
 import useMask from '@/hooks/useMask.tsx';
 import { boxStyles, buttonStyles, formStyles, textFieldStyles } from '@/styles';
 import { yupResolver } from '@hookform/resolvers/yup';

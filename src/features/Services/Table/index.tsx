@@ -1,4 +1,4 @@
-import TableCellActions from '@/components/TableCellActions';
+import { TableCellActions } from '@/components/TableCellActions';
 import { Box } from '@mui/material';
 import { useNavigate } from '@tanstack/react-router';
 import {
@@ -15,7 +15,7 @@ import {
 import { ServiceValidationTable } from '../types';
 import { converterStatus } from '../utils/converterStatus';
 
-export default function Table() {
+export const Table = () => {
   const navigate = useNavigate();
   const { data, isFetching } = useGetAllServices();
   const { mutate: deleteServices, isPending } = useDeleteServiceById();
@@ -122,4 +122,4 @@ export default function Table() {
       <MaterialReactTable table={table} />{' '}
     </Box>
   );
-}
+};

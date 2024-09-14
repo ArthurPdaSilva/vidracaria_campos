@@ -1,5 +1,5 @@
-import CloseButton from '@/components/CloseButton';
-import CustomLabel from '@/components/CustomLabel';
+import { CloseButton } from '@/components/CloseButton';
+import { CustomLabel } from '@/components/CustomLabel';
 import { modalStyles } from '@/styles';
 import { Box, Divider, Modal, Typography } from '@mui/material';
 import { modalHeaderStyles, modalTitleStyles } from '../styles';
@@ -12,11 +12,11 @@ interface ProductInfoFormProps {
   product?: ProductValidation;
 }
 
-export default function ProducstInfoForm({
+export const ProductsInfoForm = ({
   onClose,
   open,
   product,
-}: ProductInfoFormProps) {
+}: ProductInfoFormProps) => {
   if (product === undefined) return;
 
   return (
@@ -77,4 +77,4 @@ export default function ProducstInfoForm({
       </Box>
     </Modal>
   );
-}
+};

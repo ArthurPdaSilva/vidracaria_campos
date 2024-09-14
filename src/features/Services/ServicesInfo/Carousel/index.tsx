@@ -15,7 +15,7 @@ interface CarrosuelProps {
   images: Image[];
 }
 
-export default function Carousel({ images }: CarrosuelProps) {
+export const Carousel = ({ images }: CarrosuelProps) => {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -91,4 +91,4 @@ export default function Carousel({ images }: CarrosuelProps) {
       />
     </Box>
   );
-}
+};

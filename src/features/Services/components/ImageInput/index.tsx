@@ -11,12 +11,12 @@ interface FieldProps {
   disabled?: boolean;
 }
 
-export default function ImageInput({
+export const ImageInput = ({
   field,
   images,
   setImages,
   disabled = false,
-}: FieldProps) {
+}: FieldProps) => {
   const addImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileInput = event.target as HTMLInputElement;
     const file = fileInput.files?.[0];
@@ -48,4 +48,4 @@ export default function ImageInput({
       </label>
     </FormControl>
   );
-}
+};

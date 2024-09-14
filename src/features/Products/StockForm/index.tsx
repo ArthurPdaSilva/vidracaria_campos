@@ -1,5 +1,5 @@
-import CloseButton from '@/components/CloseButton';
-import Loader from '@/components/Loader';
+import { CloseButton } from '@/components/CloseButton';
+import { Loader } from '@/components/Loader';
 import { modalStyles } from '@/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
@@ -30,7 +30,7 @@ interface StockFormProps {
   variant: 'DOWN' | 'ENTER';
 }
 
-export default function StockForm({ onClose, open, variant }: StockFormProps) {
+export const StockForm = ({ onClose, open, variant }: StockFormProps) => {
   const [selectedProduct, setSelectedProduct] =
     useState<ProductWithNameAndId | null>(null);
   const { data: product } = useGetAllProductsWithNameAndId();
@@ -159,4 +159,4 @@ export default function StockForm({ onClose, open, variant }: StockFormProps) {
       </form>
     </Modal>
   );
-}
+};

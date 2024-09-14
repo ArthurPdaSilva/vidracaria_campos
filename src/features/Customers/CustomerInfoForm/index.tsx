@@ -20,7 +20,7 @@ interface CustomerInfoFormProps {
   customer?: CustomerValidation;
 }
 
-export default function CustomerInfoForm({
+export const CustomerInfoForm({
   onClose,
   open,
   customer,

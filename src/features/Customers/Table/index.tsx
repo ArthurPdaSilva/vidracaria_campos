@@ -11,7 +11,7 @@ import CustomerInfoForm from '../CustomerInfoForm';
 import { useDeleteCustomerById, useGetAllCustomers } from '../services';
 import { CustomerValidation } from '../types';
 
-export default function Table() {
+export const Table() {
   const { data, isFetching } = useGetAllCustomers();
   const { mutate: deleteCustomer, isPending } = useDeleteCustomerById();
   const [open, setOpen] = useState(false);

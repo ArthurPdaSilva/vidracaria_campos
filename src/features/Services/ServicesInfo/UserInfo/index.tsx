@@ -13,7 +13,7 @@ interface UserInfoProps {
   };
 }
 
-export default function UserInfo({ data }: UserInfoProps) {
+export const UserInfo = ({ data }: UserInfoProps) => {
   return (
     <Box
       sx={{
@@ -60,4 +60,4 @@ export default function UserInfo({ data }: UserInfoProps) {
       </Box>
     </Box>
   );
-}
+};

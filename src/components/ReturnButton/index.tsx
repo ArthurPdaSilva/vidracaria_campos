@@ -1,12 +1,12 @@
 import { Button } from '@mui/material';
 import { useNavigate } from '@tanstack/react-router';
-import useGetIcons from '../../hooks/useGetIcons';
+import { useGetIcons } from '../../hooks/useGetIcons';
 
 interface ReturnButtonProps {
   link: string;
 }
 
-export default function ReturnButton({ link }: ReturnButtonProps) {
+export const ReturnButton = ({ link }: ReturnButtonProps) => {
   const { ArrowBackIosIcon } = useGetIcons();
   const navigate = useNavigate();
 
@@ -21,4 +21,4 @@ export default function ReturnButton({ link }: ReturnButtonProps) {
       Voltar
     </Button>
   );
-}
+};

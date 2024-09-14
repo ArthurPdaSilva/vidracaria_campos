@@ -9,7 +9,7 @@ interface TableHeaderProps {
   table: ReactNode;
 }
 
-export default function TableContainer({
+export const TableContainer({
   rightActionComponent,
   table,
   title,

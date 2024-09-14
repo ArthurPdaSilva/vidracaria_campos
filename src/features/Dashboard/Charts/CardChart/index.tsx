@@ -9,7 +9,7 @@ interface cardChartProps {
   fontColor: string;
 }
 
-export default function CardChart(props: cardChartProps) {
+export const CardChart(props: cardChartProps) {
   return (
     <Box
       sx={{
