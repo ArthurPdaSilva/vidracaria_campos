@@ -16,13 +16,13 @@ interface TableProductInfoProps {
   disableActions?: boolean;
 }
 
-export default function TableProductInfo({
+export const TableProductInfo = ({
   data,
   onDecrementDispatch,
   onDeleteDispatch,
   onIncrementDispatch,
   disableActions = false,
-}: TableProductInfoProps) {
+}: TableProductInfoProps) => {
   const { AddOutlinedIcon, RemoveOutlinedIcon, DeleteIcon } = useGetIcons();
 
   const columns = useMemo<MRT_ColumnDef<ProductInfo>[]>(
@@ -128,4 +128,4 @@ export default function TableProductInfo({
       <MaterialReactTable table={table} />
     </Box>
   );
-}
+};

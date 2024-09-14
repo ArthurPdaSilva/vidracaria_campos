@@ -1,6 +1,6 @@
-import PageHeader from '@/components/PageHeader';
-import SectionHeader from '@/components/SectionHeader';
-import TableProductInfo from '@/components/TableInfoProduct';
+import { PageHeader } from '@/components/PageHeader';
+import { SectionHeader } from '@/components/SectionHeader';
+import { TableProductInfo } from '@/components/TableInfoProduct';
 import { useGetAllCustomers } from '@/features/Customers/services';
 import { AddressValidation } from '@/features/Customers/types';
 import { DepthsCommon } from '@/features/Dashboard/types';
@@ -336,7 +336,7 @@ function ServicesCreateForm() {
           </IconButton>
         </Box>
 
-        <TableProductInfo
+        <{ TableProductInfo }
           data={watch('products') ? watch('products') || [] : []}
           onDecrementDispatch={(id) =>
             setValue(

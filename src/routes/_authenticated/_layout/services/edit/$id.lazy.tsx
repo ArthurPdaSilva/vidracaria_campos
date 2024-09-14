@@ -1,6 +1,6 @@
-import PageHeader from '@/components/PageHeader';
-import SectionHeader from '@/components/SectionHeader';
-import TableProductInfo from '@/components/TableInfoProduct';
+import { PageHeader } from '@/components/PageHeader';
+import { SectionHeader } from '@/components/SectionHeader';
+import { TableProductInfo } from '@/components/TableInfoProduct';
 import { DepthsCommon } from '@/features/Dashboard/types';
 import { useGetAllProducts } from '@/features/Products/services';
 import ImageInput from '@/features/Services/components/ImageInput';
