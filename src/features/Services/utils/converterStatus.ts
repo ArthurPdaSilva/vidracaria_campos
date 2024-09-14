@@ -7,6 +7,6 @@ const statusDictionary: { [key in Status]: string } = {
   FINALIZADO: 'Finalizado',
 };
 
-export const converterStatus(status: Status): string {
+export const converterStatus = (status: Status): string => {
   return statusDictionary[status];
-}
+};

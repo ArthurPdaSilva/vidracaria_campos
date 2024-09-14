@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { headerFormStyles } from '../../styles';
-import GetLocationBreadcrumb from '../GetLocationBreadcrumb';
-import ReturnButton from '../ReturnButton';
+import { GetLocationBreadcrumb } from '../GetLocationBreadcrumb';
+import { ReturnButton } from '../ReturnButton';
 
 interface PageHeaderProps {
   backTo: string;

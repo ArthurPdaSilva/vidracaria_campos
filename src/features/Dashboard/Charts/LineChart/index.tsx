@@ -1,4 +1,4 @@
-import useMask from '@/hooks/useMask';
+import { useMask } from '@/hooks/useMask';
 import { Box, Typography } from '@mui/material';
 import {
   LineChart as LineChartImported,

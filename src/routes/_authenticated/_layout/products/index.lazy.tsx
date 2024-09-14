@@ -1,16 +1,12 @@
-import AddButton from '@/components/AddButton';
-import TableContainer from '@/components/TableContainer';
-import StockForm from '@/features/Products/StockForm';
-import Table from '@/features/Products/Table';
+import { AddButton } from '@/components/AddButton';
+import { TableContainer } from '@/components/TableContainer';
+import { StockForm } from '@/features/Products/StockForm';
+import { Table } from '@/features/Products/Table';
 import { Box, Button } from '@mui/material';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 
-export const Route = createLazyFileRoute('/_authenticated/_layout/products/')({
-  component: Products,
-});
-
-const Products() {
+const Products = () => {
   const [open, setOpen] = useState(false);
   const [openDown, setOpenDown] = useState(false);
 
@@ -51,4 +47,8 @@ const Products() {
       />
     </>
   );
-}
+};
+
+export const Route = createLazyFileRoute('/_authenticated/_layout/products/')({
+  component: Products,
+});

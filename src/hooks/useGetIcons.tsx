@@ -11,10 +11,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import InfoIcon from '@mui/icons-material/Info';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import MenuOpenRoundedIcon from '@mui/icons-material/MenuOpenRounded';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import PrintIcon from '@mui/icons-material/Print';
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -24,6 +29,8 @@ export const useGetIcons = () => {
     AddOutlinedIcon,
     RemoveOutlinedIcon,
     LogoutOutlinedIcon,
+    PrintIcon,
+    PhotoCamera,
     AddCircleOutlineRoundedIcon,
     MenuOutlinedIcon,
     ArrowBackIosRoundedIcon,
@@ -40,6 +47,9 @@ export const useGetIcons = () => {
     ArrowBackIosIcon,
     EmailOutlinedIcon,
     LocalPhoneOutlinedIcon,
+    NavigateNextIcon,
     CloseIcon,
+    KeyboardArrowLeft,
+    KeyboardArrowRight,
   };
 };

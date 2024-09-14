@@ -1,5 +1,5 @@
 import { TableCellActions } from '@/components/TableCellActions';
-import useMask from '@/hooks/useMask';
+import { useMask } from '@/hooks/useMask';
 import { Box } from '@mui/material';
 import {
   MaterialReactTable,

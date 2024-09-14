@@ -3,8 +3,8 @@ import { ClientSchema } from '@/features/Customers/schemas/';
 import { useCreateCustomer } from '@/features/Customers/services';
 import { boxStylesForm } from '@/features/Customers/styles/';
 import { CustomerValidation } from '@/features/Customers/types/';
-import { useGetState } from '@/features/Customers/utils/useGetState.ts';
-import useMask from '@/hooks/useMask.tsx';
+import { useGetState } from '@/features/Customers/utils/useGetState';
+import { useMask } from '@/hooks/useMask';
 import {
   boxStyles,
   buttonStyles,
@@ -24,7 +24,7 @@ import {
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-const CustomerCreateForm() {
+const CustomerCreateForm = () => {
   const states = useGetState();
   const createCustomer = useCreateCustomer();
   const {
@@ -310,7 +310,7 @@ const CustomerCreateForm() {
       </form>
     </Box>
   );
-}
+};
 
 export const Route = createLazyFileRoute(
   '/_authenticated/_layout/customers/add/',

@@ -1,8 +1,9 @@
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { useGetIcons } from '@/hooks/useGetIcons';
 import { Box, Breadcrumbs, Link, Typography } from '@mui/material';
 import useTranslate from '../../hooks/useTranslate';
 
 export const GetLocationBreadcrumb = () => {
+  const { NavigateNextIcon } = useGetIcons();
   const locationArr = window.location.pathname
     .split('/')
     .filter((location) => location.length > 0);

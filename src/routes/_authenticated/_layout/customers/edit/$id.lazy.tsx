@@ -7,7 +7,7 @@ import {
 import { boxStylesForm } from '@/features/Customers/styles';
 import { CustomerValidation } from '@/features/Customers/types';
 import { useGetState } from '@/features/Customers/utils/useGetState';
-import useMask from '@/hooks/useMask.tsx';
+import { useMask } from '@/hooks/useMask';
 import { boxStyles, buttonStyles, formStyles, textFieldStyles } from '@/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
@@ -23,13 +23,7 @@ import { createLazyFileRoute } from '@tanstack/react-router';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-export const Route = createLazyFileRoute(
-  '/_authenticated/_layout/customers/edit/$id',
-)({
-  component: CustomerUpdateForm,
-});
-
-const CustomerUpdateForm() {
+const CustomerUpdateForm = () => {
   const { id } = Route.useParams();
   const states = useGetState();
   const customer = useGetCustomerById(id);
@@ -344,4 +338,10 @@ const CustomerUpdateForm() {
       </form>
     </Box>
   );
-}
+};
+
+export const Route = createLazyFileRoute(
+  '/_authenticated/_layout/customers/edit/$id',
+)({
+  component: CustomerUpdateForm,
+});

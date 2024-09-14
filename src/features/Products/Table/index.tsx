@@ -6,7 +6,7 @@ import {
   type MRT_ColumnDef,
 } from 'material-react-table';
 import { useMemo, useState } from 'react';
-import { ProducstInfoForm } from '../ProductInfoForm';
+import { ProductsInfoForm } from '../ProductInfoForm';
 import { useDeleteProductById, useGetAllProducts } from '../services';
 import { ProductValidation } from '../types';
 
@@ -118,7 +118,7 @@ export const Table = () => {
 
   return (
     <>
-      <ProducstInfoForm
+      <ProductsInfoForm
         open={open}
         onClose={() => setOpen(false)}
         product={currentProduct}

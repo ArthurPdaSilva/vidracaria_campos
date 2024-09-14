@@ -1,4 +1,3 @@
-import PrintIcon from '@mui/icons-material/Print';
 import { IconButton, Tooltip } from '@mui/material';
 import { Link } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
@@ -26,7 +25,7 @@ export const TableCellActions = ({
   handleClick,
   printBudgetClick,
 }: TableCellActionsProps) => {
-  const { EditIcon, InfoIcon, DeleteIcon } = useGetIcons();
+  const { EditIcon, InfoIcon, DeleteIcon, PrintIcon } = useGetIcons();
   const [open, setOpen] = useState(false);
   const [typeTranslate, setTypeTranslate] = useState<string>('');
 

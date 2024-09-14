@@ -6,7 +6,7 @@ import {
 } from 'material-react-table';
 import { useMemo } from 'react';
 import { ProductInfo } from '../../features/Services/types';
-import useGetIcons from '../../hooks/useGetIcons';
+import { useGetIcons } from '../../hooks/useGetIcons';
 
 interface TableProductInfoProps {
   data: ProductInfo[];
