@@ -10,7 +10,7 @@ interface propsLineChart {
   title: string;
 }
 
-export const LineChart(props: propsLineChart) {
+export const LineChart = (props: propsLineChart) => {
   const { realFormater } = useMask();
   const config: LineChartProps = {
     data: props.data,
@@ -82,4 +82,4 @@ export const LineChart(props: propsLineChart) {
       <LineChartImported {...config} />
     </Box>
   );
-}
+};

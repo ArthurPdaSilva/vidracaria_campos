@@ -3,7 +3,7 @@ import TableContainer from '@/components/TableContainer';
 import Table from '@/features/Customers/Table';
 import { createLazyFileRoute } from '@tanstack/react-router';
 
-function Customers() {
+const Customers() {
   return (
     <TableContainer
       rightActionComponent={<AddButton link="/customers/add" />}

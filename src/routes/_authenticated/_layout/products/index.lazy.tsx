@@ -10,7 +10,7 @@ export const Route = createLazyFileRoute('/_authenticated/_layout/products/')({
   component: Products,
 });
 
-function Products() {
+const Products() {
   const [open, setOpen] = useState(false);
   const [openDown, setOpenDown] = useState(false);
 

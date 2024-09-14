@@ -2,7 +2,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { Box, Breadcrumbs, Link, Typography } from '@mui/material';
 import useTranslate from '../../hooks/useTranslate';
 
-function GetLocationBreadcrumb() {
+export const GetLocationBreadcrumb = () => {
   const locationArr = window.location.pathname
     .split('/')
     .filter((location) => location.length > 0);
@@ -61,6 +61,4 @@ function GetLocationBreadcrumb() {
       )}
     </Breadcrumbs>
   );
-}
-
-export default GetLocationBreadcrumb;
+};

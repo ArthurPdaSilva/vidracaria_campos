@@ -24,7 +24,7 @@ import {
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-function CustomerCreateForm() {
+const CustomerCreateForm() {
   const states = useGetState();
   const createCustomer = useCreateCustomer();
   const {

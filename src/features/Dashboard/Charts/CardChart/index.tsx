@@ -9,7 +9,7 @@ interface cardChartProps {
   fontColor: string;
 }
 
-export const CardChart(props: cardChartProps) {
+export const CardChart = (props: cardChartProps) => {
   return (
     <Box
       sx={{
@@ -37,4 +37,4 @@ export const CardChart(props: cardChartProps) {
       </Box>
     </Box>
   );
-}
+};

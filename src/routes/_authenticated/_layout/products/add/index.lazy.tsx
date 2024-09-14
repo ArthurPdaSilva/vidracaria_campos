@@ -20,7 +20,7 @@ import { createLazyFileRoute } from '@tanstack/react-router';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-function ProductsCreateForm() {
+const ProductsCreateForm = () => {
   const create = useCreateProduct();
 
   const onSubmit: SubmitHandler<CreateProductValidation> = (data) => {
@@ -162,7 +162,7 @@ function ProductsCreateForm() {
       </form>
     </Box>
   );
-}
+};
 
 export const Route = createLazyFileRoute(
   '/_authenticated/_layout/products/add/',

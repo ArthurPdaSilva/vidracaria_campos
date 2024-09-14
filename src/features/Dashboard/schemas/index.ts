@@ -7,7 +7,7 @@ export const FinancialReportSchema = Yup.object().shape({
     .test(
       'is-endDate-greater',
       'A data final deve ser posterior à data inicial',
-      function (value) {
+      const (value) {
         const { startDate } = this.parent;
         return new Date(value) > new Date(startDate);
       },
@@ -15,7 +15,7 @@ export const FinancialReportSchema = Yup.object().shape({
     .test(
       'is-within-one-year',
       'A diferença entre as datas não pode ser maior que 1 ano',
-      function (value) {
+      const (value) {
         const { startDate } = this.parent;
         const startDateObj = new Date(startDate);
         const endDateObj = new Date(value);

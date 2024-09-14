@@ -9,11 +9,11 @@ interface TableHeaderProps {
   table: ReactNode;
 }
 
-export const TableContainer({
+export const TableContainer = ({
   rightActionComponent,
   table,
   title,
-}: TableHeaderProps) {
+}: TableHeaderProps) => {
   return (
     <Box sx={mainStyles} component={'main'}>
       <Box sx={{ ...headerTablePageStyles, flexWrap: 'wrap' }}>
@@ -25,4 +25,4 @@ export const TableContainer({
       {table}
     </Box>
   );
-}
+};

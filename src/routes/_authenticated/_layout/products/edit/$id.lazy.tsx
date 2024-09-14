@@ -23,13 +23,7 @@ import { createLazyFileRoute } from '@tanstack/react-router';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-export const Route = createLazyFileRoute(
-  '/_authenticated/_layout/products/edit/$id',
-)({
-  component: ProducstUpdateForm,
-});
-
-function ProducstUpdateForm() {
+const ProducstUpdateForm = () => {
   const { id } = Route.useParams();
   const product = useGetProductById(id);
   const updateProduct = useUpdateProduct();
@@ -219,4 +213,10 @@ function ProducstUpdateForm() {
       </form>
     </Box>
   );
-}
+};
+
+export const Route = createLazyFileRoute(
+  '/_authenticated/_layout/products/edit/$id',
+)({
+  component: ProducstUpdateForm,
+});

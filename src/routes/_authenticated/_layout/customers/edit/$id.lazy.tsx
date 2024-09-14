@@ -29,7 +29,7 @@ export const Route = createLazyFileRoute(
   component: CustomerUpdateForm,
 });
 
-function CustomerUpdateForm() {
+const CustomerUpdateForm() {
   const { id } = Route.useParams();
   const states = useGetState();
   const customer = useGetCustomerById(id);

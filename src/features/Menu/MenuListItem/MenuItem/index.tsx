@@ -25,7 +25,7 @@ export interface MenuItemProps {
   };
 }
 
-function MenuItem(props: MenuItemProps) {
+const MenuItem(props: MenuItemProps) {
   const location = useRouterState().location;
 
   const verifyLinkActive = (link: string) => {

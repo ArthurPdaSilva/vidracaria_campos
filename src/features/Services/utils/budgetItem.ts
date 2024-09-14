@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { BudgetItem, ProductInfo } from '../types';
 
-export function useBudgetItem() {
+export const useBudgetItem() {
   const price2mmComum = 200;
   const price3mmComum = 300;
   const price4mmComum = 400;

@@ -21,7 +21,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 dayjs.extend(customParseFormat);
 
-function Dashboard() {
+const Dashboard() {
   const { data, isFetching } = useChartsCounters();
   const { realFormater, arrDateToDate, addPercent } = useMask();
   const { mutate: generate, isPending } = useGenerateDashPdf();

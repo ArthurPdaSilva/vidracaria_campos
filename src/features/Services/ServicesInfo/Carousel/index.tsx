@@ -11,11 +11,11 @@ import { Image } from '../../types';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-interface CarrosuelProps {
+interface CarosuelProps {
   images: Image[];
 }
 
-export const Carousel = ({ images }: CarrosuelProps) => {
+export const Carousel = ({ images }: CarosuelProps) => {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
 

@@ -6,7 +6,7 @@ export const Route = createFileRoute('/_authenticated/_layout')({
   component: LayoutComponent,
 });
 
-function LayoutComponent() {
+const LayoutComponent() {
   return (
     <Box display={'flex'} flexDirection={'row'} overflow={'hidden'}>
       <Menu />
