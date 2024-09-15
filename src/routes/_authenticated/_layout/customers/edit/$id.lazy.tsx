@@ -1,4 +1,5 @@
 import { PageHeader } from '@/components/PageHeader';
+import { SectionHeader } from '@/components/SectionHeader';
 import { ClientSchema } from '@/features/Customers/schemas';
 import {
   useGetCustomerById,
@@ -87,7 +88,7 @@ const CustomerUpdateForm = () => {
     <Box sx={boxStyles}>
       <form onSubmit={handleSubmit(onSubmit)} style={formStyles}>
         <PageHeader backTo="/customers" title="Editar Cliente" />
-
+        <SectionHeader label="Informações de contato" />
         <Controller
           name="name"
           control={control}
@@ -194,25 +195,42 @@ const CustomerUpdateForm = () => {
           />
         </Box>
 
-        <Controller
-          name="address.address"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              id="address"
-              type="text"
-              label="Rua"
-              error={!!errors.address?.address}
-              helperText={errors.address?.address?.message}
-              sx={textFieldStyles}
-              placeholder="Digite o nome da rua"
-              {...field}
-              InputLabelProps={{
-                shrink: !!field.value,
-              }}
-            />
-          )}
-        />
+        <SectionHeader label="Endereço" />
+
+        <Box sx={boxStylesForm}>
+          <Controller
+            name="address.address"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                id="address"
+                type="text"
+                label="Rua"
+                error={!!errors.address?.address}
+                helperText={errors.address?.address?.message}
+                sx={textFieldStyles}
+                placeholder="Digite o nome da rua"
+                {...field}
+              />
+            )}
+          />
+          <Controller
+            name="address.neighborhood"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                id="neighborhood"
+                type="text"
+                label="Bairro"
+                error={!!errors.address?.neighborhood}
+                helperText={errors.address?.neighborhood?.message}
+                sx={textFieldStyles}
+                placeholder="Digite o nome do bairro"
+                {...field}
+              />
+            )}
+          />
+        </Box>
 
         <Box sx={boxStylesForm}>
           <Controller

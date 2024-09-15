@@ -83,10 +83,10 @@ const MenuMobile = () => {
           backgroundColor: 'var(--background)',
         }}
       >
-        <LogoItem colapsed={false} />
         <IconButton onClick={() => setOpen(!open)}>
-          {!open && <MenuOutlinedIcon />}
+          <MenuOutlinedIcon />
         </IconButton>
+        <LogoItem colapsed={false} />
       </Box>
     </>
   );

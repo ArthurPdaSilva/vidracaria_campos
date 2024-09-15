@@ -21,6 +21,7 @@ import { boxStyles, buttonStyles, formStyles, textFieldStyles } from '@/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import {
+  Autocomplete,
   Box,
   Chip,
   FormControl,
@@ -33,7 +34,7 @@ import {
 } from '@mui/material';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { enqueueSnackbar } from 'notistack';
-import { useEffect, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -135,28 +136,28 @@ const ServicesCreateForm = () => {
               variant="outlined"
               sx={{ minWidth: 120 }}
             >
-              <InputLabel
-                error={errors.client !== undefined}
-                id="select-client-label"
-              >
-                Cliente
-              </InputLabel>
-              <Select
-                labelId="select-client-label"
-                id="select-client"
-                label="Cliente"
-                {...field}
-                value={field.value}
-              >
-                {customers?.map(
-                  (customer) =>
-                    customer && (
-                      <MenuItem value={customer.id} key={customer.id}>
-                        {customer.name}
-                      </MenuItem>
-                    ),
-                )}
-              </Select>
+              {customers && (
+                <Autocomplete
+                  disablePortal
+                  id="select-client"
+                  onChange={(
+                    _event: SyntheticEvent,
+                    newValue: { id: string | undefined; label: string } | null,
+                  ) => {
+                    if (newValue && newValue.id) {
+                      setValue('client', newValue.id);
+                    }
+                  }}
+                  inputValue={field.value}
+                  options={customers?.map((customer) => ({
+                    id: customer.id,
+                    label: customer.name,
+                  }))}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Cliente" />
+                  )}
+                />
+              )}
               <FormHelperText>{errors.client?.message}</FormHelperText>
             </FormControl>
           )}

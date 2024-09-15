@@ -81,7 +81,7 @@ const ServicesEditForm = () => {
       setValue('observation', service.observation ?? undefined);
       setValue('userManual', service.userManual);
       setValue('downPayment', service.downPayment ?? undefined);
-      setValue('paymentMethod', service.paymentMethod ?? undefined);
+      setValue('paymentMethod', service.paymentMethod ?? 'DINHEIRO');
       setValue('total', service.total);
       setValue('status', service.status);
       setValue('id', service.id);

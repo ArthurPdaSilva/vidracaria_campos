@@ -40,7 +40,11 @@ const useUpdateProduct = () => {
   return useMutation({
     mutationFn: (product: EditProductValidation) => {
       return api
-        .put(`/product/${product.id}`, product, config)
+        .put(
+          `/product/${product.id}`,
+          { ...product, glassType: product.type },
+          config,
+        )
         .then((res) => res.data);
     },
     onSuccess: () => {
