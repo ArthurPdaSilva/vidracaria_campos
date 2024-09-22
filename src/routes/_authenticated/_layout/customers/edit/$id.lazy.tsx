@@ -81,6 +81,7 @@ const CustomerUpdateForm = () => {
       setValue('address.city', data.address.city);
       setValue('address.number', data.address.number);
       setValue('address.landmark', data.address.landmark);
+      setValue('address.neighborhood', data.address.neighborhood);
     }
   }, [customer.data]);
 
