@@ -58,9 +58,11 @@ export const CustomerInfoForm = ({
             Informações de Contato
           </Typography>
           <Box display={'flex'}>
-            <Typography variant="body2" sx={textContentStyles}>
-              <LocalPhoneOutlinedIcon /> {customer.phone}
-            </Typography>
+            {customer.phone && (
+              <Typography variant="body2" sx={textContentStyles}>
+                <LocalPhoneOutlinedIcon /> {customer.phone}
+              </Typography>
+            )}
             <Typography variant="body2" sx={textContentStyles}>
               <EmailOutlinedIcon /> {customer.email}
             </Typography>
@@ -71,7 +73,7 @@ export const CustomerInfoForm = ({
           <Typography variant="body2" fontWeight={'bold'} color={'GrayText'}>
             Endereço
           </Typography>
-          <Box display={'flex'} flexDirection={'row'}>
+          <Box display={'flex'} flexDirection={'row'} flexWrap={'wrap'}>
             <Typography variant="body2" sx={addressContentStyles}>
               <AddressInfoSpan text="Rua" />
               {customer.address.address}
@@ -84,10 +86,18 @@ export const CustomerInfoForm = ({
               <AddressInfoSpan text="Estado" />
               {customer.address.state}
             </Typography>
-            <Typography variant="body2" sx={addressContentStyles}>
-              <AddressInfoSpan text="Referência" />
-              {customer.address.landmark}
-            </Typography>
+            {customer.address.landmark && (
+              <Typography variant="body2" sx={addressContentStyles}>
+                <AddressInfoSpan text="Referência" />
+                {customer.address.landmark}
+              </Typography>
+            )}
+            {customer.address.neighborhood && (
+              <Typography variant="body2" sx={addressContentStyles}>
+                <AddressInfoSpan text="Bairro" />
+                {customer.address.neighborhood}
+              </Typography>
+            )}
           </Box>
         </Box>
       </Box>
