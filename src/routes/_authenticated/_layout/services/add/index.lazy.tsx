@@ -244,7 +244,7 @@ const ServicesCreateForm = () => {
                     price: prodSelected?.price,
                     width: prodSelected?.width,
                     category: prodSelected.category,
-                    type: prodSelected.type,
+                    glassType: prodSelected.glassType,
                     rowId: uuidv4(),
                   });
               }}

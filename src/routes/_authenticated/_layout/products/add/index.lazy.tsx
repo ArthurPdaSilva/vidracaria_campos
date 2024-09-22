@@ -49,7 +49,7 @@ const ProductsCreateForm = () => {
       setValue('unitOfMeasure', 'METRO');
     }
     if (watch('category') !== 'COMUM') {
-      setValue('type', undefined);
+      setValue('glassType', undefined);
     }
   }, [watch('category')]);
 
@@ -127,7 +127,7 @@ const ProductsCreateForm = () => {
         </Box>
         {watch('category') === 'COMUM' && (
           <Controller
-            name="type"
+            name="glassType"
             control={control}
             render={({ field }) => (
               <FormControl sx={textFieldStyles}>
@@ -136,7 +136,7 @@ const ProductsCreateForm = () => {
                   type="text"
                   id="variant"
                   label="Variação"
-                  error={!!errors.type}
+                  error={!!errors.glassType}
                   placeholder="Digite a variação do produto"
                   {...field}
                 >

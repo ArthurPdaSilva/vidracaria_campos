@@ -31,7 +31,7 @@ export const useBudgetItem = () => {
       depth: item.depth,
       height: item.height,
       price: item.unitPrice,
-      type: item.type,
+      type: item.glassType,
       width: item.width,
       rowId: uuidv4(),
     }));
@@ -48,11 +48,11 @@ export const useBudgetItem = () => {
   const pricesVidracaria = (item: ProductInfo) => {
     const area = Number(item.height) * Number(item.width);
     let finalValue = 0;
-    if (item.category === 'COMUM' && item.type !== 'ESPELHO') {
+    if (item.category === 'COMUM' && item.glassType !== 'ESPELHO') {
       const priceToUse = getPriceToUseComum(item);
       const initialValue = priceToUse * (area / constant1);
       finalValue = initialValue * margemVendedorComum;
-    } else if (item.category === 'COMUM' && item.type === 'ESPELHO') {
+    } else if (item.category === 'COMUM' && item.glassType === 'ESPELHO') {
       const priceToUse = getPriceToUseEspelho(item);
       const initialValue = priceToUse * (area / constant2);
       finalValue = initialValue * margemVendedorComum;

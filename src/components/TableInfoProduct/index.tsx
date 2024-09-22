@@ -32,7 +32,7 @@ export const TableProductInfo = ({
         header: 'Produto',
       },
       {
-        accessorKey: 'type',
+        accessorKey: 'glassType',
         header: 'Variante',
       },
       {

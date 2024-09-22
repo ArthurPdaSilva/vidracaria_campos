@@ -5,7 +5,7 @@ export interface ProductBase {
   name: string;
   unitOfMeasure: UnitOfMeasure;
   category: Category;
-  type?: GlassVariant;
+  glassType?: GlassVariant;
 }
 
 export type GlassVariant = 'CANELADO' | 'INCOLOR' | 'FUME' | 'ESPELHO';
@@ -24,7 +24,7 @@ export interface EditProductValidation extends ProductEditAndList {}
 
 export interface ProductValidation extends ProductEditAndList {
   actualQuantity: number;
-  type: GlassVariant;
+  glassType: GlassVariant;
   idProduct?: string;
 }
 

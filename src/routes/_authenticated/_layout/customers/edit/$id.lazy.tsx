@@ -228,6 +228,9 @@ const CustomerUpdateForm = () => {
                 sx={textFieldStyles}
                 placeholder="Digite o nome do bairro"
                 {...field}
+                InputLabelProps={{
+                  shrink: !!field.value,
+                }}
               />
             )}
           />

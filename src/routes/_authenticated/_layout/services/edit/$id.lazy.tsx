@@ -157,7 +157,7 @@ const ServicesEditForm = () => {
         {
           ...product,
           price: calculateTotal(product),
-          type: product.type,
+          glassType: product.glassType,
         },
       ]);
       setProduct(undefined);
@@ -435,7 +435,7 @@ const ServicesEditForm = () => {
                     price: prodSelected.price,
                     width: prodSelected.width,
                     idProduct: prodSelected.idProduct,
-                    type: prodSelected.type,
+                    glassType: prodSelected.glassType,
                     rowId: uuidv4(),
                   });
               }}
@@ -601,6 +601,9 @@ const ServicesEditForm = () => {
               rows={3}
               sx={{
                 resize: 'none',
+              }}
+              InputLabelProps={{
+                shrink: !!field.value,
               }}
             />
           )}

@@ -81,7 +81,7 @@ const usePutServiceById = () => {
           width: item.width,
           depth: item.depth,
           category: item.category,
-          type: item.type,
+          glassType: item.glassType,
         })),
       };
       return api
@@ -125,6 +125,7 @@ const useCreateService = () => {
 
   return useMutation({
     mutationFn: async (service: CreateServiceValidation) => {
+      console.log('🚀 ~ mutationFn: ~ service:', service);
       const formData = new FormData();
       let urls = [];
 
@@ -153,7 +154,7 @@ const useCreateService = () => {
             width: product.width ?? 0,
             depth: product.depth ?? 0,
             name: product.name,
-            type: product.type,
+            glassType: product.glassType,
           };
         }),
       };
