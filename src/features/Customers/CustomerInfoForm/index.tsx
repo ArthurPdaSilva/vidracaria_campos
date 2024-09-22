@@ -1,6 +1,6 @@
 import userIcon from '@/assets//images/user-icon.webp';
-import CloseButton from '@/components/CloseButton';
-import useGetIcons from '@/hooks/useGetIcons';
+import { CloseButton } from '@/components/CloseButton';
+import { useGetIcons } from '@/hooks/useGetIcons';
 import { modalStyles } from '@/styles';
 import { Box, Modal, Typography } from '@mui/material';
 import { modalHeaderStyles } from '../../Products/styles';
@@ -12,7 +12,7 @@ import {
   textContentStyles,
 } from '../styles';
 import { CustomerValidation } from '../types';
-import AddressInfoSpan from './AddressInfoSpan';
+import { AddressInfoSpan } from './AddressInfoSpan';
 
 interface CustomerInfoFormProps {
   open: boolean;
@@ -20,11 +20,11 @@ interface CustomerInfoFormProps {
   customer?: CustomerValidation;
 }
 
-export default function CustomerInfoForm({
+export const CustomerInfoForm = ({
   onClose,
   open,
   customer,
-}: CustomerInfoFormProps) {
+}: CustomerInfoFormProps) => {
   const { EmailOutlinedIcon, LocalPhoneOutlinedIcon } = useGetIcons();
   if (customer === undefined) return;
 
@@ -93,4 +93,4 @@ export default function CustomerInfoForm({
       </Box>
     </Modal>
   );
-}
+};

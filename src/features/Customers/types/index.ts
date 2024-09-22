@@ -15,4 +15,5 @@ export interface AddressValidation {
   city: string;
   state: string;
   landmark?: string;
+  neighborhood?: string;
 }

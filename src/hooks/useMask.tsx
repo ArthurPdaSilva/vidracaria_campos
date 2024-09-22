@@ -1,4 +1,4 @@
-const useMask = () => {
+export const useMask = () => {
   const phoneMask = '(##) # ####-####';
   const cpfMask = '###.###.###-##';
   const cnpjMask = '##.###.###/####-##';
@@ -76,5 +76,3 @@ const useMask = () => {
     addPercent,
   };
 };
-
-export default useMask;

@@ -4,7 +4,7 @@ interface SectionHeaderProps {
   label: string;
 }
 
-function CustomDivider() {
+const CustomDivider = () => {
   return (
     <Divider
       orientation="horizontal"
@@ -13,9 +13,9 @@ function CustomDivider() {
       }}
     />
   );
-}
+};
 
-export default function SectionHeader({ label }: SectionHeaderProps) {
+export const SectionHeader = ({ label }: SectionHeaderProps) => {
   return (
     <Box
       sx={{
@@ -34,4 +34,4 @@ export default function SectionHeader({ label }: SectionHeaderProps) {
       <CustomDivider />
     </Box>
   );
-}
+};

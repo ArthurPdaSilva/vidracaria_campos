@@ -18,7 +18,7 @@ declare module '@tanstack/react-router' {
   }
 }
 
-export default function App() {
+export const App = () => {
   const authentication = useAuth();
   return (
     <QueryClientProvider client={queryClient}>
@@ -28,4 +28,4 @@ export default function App() {
       </SnackbarProvider>
     </QueryClientProvider>
   );
-}
+};

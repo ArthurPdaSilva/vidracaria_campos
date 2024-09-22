@@ -5,7 +5,7 @@ interface CustomLabelProps {
   text: string;
 }
 
-export default function CustomLabel({ text, title }: CustomLabelProps) {
+export const CustomLabel = ({ text, title }: CustomLabelProps) => {
   return (
     <Box
       sx={{
@@ -18,4 +18,4 @@ export default function CustomLabel({ text, title }: CustomLabelProps) {
       <Typography variant="h5">{text}</Typography>
     </Box>
   );
-}
+};

@@ -14,7 +14,7 @@ import {
 import { UserValidation } from '../features/Login/types';
 import { useAuth } from '../hooks/useAuth';
 
-export function Login() {
+export const Login = () => {
   const authUser = useAuthUser();
   const navigate = useNavigate();
 
@@ -108,7 +108,7 @@ export function Login() {
       </FormControl>
     </Box>
   );
-}
+};
 
 export const Route = createFileRoute('/')({
   beforeLoad: (s) => {

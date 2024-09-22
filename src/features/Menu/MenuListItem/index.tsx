@@ -1,4 +1,4 @@
-import useGetIcons from '@/hooks/useGetIcons';
+import { useGetIcons } from '@/hooks/useGetIcons';
 import { List } from '@mui/material';
 import { navListStyles } from '../styles';
 import MenuItem from './MenuItem';
@@ -6,7 +6,7 @@ import MenuItem from './MenuItem';
 interface MenuListItemProps {
   colapsed: boolean;
 }
-export default function MenuListItem({ colapsed }: MenuListItemProps) {
+export const MenuListItem = ({ colapsed }: MenuListItemProps) => {
   const {
     AccountCircleOutlinedIcon,
     BuildOutlinedIcon,
@@ -50,4 +50,4 @@ export default function MenuListItem({ colapsed }: MenuListItemProps) {
       ))}
     </List>
   );
-}
+};

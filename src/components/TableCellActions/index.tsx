@@ -1,9 +1,8 @@
-import PrintIcon from '@mui/icons-material/Print';
 import { IconButton, Tooltip } from '@mui/material';
 import { Link } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
-import useGetIcons from '../../hooks/useGetIcons';
-import ConfirmAction from '../ConfirmAction';
+import { useGetIcons } from '../../hooks/useGetIcons';
+import { ConfirmAction } from '../ConfirmAction';
 
 export interface TableCellActionsProps {
   idObject: string;
@@ -19,14 +18,14 @@ const typeMap = {
   service: { label: 'Serviço', editPath: '/services/edit/$id' },
 };
 
-export default function TableCellActions({
+export const TableCellActions = ({
   idObject,
   type,
   dispach,
   handleClick,
   printBudgetClick,
-}: TableCellActionsProps) {
-  const { EditIcon, InfoIcon, DeleteIcon } = useGetIcons();
+}: TableCellActionsProps) => {
+  const { EditIcon, InfoIcon, DeleteIcon, PrintIcon } = useGetIcons();
   const [open, setOpen] = useState(false);
   const [typeTranslate, setTypeTranslate] = useState<string>('');
 
@@ -86,4 +85,4 @@ export default function TableCellActions({
       </Tooltip>
     </>
   );
-}
+};

@@ -1,9 +1,9 @@
-import AddButton from '@/components/AddButton';
-import TableContainer from '@/components/TableContainer';
-import Table from '@/features/Services/Table';
+import { AddButton } from '@/components/AddButton';
+import { TableContainer } from '@/components/TableContainer';
+import { Table } from '@/features/Services/Table';
 import { createLazyFileRoute } from '@tanstack/react-router';
 
-function Services() {
+const Services = () => {
   return (
     <TableContainer
       rightActionComponent={<AddButton link="/services/add" />}
@@ -11,7 +11,7 @@ function Services() {
       title="Serviços"
     />
   );
-}
+};
 
 export const Route = createLazyFileRoute('/_authenticated/_layout/services/')({
   component: Services,

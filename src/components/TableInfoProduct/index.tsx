@@ -6,7 +6,7 @@ import {
 } from 'material-react-table';
 import { useMemo } from 'react';
 import { ProductInfo } from '../../features/Services/types';
-import useGetIcons from '../../hooks/useGetIcons';
+import { useGetIcons } from '../../hooks/useGetIcons';
 
 interface TableProductInfoProps {
   data: ProductInfo[];
@@ -16,13 +16,13 @@ interface TableProductInfoProps {
   disableActions?: boolean;
 }
 
-export default function TableProductInfo({
+export const TableProductInfo = ({
   data,
   onDecrementDispatch,
   onDeleteDispatch,
   onIncrementDispatch,
   disableActions = false,
-}: TableProductInfoProps) {
+}: TableProductInfoProps) => {
   const { AddOutlinedIcon, RemoveOutlinedIcon, DeleteIcon } = useGetIcons();
 
   const columns = useMemo<MRT_ColumnDef<ProductInfo>[]>(
@@ -128,4 +128,4 @@ export default function TableProductInfo({
       <MaterialReactTable table={table} />
     </Box>
   );
-}
+};

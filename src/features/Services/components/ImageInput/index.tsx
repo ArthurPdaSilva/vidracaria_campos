@@ -1,5 +1,6 @@
+import { useGetIcons } from '@/hooks/useGetIcons';
 import { textFieldStyles } from '@/styles';
-import PhotoCamera from '@mui/icons-material/PhotoCamera';
+
 import { Button, FormControl } from '@mui/material';
 import React from 'react';
 import { ControllerRenderProps } from 'react-hook-form';
@@ -11,12 +12,13 @@ interface FieldProps {
   disabled?: boolean;
 }
 
-export default function ImageInput({
+export const ImageInput = ({
   field,
   images,
   setImages,
   disabled = false,
-}: FieldProps) {
+}: FieldProps) => {
+  const { PhotoCamera } = useGetIcons();
   const addImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileInput = event.target as HTMLInputElement;
     const file = fileInput.files?.[0];
@@ -48,4 +50,4 @@ export default function ImageInput({
       </label>
     </FormControl>
   );
-}
+};

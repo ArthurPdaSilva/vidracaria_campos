@@ -1,7 +1,7 @@
-const useRegex = () => {
-  function handleChangePhone(
+export const useRegex = () => {
+  const handleChangePhone = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) {
+  ) => {
     const inputPhoneNumber = event.target.value.replace(/\D/g, '');
     const formattedPhoneNumber = inputPhoneNumber.replace(
       /^(\d{2})(\d{4,5})(\d{4})$/,
@@ -9,11 +9,11 @@ const useRegex = () => {
     );
 
     event.target.value = formattedPhoneNumber;
-  }
+  };
 
-  function handleChangeCpfCnpj(
+  const handleChangeCpfCnpj = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) {
+  ) => {
     const inputCpfCnpj = event.target.value.replace(/\D/g, '');
 
     const isCpf = inputCpfCnpj.length === 11;
@@ -26,9 +26,7 @@ const useRegex = () => {
         );
 
     event.target.value = formattedCpfCnpj;
-  }
+  };
 
   return { handleChangePhone, handleChangeCpfCnpj };
 };
-
-export default useRegex;

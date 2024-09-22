@@ -2,14 +2,14 @@ import cartIcon from '@/assets/images/cart.webp';
 import chartUpIcon from '@/assets/images/chart_up.webp';
 import groupIcon from '@/assets/images/group.png';
 import moneyIcon from '@/assets/images/money_icon.webp';
-import Loader from '@/components/Loader';
+import { Loader } from '@/components/Loader';
 import { CardChart, LineChart } from '@/features/Dashboard/Charts';
 import { FinancialReportSchema } from '@/features/Dashboard/schemas';
 import { useChartsCounters } from '@/features/Dashboard/services';
 import { boxCards, mainStyles } from '@/features/Dashboard/styles';
 import { FinancialReport } from '@/features/Dashboard/types';
 import { useGenerateDashPdf } from '@/features/Services/services';
-import useMask from '@/hooks/useMask';
+import { useMask } from '@/hooks/useMask';
 import { buttonStyles } from '@/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
@@ -21,7 +21,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 dayjs.extend(customParseFormat);
 
-function Dashboard() {
+const Dashboard = () => {
   const { data, isFetching } = useChartsCounters();
   const { realFormater, arrDateToDate, addPercent } = useMask();
   const { mutate: generate, isPending } = useGenerateDashPdf();
@@ -197,7 +197,7 @@ function Dashboard() {
       </Box>
     </Box>
   );
-}
+};
 
 export const Route = createLazyFileRoute('/_authenticated/_layout/dashboard/')({
   component: Dashboard,

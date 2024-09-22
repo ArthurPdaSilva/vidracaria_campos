@@ -1,12 +1,12 @@
-import ReturnButton from '@/components/ReturnButton';
+import { ReturnButton } from '@/components/ReturnButton';
 import { AddressValidation } from '@/features/Customers/types';
 import {
   useGetImagesByServiceId,
   useGetProducstByServiceId,
   useGetServiceById,
 } from '@/features/Services/services';
-import Carousel from '@/features/Services/ServicesInfo/Carousel';
-import UserInfo from '@/features/Services/ServicesInfo/UserInfo';
+import { Carousel } from '@/features/Services/ServicesInfo/Carousel';
+import { UserInfo } from '@/features/Services/ServicesInfo/UserInfo';
 import { BudgetItem } from '@/features/Services/types';
 import { boxStyles, formStyles } from '@/styles';
 import {
@@ -26,7 +26,7 @@ import { green, red } from '@mui/material/colors';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { useMemo } from 'react';
 
-function ServicesInfo() {
+const ServicesInfo = () => {
   const { id } = Route.useParams();
   const { data, isLoading } = useGetServiceById(id);
   const { data: products } = useGetProducstByServiceId(data?.id);
@@ -160,7 +160,7 @@ function ServicesInfo() {
       </Box>
     </Box>
   );
-}
+};
 
 export const Route = createLazyFileRoute(
   '/_authenticated/_layout/services/info/$id',

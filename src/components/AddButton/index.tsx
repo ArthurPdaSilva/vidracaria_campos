@@ -5,7 +5,7 @@ interface AddButtonProps {
   link: string;
 }
 
-export default function AddButton({ link }: AddButtonProps) {
+export const AddButton = ({ link }: AddButtonProps) => {
   const navigate = useNavigate();
 
   return (
@@ -21,4 +21,4 @@ export default function AddButton({ link }: AddButtonProps) {
       Adicionar
     </Button>
   );
-}
+};

@@ -1,19 +1,15 @@
-import PageHeader from '@/components/PageHeader/index.tsx';
-import useGetState from '@/features/Customers/hooks/useGetState.tsx';
-import { ClientSchema } from '@/features/Customers/schemas/index.ts';
+import { PageHeader } from '@/components/PageHeader';
+import { SectionHeader } from '@/components/SectionHeader';
+import { ClientSchema } from '@/features/Customers/schemas';
 import {
   useGetCustomerById,
   useUpdateCustomer,
-} from '@/features/Customers/services/index.tsx';
-import { boxStylesForm } from '@/features/Customers/styles/index.ts';
-import { CustomerValidation } from '@/features/Customers/types/index.ts';
-import useMask from '@/hooks/useMask.tsx';
-import {
-  boxStyles,
-  buttonStyles,
-  formStyles,
-  textFieldStyles,
-} from '@/styles/index.ts';
+} from '@/features/Customers/services';
+import { boxStylesForm } from '@/features/Customers/styles';
+import { CustomerValidation } from '@/features/Customers/types';
+import { useGetState } from '@/features/Customers/utils/useGetState';
+import { useMask } from '@/hooks/useMask';
+import { boxStyles, buttonStyles, formStyles, textFieldStyles } from '@/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import {
@@ -28,13 +24,7 @@ import { createLazyFileRoute } from '@tanstack/react-router';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-export const Route = createLazyFileRoute(
-  '/_authenticated/_layout/customers/edit/$id',
-)({
-  component: CustomerUpdateForm,
-});
-
-function CustomerUpdateForm() {
+const CustomerUpdateForm = () => {
   const { id } = Route.useParams();
   const states = useGetState();
   const customer = useGetCustomerById(id);
@@ -91,6 +81,7 @@ function CustomerUpdateForm() {
       setValue('address.city', data.address.city);
       setValue('address.number', data.address.number);
       setValue('address.landmark', data.address.landmark);
+      setValue('address.neighborhood', data.address.neighborhood);
     }
   }, [customer.data]);
 
@@ -98,7 +89,7 @@ function CustomerUpdateForm() {
     <Box sx={boxStyles}>
       <form onSubmit={handleSubmit(onSubmit)} style={formStyles}>
         <PageHeader backTo="/customers" title="Editar Cliente" />
-
+        <SectionHeader label="Informações de contato" />
         <Controller
           name="name"
           control={control}
@@ -205,25 +196,42 @@ function CustomerUpdateForm() {
           />
         </Box>
 
-        <Controller
-          name="address.address"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              id="address"
-              type="text"
-              label="Rua"
-              error={!!errors.address?.address}
-              helperText={errors.address?.address?.message}
-              sx={textFieldStyles}
-              placeholder="Digite o nome da rua"
-              {...field}
-              InputLabelProps={{
-                shrink: !!field.value,
-              }}
-            />
-          )}
-        />
+        <SectionHeader label="Endereço" />
+
+        <Box sx={boxStylesForm}>
+          <Controller
+            name="address.address"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                id="address"
+                type="text"
+                label="Rua"
+                error={!!errors.address?.address}
+                helperText={errors.address?.address?.message}
+                sx={textFieldStyles}
+                placeholder="Digite o nome da rua"
+                {...field}
+              />
+            )}
+          />
+          <Controller
+            name="address.neighborhood"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                id="neighborhood"
+                type="text"
+                label="Bairro"
+                error={!!errors.address?.neighborhood}
+                helperText={errors.address?.neighborhood?.message}
+                sx={textFieldStyles}
+                placeholder="Digite o nome do bairro"
+                {...field}
+              />
+            )}
+          />
+        </Box>
 
         <Box sx={boxStylesForm}>
           <Controller
@@ -349,4 +357,10 @@ function CustomerUpdateForm() {
       </form>
     </Box>
   );
-}
+};
+
+export const Route = createLazyFileRoute(
+  '/_authenticated/_layout/customers/edit/$id',
+)({
+  component: CustomerUpdateForm,
+});

@@ -1,19 +1,14 @@
-import PageHeader from '@/components/PageHeader/index.tsx';
-import { EditProductSchema } from '@/features/Products/schemas/index.ts';
+import { PageHeader } from '@/components/PageHeader';
+import { EditProductSchema } from '@/features/Products/schemas';
 import {
   useGetProductById,
   useUpdateProduct,
-} from '@/features/Products/services/index.tsx';
+} from '@/features/Products/services';
 import {
   EditProductValidation,
   GlassVariants,
-} from '@/features/Products/types/index.ts';
-import {
-  boxStyles,
-  buttonStyles,
-  formStyles,
-  textFieldStyles,
-} from '@/styles/index.ts';
+} from '@/features/Products/types';
+import { boxStyles, buttonStyles, formStyles, textFieldStyles } from '@/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import {
@@ -28,13 +23,7 @@ import { createLazyFileRoute } from '@tanstack/react-router';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-export const Route = createLazyFileRoute(
-  '/_authenticated/_layout/products/edit/$id',
-)({
-  component: ProducstUpdateForm,
-});
-
-function ProducstUpdateForm() {
+const ProducstUpdateForm = () => {
   const { id } = Route.useParams();
   const product = useGetProductById(id);
   const updateProduct = useUpdateProduct();
@@ -224,4 +213,10 @@ function ProducstUpdateForm() {
       </form>
     </Box>
   );
-}
+};
+
+export const Route = createLazyFileRoute(
+  '/_authenticated/_layout/products/edit/$id',
+)({
+  component: ProducstUpdateForm,
+});

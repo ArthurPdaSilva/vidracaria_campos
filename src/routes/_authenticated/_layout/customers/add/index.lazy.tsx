@@ -1,16 +1,17 @@
-import PageHeader from '@/components/PageHeader/index.tsx';
-import useGetState from '@/features/Customers/hooks/useGetState.tsx';
-import { ClientSchema } from '@/features/Customers/schemas/index.ts';
-import { useCreateCustomer } from '@/features/Customers/services/index.tsx';
-import { boxStylesForm } from '@/features/Customers/styles/index.ts';
-import { CustomerValidation } from '@/features/Customers/types/index.ts';
-import useMask from '@/hooks/useMask.tsx';
+import { PageHeader } from '@/components/PageHeader';
+import { SectionHeader } from '@/components/SectionHeader';
+import { ClientSchema } from '@/features/Customers/schemas/';
+import { useCreateCustomer } from '@/features/Customers/services';
+import { boxStylesForm } from '@/features/Customers/styles/';
+import { CustomerValidation } from '@/features/Customers/types/';
+import { useGetState } from '@/features/Customers/utils/useGetState';
+import { useMask } from '@/hooks/useMask';
 import {
   boxStyles,
   buttonStyles,
   formStyles,
   textFieldStyles,
-} from '@/styles/index.ts';
+} from '@/styles/';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import {
@@ -24,7 +25,7 @@ import {
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-function CustomerCreateForm() {
+const CustomerCreateForm = () => {
   const states = useGetState();
   const createCustomer = useCreateCustomer();
   const {
@@ -72,6 +73,7 @@ function CustomerCreateForm() {
     <Box sx={boxStyles}>
       <form onSubmit={handleSubmit(onSubmit)} style={formStyles}>
         <PageHeader backTo="/customers" title="Cadastrar Cliente" />
+        <SectionHeader label="Informações de contato" />
 
         <Controller
           name="name"
@@ -188,23 +190,42 @@ function CustomerCreateForm() {
           />
         </Box>
 
-        <Controller
-          name="address.address"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              id="address"
-              type="text"
-              label="Rua"
-              error={!!errors.address?.address}
-              helperText={errors.address?.address?.message}
-              sx={textFieldStyles}
-              placeholder="Digite o nome da rua"
-              {...field}
-            />
-          )}
-        />
+        <SectionHeader label="Endereço" />
 
+        <Box sx={boxStylesForm}>
+          <Controller
+            name="address.address"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                id="address"
+                type="text"
+                label="Rua"
+                error={!!errors.address?.address}
+                helperText={errors.address?.address?.message}
+                sx={textFieldStyles}
+                placeholder="Digite o nome da rua"
+                {...field}
+              />
+            )}
+          />
+          <Controller
+            name="address.neighborhood"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                id="neighborhood"
+                type="text"
+                label="Bairro"
+                error={!!errors.address?.neighborhood}
+                helperText={errors.address?.neighborhood?.message}
+                sx={textFieldStyles}
+                placeholder="Digite o nome do bairro"
+                {...field}
+              />
+            )}
+          />
+        </Box>
         <Box sx={boxStylesForm}>
           <Controller
             name="address.zipCode"
@@ -310,7 +331,7 @@ function CustomerCreateForm() {
       </form>
     </Box>
   );
-}
+};
 
 export const Route = createLazyFileRoute(
   '/_authenticated/_layout/customers/add/',

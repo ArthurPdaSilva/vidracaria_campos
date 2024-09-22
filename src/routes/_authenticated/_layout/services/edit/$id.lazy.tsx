@@ -1,32 +1,24 @@
-import PageHeader from '@/components/PageHeader/index.tsx';
-import SectionHeader from '@/components/SectionHeader/index.tsx';
-import TableProductInfo from '@/components/TableInfoProduct/index.tsx';
-import { DepthsCommon } from '@/features/Dashboard/types/index.ts';
-import { useGetAllProducts } from '@/features/Products/services/index.tsx';
-import ImageInput from '@/features/Services/components/ImageInput/index.tsx';
-import { EditServiceSchema } from '@/features/Services/schemas/index.ts';
+import { PageHeader } from '@/components/PageHeader';
+import { SectionHeader } from '@/components/SectionHeader';
+import { TableProductInfo } from '@/components/TableInfoProduct';
+import { DepthsCommon } from '@/features/Dashboard/types';
+import { useGetAllProducts } from '@/features/Products/services';
+import { ImageInput } from '@/features/Services/components/ImageInput';
+import { EditServiceSchema } from '@/features/Services/schemas';
 import {
   useGetImagesByServiceId,
   useGetProducstByServiceId,
   useGetServiceById,
   usePutServiceById,
-} from '@/features/Services/services/index.tsx';
-import {
-  EditServiceValidation,
-  ProductInfo,
-} from '@/features/Services/types/index.ts';
-import { FormatAddress } from '@/features/Services/utils/address.ts';
-import { useBudgetItem } from '@/features/Services/utils/budgetItem.ts';
-import { calcTotal } from '@/features/Services/utils/calcTotal.ts';
-import { checkProduct } from '@/features/Services/utils/checkProduct.ts';
-import { formatCurrency } from '@/features/Services/utils/convertMoney.ts';
-import useGetIcons from '@/hooks/useGetIcons.tsx';
-import {
-  boxStyles,
-  buttonStyles,
-  formStyles,
-  textFieldStyles,
-} from '@/styles/index.ts';
+} from '@/features/Services/services';
+import { EditServiceValidation, ProductInfo } from '@/features/Services/types';
+import { FormatAddress } from '@/features/Services/utils/address';
+import { useBudgetItem } from '@/features/Services/utils/budgetItem';
+import { calcTotal } from '@/features/Services/utils/calcTotal';
+import { checkProduct } from '@/features/Services/utils/checkProduct';
+import { formatCurrency } from '@/features/Services/utils/convertMoney';
+import { useGetIcons } from '@/hooks/useGetIcons';
+import { boxStyles, buttonStyles, formStyles, textFieldStyles } from '@/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import {
@@ -50,7 +42,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 dayjs.extend(customParseFormat);
 
-function ServicesEditForm() {
+const ServicesEditForm = () => {
   const { id } = Route.useParams();
   const [images, setImages] = useState<File[]>([]);
 
@@ -89,7 +81,7 @@ function ServicesEditForm() {
       setValue('observation', service.observation ?? undefined);
       setValue('userManual', service.userManual);
       setValue('downPayment', service.downPayment ?? undefined);
-      setValue('paymentMethod', service.paymentMethod ?? undefined);
+      setValue('paymentMethod', service.paymentMethod ?? 'DINHEIRO');
       setValue('total', service.total);
       setValue('status', service.status);
       setValue('id', service.id);
@@ -656,7 +648,7 @@ function ServicesEditForm() {
       </form>
     </Box>
   );
-}
+};
 
 export const Route = createLazyFileRoute(
   '/_authenticated/_layout/services/edit/$id',

@@ -1,4 +1,4 @@
-import api, { config } from '@/services';
+import api, { config } from '@/services/api';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 import { enqueueSnackbar } from 'notistack';
@@ -40,7 +40,11 @@ const useUpdateProduct = () => {
   return useMutation({
     mutationFn: (product: EditProductValidation) => {
       return api
-        .put(`/product/${product.id}`, product, config)
+        .put(
+          `/product/${product.id}`,
+          { ...product, glassType: product.type },
+          config,
+        )
         .then((res) => res.data);
     },
     onSuccess: () => {

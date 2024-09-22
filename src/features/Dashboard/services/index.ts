@@ -1,4 +1,4 @@
-import api, { config } from '@/services';
+import api, { config } from '@/services/api';
 import { useQuery } from '@tanstack/react-query';
 import { DashCounters } from '../types';
 

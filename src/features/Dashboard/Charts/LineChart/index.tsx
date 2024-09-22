@@ -1,4 +1,4 @@
-import useMask from '@/hooks/useMask';
+import { useMask } from '@/hooks/useMask';
 import { Box, Typography } from '@mui/material';
 import {
   LineChart as LineChartImported,
@@ -10,7 +10,7 @@ interface propsLineChart {
   title: string;
 }
 
-export default function LineChart(props: propsLineChart) {
+export const LineChart = (props: propsLineChart) => {
   const { realFormater } = useMask();
   const config: LineChartProps = {
     data: props.data,
@@ -82,4 +82,4 @@ export default function LineChart(props: propsLineChart) {
       <LineChartImported {...config} />
     </Box>
   );
-}
+};

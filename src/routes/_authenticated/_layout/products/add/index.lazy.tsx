@@ -1,16 +1,11 @@
-import PageHeader from '@/components/PageHeader/index.tsx';
-import { CreateProductSchema } from '@/features/Products/schemas/index.ts';
-import { useCreateProduct } from '@/features/Products/services/index.tsx';
+import { PageHeader } from '@/components/PageHeader';
+import { CreateProductSchema } from '@/features/Products/schemas';
+import { useCreateProduct } from '@/features/Products/services';
 import {
   CreateProductValidation,
   GlassVariants,
-} from '@/features/Products/types/index.ts';
-import {
-  boxStyles,
-  buttonStyles,
-  formStyles,
-  textFieldStyles,
-} from '@/styles/index.ts';
+} from '@/features/Products/types';
+import { boxStyles, buttonStyles, formStyles, textFieldStyles } from '@/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import {
@@ -25,7 +20,7 @@ import { createLazyFileRoute } from '@tanstack/react-router';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-function ProductsCreateForm() {
+const ProductsCreateForm = () => {
   const create = useCreateProduct();
 
   const onSubmit: SubmitHandler<CreateProductValidation> = (data) => {
@@ -167,7 +162,7 @@ function ProductsCreateForm() {
       </form>
     </Box>
   );
-}
+};
 
 export const Route = createLazyFileRoute(
   '/_authenticated/_layout/products/add/',

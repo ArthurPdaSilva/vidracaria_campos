@@ -1,11 +1,11 @@
+import { useGetIcons } from '@/hooks/useGetIcons';
 import { Button } from '@mui/material';
-import useGetIcons from '../../hooks/useGetIcons';
 
 interface CloseButtonProps {
   onClose: () => void;
 }
 
-export default function CloseButton({ onClose }: CloseButtonProps) {
+export const CloseButton = ({ onClose }: CloseButtonProps) => {
   const { ArrowBackIosIcon } = useGetIcons();
 
   return (
@@ -18,4 +18,4 @@ export default function CloseButton({ onClose }: CloseButtonProps) {
       <ArrowBackIosIcon />
     </Button>
   );
-}
+};

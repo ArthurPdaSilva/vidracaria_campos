@@ -1,10 +1,11 @@
+import { clearToken } from '@/utils/tokens';
 import { Box, Button, Drawer, IconButton } from '@mui/material/';
 import { useNavigate, useRouter } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import queryClient from '../../config/queryClient';
-import useGetIcons from '../../hooks/useGetIcons';
+import { useGetIcons } from '../../hooks/useGetIcons';
 import LogoItem from './LogoItem';
-import MenuListItem from './MenuListItem';
+import { MenuListItem } from './MenuListItem';
 import {
   colapsableButtonMenu,
   exitStyles,
@@ -12,14 +13,14 @@ import {
   navStyles,
 } from './styles';
 
-function MenuDesktop() {
+const MenuDesktop = () => {
   const navigate = useNavigate();
   const { LogoutOutlinedIcon, MenuOpenRoundedIcon } = useGetIcons();
   const [colapsedMenu, setColapsedMenu] = useState(false);
 
   const logout = () => {
-    localStorage.removeItem('token');
     queryClient.clear();
+    clearToken();
     navigate({ to: '/' });
   };
 
@@ -57,9 +58,9 @@ function MenuDesktop() {
       </nav>
     </Box>
   );
-}
+};
 
-function MenuMobile() {
+const MenuMobile = () => {
   const { MenuOutlinedIcon } = useGetIcons();
   const [open, setOpen] = useState(false);
   const router = useRouter();
@@ -82,16 +83,16 @@ function MenuMobile() {
           backgroundColor: 'var(--background)',
         }}
       >
-        <LogoItem colapsed={false} />
         <IconButton onClick={() => setOpen(!open)}>
-          {!open && <MenuOutlinedIcon />}
+          <MenuOutlinedIcon />
         </IconButton>
+        <LogoItem colapsed={false} />
       </Box>
     </>
   );
-}
+};
 
-export default function Menu() {
+export const Menu = () => {
   return (
     <>
       <Box className="desktop">
@@ -102,4 +103,4 @@ export default function Menu() {
       </Box>
     </>
   );
-}
+};

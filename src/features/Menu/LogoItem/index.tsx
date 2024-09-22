@@ -6,7 +6,7 @@ interface LogoItemProps {
   colapsed: boolean;
 }
 
-function LogoItem({ colapsed }: LogoItemProps) {
+const LogoItem = ({ colapsed }: LogoItemProps) => {
   return (
     <Grid
       container
@@ -26,6 +26,6 @@ function LogoItem({ colapsed }: LogoItemProps) {
       )}
     </Grid>
   );
-}
+};
 
 export default memo(LogoItem);

@@ -1,5 +1,4 @@
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import { useGetIcons } from '@/hooks/useGetIcons';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import MobileStepper from '@mui/material/MobileStepper';
@@ -11,13 +10,14 @@ import { Image } from '../../types';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-interface CarrosuelProps {
+interface CarosuelProps {
   images: Image[];
 }
 
-export default function Carousel({ images }: CarrosuelProps) {
+export const Carousel = ({ images }: CarosuelProps) => {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
+  const { KeyboardArrowLeft, KeyboardArrowRight } = useGetIcons();
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -91,4 +91,4 @@ export default function Carousel({ images }: CarrosuelProps) {
       />
     </Box>
   );
-}
+};

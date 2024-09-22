@@ -1,4 +1,4 @@
-import TableCellActions from '@/components/TableCellActions';
+import { TableCellActions } from '@/components/TableCellActions';
 import { Box } from '@mui/material';
 import {
   MaterialReactTable,
@@ -6,11 +6,11 @@ import {
   type MRT_ColumnDef,
 } from 'material-react-table';
 import { useMemo, useState } from 'react';
-import ProducstInfoForm from '../ProductInfoForm';
+import { ProductsInfoForm } from '../ProductInfoForm';
 import { useDeleteProductById, useGetAllProducts } from '../services';
 import { ProductValidation } from '../types';
 
-export default function Table() {
+export const Table = () => {
   const { data, isFetching } = useGetAllProducts();
   const { mutate: deleteProducts, isPending } = useDeleteProductById();
   const [open, setOpen] = useState(false);
@@ -118,7 +118,7 @@ export default function Table() {
 
   return (
     <>
-      <ProducstInfoForm
+      <ProductsInfoForm
         open={open}
         onClose={() => setOpen(false)}
         product={currentProduct}
@@ -128,4 +128,4 @@ export default function Table() {
       </Box>
     </>
   );
-}
+};
