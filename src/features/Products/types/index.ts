@@ -8,9 +8,26 @@ export interface ProductBase {
   glassType?: GlassVariant;
 }
 
-export type GlassVariant = 'CANELADO' | 'INCOLOR' | 'FUME' | 'ESPELHO';
+export type GlassVariant =
+  | 'CANELADO'
+  | 'INCOLOR'
+  | 'FUME'
+  | 'ESPELHO'
+  | 'VERDE'
+  | 'BOX_INCOLOR'
+  | 'BOX_FUME'
+  | 'BOX_VERDE';
 
-export const GlassVariants = ['Canelado', 'Incolor', 'Fume', 'Espelho'];
+export const GlassVariants = [
+  'Canelado',
+  'Incolor',
+  'Fume',
+  'Espelho',
+  'Verde',
+  'Box Incolor',
+  'Box Fume',
+  'Box Verde',
+];
 
 export interface ProductEditAndList extends ProductBase {
   id: string;
