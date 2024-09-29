@@ -1,13 +1,12 @@
 import { Button } from '@mui/material';
 import { useNavigate } from '@tanstack/react-router';
-import { useGetIcons } from '../../hooks/useGetIcons';
+import { ArrowBackIosIcon } from '../../assets/images/icons';
 
 interface ReturnButtonProps {
   link: string;
 }
 
 export const ReturnButton = ({ link }: ReturnButtonProps) => {
-  const { ArrowBackIosIcon } = useGetIcons();
   const navigate = useNavigate();
 
   return (

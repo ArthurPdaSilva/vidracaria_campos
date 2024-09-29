@@ -1,5 +1,5 @@
-import { useGetIcons } from '@/hooks/useGetIcons';
 import { textFieldStyles } from '@/styles';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
 
 import { Button, FormControl } from '@mui/material';
 import React from 'react';
@@ -18,7 +18,6 @@ export const ImageInput = ({
   setImages,
   disabled = false,
 }: FieldProps) => {
-  const { PhotoCamera } = useGetIcons();
   const addImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileInput = event.target as HTMLInputElement;
     const file = fileInput.files?.[0];

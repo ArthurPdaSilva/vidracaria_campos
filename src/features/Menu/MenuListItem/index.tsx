@@ -1,4 +1,9 @@
-import { useGetIcons } from '@/hooks/useGetIcons';
+import {
+  AccountCircleOutlinedIcon,
+  BuildOutlinedIcon,
+  DashboardOutlinedIcon,
+  ShoppingCartOutlinedIcon,
+} from '@/assets/images/icons';
 import { List } from '@mui/material';
 import { navListStyles } from '../styles';
 import MenuItem from './MenuItem';
@@ -7,13 +12,6 @@ interface MenuListItemProps {
   colapsed: boolean;
 }
 export const MenuListItem = ({ colapsed }: MenuListItemProps) => {
-  const {
-    AccountCircleOutlinedIcon,
-    BuildOutlinedIcon,
-    DashboardOutlinedIcon,
-    ShoppingCartOutlinedIcon,
-  } = useGetIcons();
-
   const menuItems = [
     {
       Icon: DashboardOutlinedIcon,

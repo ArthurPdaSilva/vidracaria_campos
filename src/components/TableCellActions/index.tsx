@@ -1,7 +1,12 @@
 import { IconButton, Tooltip } from '@mui/material';
 import { Link } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
-import { useGetIcons } from '../../hooks/useGetIcons';
+import {
+  DeleteIcon,
+  EditIcon,
+  InfoIcon,
+  PrintIcon,
+} from '../../assets/images/icons';
 import { ConfirmAction } from '../ConfirmAction';
 
 export interface TableCellActionsProps {
@@ -25,7 +30,6 @@ export const TableCellActions = ({
   handleClick,
   printBudgetClick,
 }: TableCellActionsProps) => {
-  const { EditIcon, InfoIcon, DeleteIcon, PrintIcon } = useGetIcons();
   const [open, setOpen] = useState(false);
   const [typeTranslate, setTypeTranslate] = useState<string>('');
 
