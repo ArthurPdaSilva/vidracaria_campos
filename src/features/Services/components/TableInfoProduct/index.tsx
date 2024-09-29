@@ -1,3 +1,8 @@
+import {
+  AddOutlinedIcon,
+  DeleteIcon,
+  RemoveOutlinedIcon,
+} from '@/assets/images/icons';
 import { Box, IconButton } from '@mui/material';
 import {
   MaterialReactTable,
@@ -5,8 +10,7 @@ import {
   useMaterialReactTable,
 } from 'material-react-table';
 import { useMemo } from 'react';
-import { ProductInfo } from '../../features/Services/types';
-import { useGetIcons } from '../../hooks/useGetIcons';
+import { ProductInfo } from '../../types';
 
 interface TableProductInfoProps {
   data: ProductInfo[];
@@ -23,8 +27,6 @@ export const TableProductInfo = ({
   onIncrementDispatch,
   disableActions = false,
 }: TableProductInfoProps) => {
-  const { AddOutlinedIcon, RemoveOutlinedIcon, DeleteIcon } = useGetIcons();
-
   const columns = useMemo<MRT_ColumnDef<ProductInfo>[]>(
     () => [
       {

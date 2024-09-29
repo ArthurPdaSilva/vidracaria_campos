@@ -1,4 +1,4 @@
-import { useGetIcons } from '@/hooks/useGetIcons';
+import { ArrowBackIosIcon } from '@/assets/images/icons';
 import { Button } from '@mui/material';
 
 interface CloseButtonProps {
@@ -6,8 +6,6 @@ interface CloseButtonProps {
 }
 
 export const CloseButton = ({ onClose }: CloseButtonProps) => {
-  const { ArrowBackIosIcon } = useGetIcons();
-
   return (
     <Button
       aria-label="Voltar"

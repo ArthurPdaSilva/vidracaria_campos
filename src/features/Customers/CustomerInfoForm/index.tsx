@@ -1,6 +1,9 @@
 import userIcon from '@/assets//images/user-icon.webp';
+import {
+  EmailOutlinedIcon,
+  LocalPhoneOutlinedIcon,
+} from '@/assets/images/icons';
 import { CloseButton } from '@/components/CloseButton';
-import { useGetIcons } from '@/hooks/useGetIcons';
 import { modalStyles } from '@/styles';
 import { Box, Modal, Typography } from '@mui/material';
 import { modalHeaderStyles } from '../../Products/styles';
@@ -25,7 +28,6 @@ export const CustomerInfoForm = ({
   open,
   customer,
 }: CustomerInfoFormProps) => {
-  const { EmailOutlinedIcon, LocalPhoneOutlinedIcon } = useGetIcons();
   if (customer === undefined) return;
 
   return (

@@ -1,5 +1,5 @@
+import { CloseIcon } from '@/assets/images/icons';
 import { Box, Button, IconButton, Modal, Typography } from '@mui/material';
-import { useGetIcons } from '../../hooks/useGetIcons';
 import { modalStyles } from '../../styles';
 
 interface ConfirmActionProps {
@@ -13,7 +13,6 @@ export const ConfirmAction = ({
   denyDispach,
   open,
 }: ConfirmActionProps) => {
-  const { CloseIcon } = useGetIcons();
   return (
     <Modal open={open} onClose={denyDispach} sx={modalStyles}>
       <Box

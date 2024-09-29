@@ -1,4 +1,10 @@
-import { useGetIcons } from '@/hooks/useGetIcons';
+import {
+  AccountCircleOutlinedIcon,
+  BuildOutlinedIcon,
+  CalculateOutlinedIcon,
+  DashboardOutlinedIcon,
+  ShoppingCartOutlinedIcon,
+} from '@/assets/images/icons';
 import { List } from '@mui/material';
 import { navListStyles } from '../styles';
 import MenuItem from './MenuItem';
@@ -7,14 +13,6 @@ interface MenuListItemProps {
   colapsed: boolean;
 }
 export const MenuListItem = ({ colapsed }: MenuListItemProps) => {
-  const {
-    AccountCircleOutlinedIcon,
-    BuildOutlinedIcon,
-    DashboardOutlinedIcon,
-    ShoppingCartOutlinedIcon,
-    AttachMoneyRoundedIcon,
-  } = useGetIcons();
-
   const menuItems = [
     {
       Icon: DashboardOutlinedIcon,
@@ -37,9 +35,9 @@ export const MenuListItem = ({ colapsed }: MenuListItemProps) => {
       path: '/products',
     },
     {
-      Icon: AttachMoneyRoundedIcon,
-      label: 'PREÇOS',
-      path: '/prices/add',
+      Icon: CalculateOutlinedIcon,
+      label: 'PREÇOS DE VIDRO',
+      path: '/glassprice',
     },
   ];
 

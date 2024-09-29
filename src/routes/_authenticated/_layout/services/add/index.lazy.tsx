@@ -1,11 +1,12 @@
+import { AddCircleOutlineRoundedIcon } from '@/assets/images/icons';
 import { PageHeader } from '@/components/PageHeader';
 import { SectionHeader } from '@/components/SectionHeader';
-import { TableProductInfo } from '@/components/TableInfoProduct';
 import { useGetAllCustomers } from '@/features/Customers/services';
 import { AddressValidation } from '@/features/Customers/types';
 import { DepthsCommon } from '@/features/Dashboard/types';
 import { useGetAllProducts } from '@/features/Products/services';
 import { ImageInput } from '@/features/Services/components/ImageInput';
+import { TableProductInfo } from '@/features/Services/components/TableInfoProduct';
 import { CreateServiceSchema } from '@/features/Services/schemas';
 import {
   useCalculateProduct,
@@ -19,7 +20,6 @@ import { useBudgetItem } from '@/features/Services/utils/budgetItem';
 import { calcTotal } from '@/features/Services/utils/calcTotal';
 import { checkProduct } from '@/features/Services/utils/checkProduct';
 import { formatCurrency } from '@/features/Services/utils/convertMoney';
-import { useGetIcons } from '@/hooks/useGetIcons';
 import { boxStyles, buttonStyles, formStyles, textFieldStyles } from '@/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
@@ -45,7 +45,6 @@ const ServicesCreateForm = () => {
   const { data: customers } = useGetAllCustomers();
   const { data: products } = useGetAllProducts();
   const create = useCreateService();
-  const { AddCircleOutlineRoundedIcon } = useGetIcons();
   const [customerAddress, setCustomerAddress] = useState<AddressValidation>();
   const [product, setProduct] = useState<ProductInfo>();
   const [images, setImages] = useState<File[]>([]);

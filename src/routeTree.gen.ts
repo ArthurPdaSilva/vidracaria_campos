@@ -16,7 +16,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as AuthenticatedImport } from './routes/_authenticated'
 import { Route as IndexImport } from './routes/index'
 import { Route as AuthenticatedLayoutImport } from './routes/_authenticated/_layout'
-import { Route as AuthenticatedLayoutPricesAddIndexImport } from './routes/_authenticated/_layout/prices/add/index'
+import { Route as AuthenticatedLayoutGlasspriceAddIndexImport } from './routes/_authenticated/_layout/glassprice/add/index'
 
 // Create Virtual Routes
 
@@ -25,6 +25,9 @@ const AuthenticatedLayoutServicesIndexLazyImport = createFileRoute(
 )()
 const AuthenticatedLayoutProductsIndexLazyImport = createFileRoute(
   '/_authenticated/_layout/products/',
+)()
+const AuthenticatedLayoutGlasspriceIndexLazyImport = createFileRoute(
+  '/_authenticated/_layout/glassprice/',
 )()
 const AuthenticatedLayoutDashboardIndexLazyImport = createFileRoute(
   '/_authenticated/_layout/dashboard/',
@@ -91,6 +94,16 @@ const AuthenticatedLayoutProductsIndexLazyRoute =
     ),
   )
 
+const AuthenticatedLayoutGlasspriceIndexLazyRoute =
+  AuthenticatedLayoutGlasspriceIndexLazyImport.update({
+    path: '/glassprice/',
+    getParentRoute: () => AuthenticatedLayoutRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/_layout/glassprice/index.lazy').then(
+      (d) => d.Route,
+    ),
+  )
+
 const AuthenticatedLayoutDashboardIndexLazyRoute =
   AuthenticatedLayoutDashboardIndexLazyImport.update({
     path: '/dashboard/',
@@ -141,9 +154,9 @@ const AuthenticatedLayoutCustomersAddIndexLazyRoute =
     ),
   )
 
-const AuthenticatedLayoutPricesAddIndexRoute =
-  AuthenticatedLayoutPricesAddIndexImport.update({
-    path: '/prices/add/',
+const AuthenticatedLayoutGlasspriceAddIndexRoute =
+  AuthenticatedLayoutGlasspriceAddIndexImport.update({
+    path: '/glassprice/add/',
     getParentRoute: () => AuthenticatedLayoutRoute,
   } as any)
 
@@ -226,6 +239,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedLayoutDashboardIndexLazyImport
       parentRoute: typeof AuthenticatedLayoutImport
     }
+    '/_authenticated/_layout/glassprice/': {
+      id: '/_authenticated/_layout/glassprice/'
+      path: '/glassprice'
+      fullPath: '/glassprice'
+      preLoaderRoute: typeof AuthenticatedLayoutGlasspriceIndexLazyImport
+      parentRoute: typeof AuthenticatedLayoutImport
+    }
     '/_authenticated/_layout/products/': {
       id: '/_authenticated/_layout/products/'
       path: '/products'
@@ -268,11 +288,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedLayoutServicesInfoIdLazyImport
       parentRoute: typeof AuthenticatedLayoutImport
     }
-    '/_authenticated/_layout/prices/add/': {
-      id: '/_authenticated/_layout/prices/add/'
-      path: '/prices/add'
-      fullPath: '/prices/add'
-      preLoaderRoute: typeof AuthenticatedLayoutPricesAddIndexImport
+    '/_authenticated/_layout/glassprice/add/': {
+      id: '/_authenticated/_layout/glassprice/add/'
+      path: '/glassprice/add'
+      fullPath: '/glassprice/add'
+      preLoaderRoute: typeof AuthenticatedLayoutGlasspriceAddIndexImport
       parentRoute: typeof AuthenticatedLayoutImport
     }
     '/_authenticated/_layout/customers/add/': {
@@ -307,13 +327,14 @@ export const routeTree = rootRoute.addChildren({
     AuthenticatedLayoutRoute: AuthenticatedLayoutRoute.addChildren({
       AuthenticatedLayoutCustomersIndexLazyRoute,
       AuthenticatedLayoutDashboardIndexLazyRoute,
+      AuthenticatedLayoutGlasspriceIndexLazyRoute,
       AuthenticatedLayoutProductsIndexLazyRoute,
       AuthenticatedLayoutServicesIndexLazyRoute,
       AuthenticatedLayoutCustomersEditIdLazyRoute,
       AuthenticatedLayoutProductsEditIdLazyRoute,
       AuthenticatedLayoutServicesEditIdLazyRoute,
       AuthenticatedLayoutServicesInfoIdLazyRoute,
-      AuthenticatedLayoutPricesAddIndexRoute,
+      AuthenticatedLayoutGlasspriceAddIndexRoute,
       AuthenticatedLayoutCustomersAddIndexLazyRoute,
       AuthenticatedLayoutProductsAddIndexLazyRoute,
       AuthenticatedLayoutServicesAddIndexLazyRoute,
@@ -348,13 +369,14 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/_authenticated/_layout/customers/",
         "/_authenticated/_layout/dashboard/",
+        "/_authenticated/_layout/glassprice/",
         "/_authenticated/_layout/products/",
         "/_authenticated/_layout/services/",
         "/_authenticated/_layout/customers/edit/$id",
         "/_authenticated/_layout/products/edit/$id",
         "/_authenticated/_layout/services/edit/$id",
         "/_authenticated/_layout/services/info/$id",
-        "/_authenticated/_layout/prices/add/",
+        "/_authenticated/_layout/glassprice/add/",
         "/_authenticated/_layout/customers/add/",
         "/_authenticated/_layout/products/add/",
         "/_authenticated/_layout/services/add/"
@@ -366,6 +388,10 @@ export const routeTree = rootRoute.addChildren({
     },
     "/_authenticated/_layout/dashboard/": {
       "filePath": "_authenticated/_layout/dashboard/index.lazy.tsx",
+      "parent": "/_authenticated/_layout"
+    },
+    "/_authenticated/_layout/glassprice/": {
+      "filePath": "_authenticated/_layout/glassprice/index.lazy.tsx",
       "parent": "/_authenticated/_layout"
     },
     "/_authenticated/_layout/products/": {
@@ -392,8 +418,8 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "_authenticated/_layout/services/info/$id.lazy.tsx",
       "parent": "/_authenticated/_layout"
     },
-    "/_authenticated/_layout/prices/add/": {
-      "filePath": "_authenticated/_layout/prices/add/index.tsx",
+    "/_authenticated/_layout/glassprice/add/": {
+      "filePath": "_authenticated/_layout/glassprice/add/index.tsx",
       "parent": "/_authenticated/_layout"
     },
     "/_authenticated/_layout/customers/add/": {

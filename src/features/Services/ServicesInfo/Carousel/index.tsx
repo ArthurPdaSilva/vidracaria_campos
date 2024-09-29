@@ -1,4 +1,5 @@
-import { useGetIcons } from '@/hooks/useGetIcons';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import MobileStepper from '@mui/material/MobileStepper';
@@ -17,7 +18,6 @@ interface CarosuelProps {
 export const Carousel = ({ images }: CarosuelProps) => {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  const { KeyboardArrowLeft, KeyboardArrowRight } = useGetIcons();
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);

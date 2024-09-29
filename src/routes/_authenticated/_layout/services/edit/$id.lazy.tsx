@@ -1,9 +1,10 @@
+import { AddCircleOutlineRoundedIcon } from '@/assets/images/icons';
 import { PageHeader } from '@/components/PageHeader';
 import { SectionHeader } from '@/components/SectionHeader';
-import { TableProductInfo } from '@/components/TableInfoProduct';
 import { DepthsCommon } from '@/features/Dashboard/types';
 import { useGetAllProducts } from '@/features/Products/services';
 import { ImageInput } from '@/features/Services/components/ImageInput';
+import { TableProductInfo } from '@/features/Services/components/TableInfoProduct';
 import { EditServiceSchema } from '@/features/Services/schemas';
 import {
   useCalculateProduct,
@@ -18,7 +19,6 @@ import { useBudgetItem } from '@/features/Services/utils/budgetItem';
 import { calcTotal } from '@/features/Services/utils/calcTotal';
 import { checkProduct } from '@/features/Services/utils/checkProduct';
 import { formatCurrency } from '@/features/Services/utils/convertMoney';
-import { useGetIcons } from '@/hooks/useGetIcons';
 import { boxStyles, buttonStyles, formStyles, textFieldStyles } from '@/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
@@ -46,7 +46,6 @@ dayjs.extend(customParseFormat);
 const ServicesEditForm = () => {
   const { id } = Route.useParams();
   const [images, setImages] = useState<File[]>([]);
-
   const { data: products } = useGetAllProducts();
   const { data: service } = useGetServiceById(id);
   const { mutate: putService, isPending } = usePutServiceById();
@@ -55,7 +54,6 @@ const ServicesEditForm = () => {
   const { mutateAsync: calcProdRequest } = useCalculateProduct();
   const { calculateTotal, budgetItemsToEditTable } = useBudgetItem();
   const [product, setProduct] = useState<ProductInfo>();
-  const { AddCircleOutlineRoundedIcon } = useGetIcons();
   const [persistedImagesState, setPersitedImagesState] = useState<any[]>([]);
   const onSubmit: SubmitHandler<EditServiceValidation> = (data) => {
     putService({
