@@ -16,6 +16,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as AuthenticatedImport } from './routes/_authenticated'
 import { Route as IndexImport } from './routes/index'
 import { Route as AuthenticatedLayoutImport } from './routes/_authenticated/_layout'
+import { Route as AuthenticatedLayoutPricesAddIndexImport } from './routes/_authenticated/_layout/prices/add/index'
 
 // Create Virtual Routes
 
@@ -140,6 +141,12 @@ const AuthenticatedLayoutCustomersAddIndexLazyRoute =
     ),
   )
 
+const AuthenticatedLayoutPricesAddIndexRoute =
+  AuthenticatedLayoutPricesAddIndexImport.update({
+    path: '/prices/add/',
+    getParentRoute: () => AuthenticatedLayoutRoute,
+  } as any)
+
 const AuthenticatedLayoutServicesInfoIdLazyRoute =
   AuthenticatedLayoutServicesInfoIdLazyImport.update({
     path: '/services/info/$id',
@@ -261,6 +268,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedLayoutServicesInfoIdLazyImport
       parentRoute: typeof AuthenticatedLayoutImport
     }
+    '/_authenticated/_layout/prices/add/': {
+      id: '/_authenticated/_layout/prices/add/'
+      path: '/prices/add'
+      fullPath: '/prices/add'
+      preLoaderRoute: typeof AuthenticatedLayoutPricesAddIndexImport
+      parentRoute: typeof AuthenticatedLayoutImport
+    }
     '/_authenticated/_layout/customers/add/': {
       id: '/_authenticated/_layout/customers/add/'
       path: '/customers/add'
@@ -299,6 +313,7 @@ export const routeTree = rootRoute.addChildren({
       AuthenticatedLayoutProductsEditIdLazyRoute,
       AuthenticatedLayoutServicesEditIdLazyRoute,
       AuthenticatedLayoutServicesInfoIdLazyRoute,
+      AuthenticatedLayoutPricesAddIndexRoute,
       AuthenticatedLayoutCustomersAddIndexLazyRoute,
       AuthenticatedLayoutProductsAddIndexLazyRoute,
       AuthenticatedLayoutServicesAddIndexLazyRoute,
@@ -339,6 +354,7 @@ export const routeTree = rootRoute.addChildren({
         "/_authenticated/_layout/products/edit/$id",
         "/_authenticated/_layout/services/edit/$id",
         "/_authenticated/_layout/services/info/$id",
+        "/_authenticated/_layout/prices/add/",
         "/_authenticated/_layout/customers/add/",
         "/_authenticated/_layout/products/add/",
         "/_authenticated/_layout/services/add/"
@@ -374,6 +390,10 @@ export const routeTree = rootRoute.addChildren({
     },
     "/_authenticated/_layout/services/info/$id": {
       "filePath": "_authenticated/_layout/services/info/$id.lazy.tsx",
+      "parent": "/_authenticated/_layout"
+    },
+    "/_authenticated/_layout/prices/add/": {
+      "filePath": "_authenticated/_layout/prices/add/index.tsx",
       "parent": "/_authenticated/_layout"
     },
     "/_authenticated/_layout/customers/add/": {

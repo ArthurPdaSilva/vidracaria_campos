@@ -7,7 +7,10 @@ import { DepthsCommon } from '@/features/Dashboard/types';
 import { useGetAllProducts } from '@/features/Products/services';
 import { ImageInput } from '@/features/Services/components/ImageInput';
 import { CreateServiceSchema } from '@/features/Services/schemas';
-import { useCreateService } from '@/features/Services/services';
+import {
+  useCalculateProduct,
+  useCreateService,
+} from '@/features/Services/services';
 import {
   CreateServiceValidation,
   ProductInfo,
@@ -47,6 +50,7 @@ const ServicesCreateForm = () => {
   const [product, setProduct] = useState<ProductInfo>();
   const [images, setImages] = useState<File[]>([]);
   const { calculateTotal } = useBudgetItem();
+  const { mutateAsync: calcProdRequest } = useCalculateProduct();
 
   const onSubmit: SubmitHandler<CreateServiceValidation> = (data) => {
     create.mutate({ ...data, files: images });
@@ -79,7 +83,7 @@ const ServicesCreateForm = () => {
     };
   };
 
-  const handleAddProduct = () => {
+  const handleAddProduct = async () => {
     let errors: string[] = [];
     if (product) {
       checkProduct(product, errors);
@@ -95,7 +99,7 @@ const ServicesCreateForm = () => {
         ...watch('products'),
         {
           ...product,
-          price: calculateTotal(product),
+          price: await calcProdRequest(product), // TODO: é aqui a validation
         },
       ]);
       setProduct(undefined);

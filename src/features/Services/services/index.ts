@@ -7,6 +7,7 @@ import {
   EditServiceValidation,
   GetProductsByService,
   Image,
+  ProductInfo,
   ServiceValidationTable,
 } from '../types';
 
@@ -255,6 +256,21 @@ const useGetImagesByServiceId = (id?: string) => {
   });
 };
 
+const useCalculateProduct = () => {
+  return useMutation({
+    mutationFn: async (product: ProductInfo) => {
+      const res = await api.post(
+        `/budget/calculatePriceItem`,
+        { ...product, idProduct: product.id },
+        {
+          ...config,
+        },
+      );
+      return res.data;
+    },
+  });
+};
+
 export {
   useCreateService,
   useDeleteImageById,
@@ -266,4 +282,5 @@ export {
   useGetProducstByServiceId,
   useGetServiceById,
   usePutServiceById,
+  useCalculateProduct,
 };

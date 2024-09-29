@@ -6,6 +6,7 @@ import { useGetAllProducts } from '@/features/Products/services';
 import { ImageInput } from '@/features/Services/components/ImageInput';
 import { EditServiceSchema } from '@/features/Services/schemas';
 import {
+  useCalculateProduct,
   useGetImagesByServiceId,
   useGetProducstByServiceId,
   useGetServiceById,
@@ -51,6 +52,7 @@ const ServicesEditForm = () => {
   const { mutate: putService, isPending } = usePutServiceById();
   const { data: productsPersisted } = useGetProducstByServiceId(id);
   const { data: imagesPersisted } = useGetImagesByServiceId(id);
+  const { mutateAsync: calcProdRequest } = useCalculateProduct();
   const { calculateTotal, budgetItemsToEditTable } = useBudgetItem();
   const [product, setProduct] = useState<ProductInfo>();
   const { AddCircleOutlineRoundedIcon } = useGetIcons();
@@ -142,7 +144,7 @@ const ServicesEditForm = () => {
     );
   }, [productsPersisted]);
 
-  const handleAddProduct = () => {
+  const handleAddProduct = async () => {
     let errors: string[] = [];
     if (product) {
       checkProduct(product, errors);
@@ -156,7 +158,7 @@ const ServicesEditForm = () => {
         ...watch('products'),
         {
           ...product,
-          price: calculateTotal(product),
+          price: await calcProdRequest(product),
           glassType: product.glassType,
         },
       ]);

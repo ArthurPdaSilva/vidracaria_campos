@@ -12,6 +12,7 @@ export const MenuListItem = ({ colapsed }: MenuListItemProps) => {
     BuildOutlinedIcon,
     DashboardOutlinedIcon,
     ShoppingCartOutlinedIcon,
+    AttachMoneyRoundedIcon,
   } = useGetIcons();
 
   const menuItems = [
@@ -34,6 +35,11 @@ export const MenuListItem = ({ colapsed }: MenuListItemProps) => {
       Icon: ShoppingCartOutlinedIcon,
       label: 'PRODUTOS',
       path: '/products',
+    },
+    {
+      Icon: AttachMoneyRoundedIcon,
+      label: 'PREÇOS',
+      path: '/prices/add',
     },
   ];
 
