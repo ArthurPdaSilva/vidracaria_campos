@@ -53,6 +53,9 @@ const AuthenticatedLayoutServicesEditIdLazyImport = createFileRoute(
 const AuthenticatedLayoutProductsEditIdLazyImport = createFileRoute(
   '/_authenticated/_layout/products/edit/$id',
 )()
+const AuthenticatedLayoutGlasspriceEditIdLazyImport = createFileRoute(
+  '/_authenticated/_layout/glassprice/edit/$id',
+)()
 const AuthenticatedLayoutCustomersEditIdLazyImport = createFileRoute(
   '/_authenticated/_layout/customers/edit/$id',
 )()
@@ -190,6 +193,16 @@ const AuthenticatedLayoutProductsEditIdLazyRoute =
     ),
   )
 
+const AuthenticatedLayoutGlasspriceEditIdLazyRoute =
+  AuthenticatedLayoutGlasspriceEditIdLazyImport.update({
+    path: '/glassprice/edit/$id',
+    getParentRoute: () => AuthenticatedLayoutRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/_layout/glassprice/edit/$id.lazy').then(
+      (d) => d.Route,
+    ),
+  )
+
 const AuthenticatedLayoutCustomersEditIdLazyRoute =
   AuthenticatedLayoutCustomersEditIdLazyImport.update({
     path: '/customers/edit/$id',
@@ -267,6 +280,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedLayoutCustomersEditIdLazyImport
       parentRoute: typeof AuthenticatedLayoutImport
     }
+    '/_authenticated/_layout/glassprice/edit/$id': {
+      id: '/_authenticated/_layout/glassprice/edit/$id'
+      path: '/glassprice/edit/$id'
+      fullPath: '/glassprice/edit/$id'
+      preLoaderRoute: typeof AuthenticatedLayoutGlasspriceEditIdLazyImport
+      parentRoute: typeof AuthenticatedLayoutImport
+    }
     '/_authenticated/_layout/products/edit/$id': {
       id: '/_authenticated/_layout/products/edit/$id'
       path: '/products/edit/$id'
@@ -331,6 +351,7 @@ export const routeTree = rootRoute.addChildren({
       AuthenticatedLayoutProductsIndexLazyRoute,
       AuthenticatedLayoutServicesIndexLazyRoute,
       AuthenticatedLayoutCustomersEditIdLazyRoute,
+      AuthenticatedLayoutGlasspriceEditIdLazyRoute,
       AuthenticatedLayoutProductsEditIdLazyRoute,
       AuthenticatedLayoutServicesEditIdLazyRoute,
       AuthenticatedLayoutServicesInfoIdLazyRoute,
@@ -373,6 +394,7 @@ export const routeTree = rootRoute.addChildren({
         "/_authenticated/_layout/products/",
         "/_authenticated/_layout/services/",
         "/_authenticated/_layout/customers/edit/$id",
+        "/_authenticated/_layout/glassprice/edit/$id",
         "/_authenticated/_layout/products/edit/$id",
         "/_authenticated/_layout/services/edit/$id",
         "/_authenticated/_layout/services/info/$id",
@@ -404,6 +426,10 @@ export const routeTree = rootRoute.addChildren({
     },
     "/_authenticated/_layout/customers/edit/$id": {
       "filePath": "_authenticated/_layout/customers/edit/$id.lazy.tsx",
+      "parent": "/_authenticated/_layout"
+    },
+    "/_authenticated/_layout/glassprice/edit/$id": {
+      "filePath": "_authenticated/_layout/glassprice/edit/$id.lazy.tsx",
       "parent": "/_authenticated/_layout"
     },
     "/_authenticated/_layout/products/edit/$id": {

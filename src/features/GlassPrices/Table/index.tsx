@@ -6,65 +6,14 @@ import {
   useMaterialReactTable,
   type MRT_ColumnDef,
 } from 'material-react-table';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { GlassPrice } from '../types';
-
-// TODO - Wesley, tira esses mocks e implemente a chamada de API
-const useGetAllGlassPrices = () => {
-  const [data, setData] = useState<GlassPrice[]>([]);
-  const [isFetching, setIsFetching] = useState(true);
-
-  useEffect(() => {
-    // Mock fetching data
-    setTimeout(() => {
-      setData([
-        {
-          id: '1',
-          glassType: 'BOX_FUME',
-          price: 100,
-          constant: 1.2,
-          sellerMargin: 0.3,
-          millimeter: 5,
-          category: 'DIVERSOS',
-          userId: '1',
-        },
-        {
-          id: '2',
-          glassType: 'CANELADO',
-          price: 150,
-          constant: 1.5,
-          sellerMargin: 0.4,
-          millimeter: 6,
-          category: 'DIVERSOS',
-          userId: '1',
-        },
-      ]);
-      setIsFetching(false);
-    }, 1000);
-  }, []);
-
-  return { data, isFetching };
-};
-
-const useDeleteGlassPriceById = () => {
-  const [isPending, setIsPending] = useState(false);
-
-  const mutate = (id: string) => {
-    setIsPending(true);
-    // Mock deleting data
-    setTimeout(() => {
-      console.log(`Deleted glass price with id: ${id}`);
-      setIsPending(false);
-    }, 1000);
-  };
-
-  return { mutate, isPending };
-};
+import { useGetAllGlassPrice, useGetDeleteGlassPrice } from '../services';
 
 export const Table = () => {
-  const { data, isFetching } = useGetAllGlassPrices();
+  const { data, isFetching } = useGetAllGlassPrice();
 
-  const { mutate: deleteGlassPrice, isPending } = useDeleteGlassPriceById();
+  const { mutate: deleteGlassPrice, isPending } = useGetDeleteGlassPrice();
 
   const columns = useMemo<MRT_ColumnDef<GlassPrice>[]>(
     () => [

@@ -10,3 +10,12 @@ export interface GlassPrice {
   millimeter: number;
   category: Category;
 }
+
+export interface CreateGlassPrice {
+  glassType: GlassVariant;
+  price: number;
+  constant: number;
+  sellerMargin: number;
+  millimeter: number;
+  category: Category;
+}

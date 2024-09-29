@@ -26,6 +26,7 @@ import {
   Alert,
   Box,
   Chip,
+  CircularProgress,
   FormControl,
   IconButton,
   InputLabel,
@@ -51,8 +52,9 @@ const ServicesEditForm = () => {
   const { mutate: putService, isPending } = usePutServiceById();
   const { data: productsPersisted } = useGetProducstByServiceId(id);
   const { data: imagesPersisted } = useGetImagesByServiceId(id);
-  const { mutateAsync: calcProdRequest } = useCalculateProduct();
-  const { calculateTotal, budgetItemsToEditTable } = useBudgetItem();
+  const { mutateAsync: calcProdRequest, isPending: loadingCalc } =
+    useCalculateProduct();
+  const { budgetItemsToEditTable } = useBudgetItem();
   const [product, setProduct] = useState<ProductInfo>();
   const [persistedImagesState, setPersitedImagesState] = useState<any[]>([]);
   const onSubmit: SubmitHandler<EditServiceValidation> = (data) => {
@@ -533,7 +535,11 @@ const ServicesEditForm = () => {
             </>
           )}
           <IconButton onClick={handleAddProduct} disabled={disableFields}>
-            <AddCircleOutlineRoundedIcon />
+            {loadingCalc ? (
+              <CircularProgress />
+            ) : (
+              <AddCircleOutlineRoundedIcon />
+            )}
           </IconButton>
         </Box>
         <TableProductInfo

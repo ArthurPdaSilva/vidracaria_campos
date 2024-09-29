@@ -1,45 +1,57 @@
-import { createFileRoute } from '@tanstack/react-router';
-
-export const Route = createFileRoute('/_authenticated/_layout/glassprice/add/')(
-  {
-    component: () => <PricesForm />,
-  },
-);
-
 import { PageHeader } from '@/components/PageHeader';
 import { SectionHeader } from '@/components/SectionHeader';
-import { boxStyles, buttonStyles, formStyles, textFieldStyles } from '@/styles';
+import { DepthsCommon } from '@/features/Dashboard/types';
+import { GlassPriceSchema } from '@/features/GlassPrices/schemas';
+import {
+  useGetGlassPriceById,
+  useUpdateGlassPrice,
+} from '@/features/GlassPrices/services';
+import { CreateGlassPrice } from '@/features/GlassPrices/types';
+import { GlassVariants } from '@/features/Products/types';
+import { boxStyles, formStyles, textFieldStyles, buttonStyles } from '@/styles';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import {
   Box,
   FormControl,
   InputLabel,
-  MenuItem,
   Select,
-  TextField,
+  MenuItem,
   Typography,
+  TextField,
 } from '@mui/material';
-import { GlassVariants } from '@/features/Products/types';
-import { Controller, useForm } from 'react-hook-form';
-import { CreateGlassPrice } from '@/features/GlassPrices/types';
-import { GlassPriceSchema } from '@/features/GlassPrices/schemas';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { DepthsCommon } from '@/features/Dashboard/types';
-import { useCreateGlassPrice } from '@/features/GlassPrices/services';
+import { createLazyFileRoute } from '@tanstack/react-router';
+import { useEffect } from 'react';
+import { useForm, Controller } from 'react-hook-form';
 
 const PricesForm = () => {
+  const { id } = Route.useParams();
   const {
     control,
     formState: { errors },
     handleSubmit,
+    setValue,
   } = useForm<CreateGlassPrice>({
     resolver: yupResolver(GlassPriceSchema),
   });
 
-  const create = useCreateGlassPrice();
+  const create = useUpdateGlassPrice();
+  const { data } = useGetGlassPriceById(id);
+
+  useEffect(() => {
+    if (data) {
+      console.log('🚀 ~ useEffect ~ data:', data);
+      setValue('category', data.category);
+      setValue('constant', data.constant);
+      setValue('glassType', data.glassType);
+      setValue('millimeter', data.millimeter);
+      setValue('price', data.price);
+      setValue('sellerMargin', data.sellerMargin);
+    }
+  }, [data]);
 
   const onSubmit = (data: CreateGlassPrice) => {
-    create.mutateAsync(data);
+    create.mutateAsync({ price: data, id });
   };
 
   return (
@@ -116,6 +128,9 @@ const PricesForm = () => {
                 error={Boolean(errors.constant)}
                 helperText={errors.constant?.message}
                 {...field}
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
             </FormControl>
           )}
@@ -131,6 +146,9 @@ const PricesForm = () => {
                 error={Boolean(errors.sellerMargin)}
                 helperText={errors.sellerMargin?.message}
                 {...field}
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
             </FormControl>
           )}
@@ -147,6 +165,9 @@ const PricesForm = () => {
                 error={Boolean(errors.price)}
                 helperText={errors.price?.message}
                 {...field}
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
             </FormControl>
           )}
@@ -156,7 +177,7 @@ const PricesForm = () => {
           name="millimeter"
           control={control}
           render={({ field }) => (
-            <FormControl variant="outlined" sx={{ marginBottom: 4 }}>
+            <FormControl variant="outlined">
               <InputLabel id="select-depth-label">Espessura</InputLabel>
               <Select
                 id="select-depth-label"
@@ -192,3 +213,9 @@ const PricesForm = () => {
     </Box>
   );
 };
+
+export const Route = createLazyFileRoute(
+  '/_authenticated/_layout/glassprice/edit/$id',
+)({
+  component: () => <PricesForm />,
+});

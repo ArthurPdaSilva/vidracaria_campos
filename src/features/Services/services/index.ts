@@ -268,6 +268,10 @@ const useCalculateProduct = () => {
       );
       return res.data;
     },
+    onError: (err) => {
+      const message = (err as unknown as any)?.response?.data;
+      enqueueSnackbar(message, { variant: 'error' });
+    },
   });
 };
 

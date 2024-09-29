@@ -27,6 +27,7 @@ export const GlassVariants = [
   'Box Incolor',
   'Box Fume',
   'Box Verde',
+  'Fume e Verde',
 ];
 
 export interface ProductEditAndList extends ProductBase {

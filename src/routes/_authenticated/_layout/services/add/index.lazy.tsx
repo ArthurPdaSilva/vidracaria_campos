@@ -16,7 +16,6 @@ import {
   CreateServiceValidation,
   ProductInfo,
 } from '@/features/Services/types';
-import { useBudgetItem } from '@/features/Services/utils/budgetItem';
 import { calcTotal } from '@/features/Services/utils/calcTotal';
 import { checkProduct } from '@/features/Services/utils/checkProduct';
 import { formatCurrency } from '@/features/Services/utils/convertMoney';
@@ -27,6 +26,7 @@ import {
   Autocomplete,
   Box,
   Chip,
+  CircularProgress,
   FormControl,
   FormHelperText,
   IconButton,
@@ -48,8 +48,8 @@ const ServicesCreateForm = () => {
   const [customerAddress, setCustomerAddress] = useState<AddressValidation>();
   const [product, setProduct] = useState<ProductInfo>();
   const [images, setImages] = useState<File[]>([]);
-  const { calculateTotal } = useBudgetItem();
-  const { mutateAsync: calcProdRequest } = useCalculateProduct();
+  const { mutateAsync: calcProdRequest, isPending: loadingCalc } =
+    useCalculateProduct();
 
   const onSubmit: SubmitHandler<CreateServiceValidation> = (data) => {
     create.mutate({ ...data, files: images });
@@ -98,7 +98,7 @@ const ServicesCreateForm = () => {
         ...watch('products'),
         {
           ...product,
-          price: await calcProdRequest(product), // TODO: é aqui a validation
+          price: await calcProdRequest(product),
         },
       ]);
       setProduct(undefined);
@@ -336,7 +336,11 @@ const ServicesCreateForm = () => {
             </>
           )}
           <IconButton onClick={handleAddProduct}>
-            <AddCircleOutlineRoundedIcon />
+            {loadingCalc ? (
+              <CircularProgress />
+            ) : (
+              <AddCircleOutlineRoundedIcon />
+            )}
           </IconButton>
         </Box>
 
