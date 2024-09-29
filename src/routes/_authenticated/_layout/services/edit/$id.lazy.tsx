@@ -1,10 +1,10 @@
 import { AddCircleOutlineRoundedIcon } from '@/assets/images/icons';
 import { PageHeader } from '@/components/PageHeader';
 import { SectionHeader } from '@/components/SectionHeader';
-import { TableProductInfo } from '@/components/TableInfoProduct';
 import { DepthsCommon } from '@/features/Dashboard/types';
 import { useGetAllProducts } from '@/features/Products/services';
 import { ImageInput } from '@/features/Services/components/ImageInput';
+import { TableProductInfo } from '@/features/Services/components/TableInfoProduct';
 import { EditServiceSchema } from '@/features/Services/schemas';
 import {
   useGetImagesByServiceId,

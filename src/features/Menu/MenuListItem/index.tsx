@@ -1,6 +1,7 @@
 import {
   AccountCircleOutlinedIcon,
   BuildOutlinedIcon,
+  CalculateOutlinedIcon,
   DashboardOutlinedIcon,
   ShoppingCartOutlinedIcon,
 } from '@/assets/images/icons';
@@ -32,6 +33,11 @@ export const MenuListItem = ({ colapsed }: MenuListItemProps) => {
       Icon: ShoppingCartOutlinedIcon,
       label: 'PRODUTOS',
       path: '/products',
+    },
+    {
+      Icon: CalculateOutlinedIcon,
+      label: 'PREÇOS DE VIDRO',
+      path: '/glassprice',
     },
   ];
 

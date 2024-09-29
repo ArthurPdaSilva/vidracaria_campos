@@ -25,6 +25,9 @@ const AuthenticatedLayoutServicesIndexLazyImport = createFileRoute(
 const AuthenticatedLayoutProductsIndexLazyImport = createFileRoute(
   '/_authenticated/_layout/products/',
 )()
+const AuthenticatedLayoutGlasspriceIndexLazyImport = createFileRoute(
+  '/_authenticated/_layout/glassprice/',
+)()
 const AuthenticatedLayoutDashboardIndexLazyImport = createFileRoute(
   '/_authenticated/_layout/dashboard/',
 )()
@@ -86,6 +89,16 @@ const AuthenticatedLayoutProductsIndexLazyRoute =
     getParentRoute: () => AuthenticatedLayoutRoute,
   } as any).lazy(() =>
     import('./routes/_authenticated/_layout/products/index.lazy').then(
+      (d) => d.Route,
+    ),
+  )
+
+const AuthenticatedLayoutGlasspriceIndexLazyRoute =
+  AuthenticatedLayoutGlasspriceIndexLazyImport.update({
+    path: '/glassprice/',
+    getParentRoute: () => AuthenticatedLayoutRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/_layout/glassprice/index.lazy').then(
       (d) => d.Route,
     ),
   )
@@ -219,6 +232,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedLayoutDashboardIndexLazyImport
       parentRoute: typeof AuthenticatedLayoutImport
     }
+    '/_authenticated/_layout/glassprice/': {
+      id: '/_authenticated/_layout/glassprice/'
+      path: '/glassprice'
+      fullPath: '/glassprice'
+      preLoaderRoute: typeof AuthenticatedLayoutGlasspriceIndexLazyImport
+      parentRoute: typeof AuthenticatedLayoutImport
+    }
     '/_authenticated/_layout/products/': {
       id: '/_authenticated/_layout/products/'
       path: '/products'
@@ -293,6 +313,7 @@ export const routeTree = rootRoute.addChildren({
     AuthenticatedLayoutRoute: AuthenticatedLayoutRoute.addChildren({
       AuthenticatedLayoutCustomersIndexLazyRoute,
       AuthenticatedLayoutDashboardIndexLazyRoute,
+      AuthenticatedLayoutGlasspriceIndexLazyRoute,
       AuthenticatedLayoutProductsIndexLazyRoute,
       AuthenticatedLayoutServicesIndexLazyRoute,
       AuthenticatedLayoutCustomersEditIdLazyRoute,
@@ -333,6 +354,7 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/_authenticated/_layout/customers/",
         "/_authenticated/_layout/dashboard/",
+        "/_authenticated/_layout/glassprice/",
         "/_authenticated/_layout/products/",
         "/_authenticated/_layout/services/",
         "/_authenticated/_layout/customers/edit/$id",
@@ -350,6 +372,10 @@ export const routeTree = rootRoute.addChildren({
     },
     "/_authenticated/_layout/dashboard/": {
       "filePath": "_authenticated/_layout/dashboard/index.lazy.tsx",
+      "parent": "/_authenticated/_layout"
+    },
+    "/_authenticated/_layout/glassprice/": {
+      "filePath": "_authenticated/_layout/glassprice/index.lazy.tsx",
       "parent": "/_authenticated/_layout"
     },
     "/_authenticated/_layout/products/": {

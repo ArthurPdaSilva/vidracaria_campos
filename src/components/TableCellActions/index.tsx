@@ -11,7 +11,7 @@ import { ConfirmAction } from '../ConfirmAction';
 
 export interface TableCellActionsProps {
   idObject: string;
-  type: 'product' | 'customer' | 'service';
+  type: 'product' | 'customer' | 'service' | 'glassprice';
   dispach: (idObject: string) => void;
   handleClick: (id: string) => void;
   printBudgetClick?: (id: string) => void;
@@ -21,6 +21,7 @@ const typeMap = {
   product: { label: 'Produto', editPath: '/products/edit/$id' },
   customer: { label: 'Cliente', editPath: '/customers/edit/$id' },
   service: { label: 'Serviço', editPath: '/services/edit/$id' },
+  glassprice: { label: 'Preço do Vidro', editPath: '/glassprice/edit/$id' },
 };
 
 export const TableCellActions = ({
@@ -60,15 +61,17 @@ export const TableCellActions = ({
         </Tooltip>
       )}
 
-      <Tooltip title={`Ver informação de ${typeTranslate}`}>
-        <IconButton
-          aria-label="Info"
-          color="info"
-          onClick={() => handleClick(idObject)}
-        >
-          <InfoIcon />
-        </IconButton>
-      </Tooltip>
+      {typeMap[type]?.label !== 'Preço do Vidro' && (
+        <Tooltip title={`Ver informação de ${typeTranslate}`}>
+          <IconButton
+            aria-label="Info"
+            color="info"
+            onClick={() => handleClick(idObject)}
+          >
+            <InfoIcon />
+          </IconButton>
+        </Tooltip>
+      )}
 
       <Tooltip title={`Editar informações de ${typeTranslate}`}>
         <Link to={typeMap[type]?.editPath.replace('$id', idObject) || ''}>

@@ -5,6 +5,7 @@ export { default as ArrowBackIosIcon } from '@mui/icons-material/ArrowBackIos';
 export { default as ArrowBackIosRoundedIcon } from '@mui/icons-material/ArrowBackIosRounded';
 export { default as ArrowForwardIosRoundedIcon } from '@mui/icons-material/ArrowForwardIosRounded';
 export { default as BuildOutlinedIcon } from '@mui/icons-material/BuildOutlined';
+export { default as CalculateOutlinedIcon } from '@mui/icons-material/CalculateOutlined';
 export { default as CloseIcon } from '@mui/icons-material/Close';
 export { default as DashboardOutlinedIcon } from '@mui/icons-material/DashboardOutlined';
 export { default as DeleteIcon } from '@mui/icons-material/Delete';

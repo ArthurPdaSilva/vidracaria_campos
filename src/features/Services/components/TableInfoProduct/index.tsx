@@ -1,3 +1,8 @@
+import {
+  AddOutlinedIcon,
+  DeleteIcon,
+  RemoveOutlinedIcon,
+} from '@/assets/images/icons';
 import { Box, IconButton } from '@mui/material';
 import {
   MaterialReactTable,
@@ -5,12 +10,7 @@ import {
   useMaterialReactTable,
 } from 'material-react-table';
 import { useMemo } from 'react';
-import {
-  AddOutlinedIcon,
-  DeleteIcon,
-  RemoveOutlinedIcon,
-} from '../../assets/images/icons';
-import { ProductInfo } from '../../features/Services/types';
+import { ProductInfo } from '../../types';
 
 interface TableProductInfoProps {
   data: ProductInfo[];
