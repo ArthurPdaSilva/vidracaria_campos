@@ -8,21 +8,21 @@ import {
 } from '@/features/GlassPrices/services';
 import { CreateGlassPrice } from '@/features/GlassPrices/types';
 import { GlassVariants } from '@/features/Products/types';
-import { boxStyles, formStyles, textFieldStyles, buttonStyles } from '@/styles';
+import { boxStyles, buttonStyles, formStyles, textFieldStyles } from '@/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import {
   Box,
   FormControl,
   InputLabel,
-  Select,
   MenuItem,
-  Typography,
+  Select,
   TextField,
+  Typography,
 } from '@mui/material';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { useEffect } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
 const PricesForm = () => {
   const { id } = Route.useParams();
@@ -177,7 +177,7 @@ const PricesForm = () => {
           name="millimeter"
           control={control}
           render={({ field }) => (
-            <FormControl variant="outlined">
+            <FormControl variant="outlined" sx={{ marginBottom: 4 }}>
               <InputLabel id="select-depth-label">Espessura</InputLabel>
               <Select
                 id="select-depth-label"
