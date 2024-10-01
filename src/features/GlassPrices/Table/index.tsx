@@ -7,13 +7,13 @@ import {
   type MRT_ColumnDef,
 } from 'material-react-table';
 import { useMemo } from 'react';
+import { useDeleteGlassPrice, useGetAllGlassPrice } from '../services';
 import { GlassPrice } from '../types';
-import { useGetAllGlassPrice, useGetDeleteGlassPrice } from '../services';
 
 export const Table = () => {
   const { data, isFetching } = useGetAllGlassPrice();
 
-  const { mutate: deleteGlassPrice, isPending } = useGetDeleteGlassPrice();
+  const { mutate: deleteGlassPrice, isPending } = useDeleteGlassPrice();
 
   const columns = useMemo<MRT_ColumnDef<GlassPrice>[]>(
     () => [
