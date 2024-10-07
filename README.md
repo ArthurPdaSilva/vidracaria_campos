@@ -1,6 +1,6 @@
 <h1 align="center">        
         <img
-          alt="Vidraçaria campus"
+          alt="Vidraçaria Campos"
           src="public/images/logo-icon.webp"
           width="500"
           height="auto"
@@ -8,7 +8,7 @@
 </h1>
 
 <p align="center">
-  Bem-vindo ao projeto Vidraçaria Campus!<br/>
+  Bem-vindo ao projeto Vidraçaria Campos!<br/>
 </p>
 
 <p align="center">
@@ -37,13 +37,13 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 #### 1. Clone o repositório para o seu computador usando o seguinte comando:
 
 ```bash
-git clone https://github.com/wesleysousaa/vidracaria-campus-front.git
+git clone https://github.com/wesleysousaa/vidracaria-campos-front.git
 ```
 
 #### 2. Navegue até o diretório do projeto:
 
 ```bash
-cd vidracaria-campus-front
+cd vidracaria-campos-front
 ```
 
 #### 3. Instale as dependências do projeto:
