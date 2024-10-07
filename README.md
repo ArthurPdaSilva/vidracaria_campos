@@ -1,7 +1,7 @@
 <h1 align="center">        
         <img
           alt="Vidraçaria Campos"
-          src="public/images/logo-icon.webp"
+          src="src/assets/images/logo-icon.webp"
           width="500"
           height="auto"
         /> 
