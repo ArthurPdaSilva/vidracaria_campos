@@ -27,8 +27,10 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Typescript
 - React
 - Tanstack Query
+- Tanstack Router
 - MUI
 - React Hook Form
+- Material React Table
 
 ## ⚙️ Instalação do projeto <br id="-instalacao-do-projeto">
 
