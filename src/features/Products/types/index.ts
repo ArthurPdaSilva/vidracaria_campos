@@ -1,4 +1,5 @@
 export type Category = 'COMUM' | 'TEMPERADO' | 'DIVERSOS';
+export type CategoryPrices = 'COMUM' | 'TEMPERADO';
 export type UnitOfMeasure = 'CENTIMETRO' | 'METRO' | 'MILIMETRO' | 'UNIDADE';
 
 export interface ProductBase {
@@ -19,15 +20,14 @@ export type GlassVariant =
   | 'BOX_VERDE';
 
 export const GlassVariants = [
-  'Canelado',
-  'Incolor',
-  'Fume',
-  'Espelho',
-  'Verde',
-  'Box Incolor',
-  'Box Fume',
-  'Box Verde',
-  'Fume e Verde',
+  'CANELADO',
+  'INCOLOR',
+  'FUME',
+  'ESPELHO',
+  'VERDE',
+  'BOX_INCOLOR',
+  'BOX_FUME',
+  'BOX_VERDE',
 ];
 
 export interface ProductEditAndList extends ProductBase {

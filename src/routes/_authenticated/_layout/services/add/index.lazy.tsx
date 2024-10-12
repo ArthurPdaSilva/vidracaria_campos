@@ -255,7 +255,8 @@ const ServicesCreateForm = () => {
             >
               {products?.map((product) => (
                 <MenuItem value={product.id} key={product.id}>
-                  {product.name} - {product.category}
+                  {product.name} {product.glassType ? product.glassType : ''} -{' '}
+                  {product.category}
                 </MenuItem>
               ))}
             </Select>
@@ -267,7 +268,7 @@ const ServicesCreateForm = () => {
                   id="heightTxt"
                   name="height"
                   value={
-                    Number(product?.height) === 0 ? 0 : Number(product?.height)
+                    Number(product?.height) === 0 ? '' : Number(product?.height)
                   }
                   label="Altura (M)"
                   type="number"
@@ -291,7 +292,7 @@ const ServicesCreateForm = () => {
                   id="widthTxt"
                   name="width"
                   value={
-                    Number(product?.width) === 0 ? 0 : Number(product?.width)
+                    Number(product?.width) === 0 ? '' : Number(product?.width)
                   }
                   label="Largura (M)"
                   type="number"

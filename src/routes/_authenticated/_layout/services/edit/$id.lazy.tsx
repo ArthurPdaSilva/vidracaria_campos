@@ -460,7 +460,9 @@ const ServicesEditForm = () => {
                   id="heightTxt"
                   disabled={disableFields}
                   value={
-                    Number(product?.height) === 0 ? 0 : Number(product?.height)
+                    Number(product?.height) === 0
+                      ? '0'
+                      : Number(product?.height)
                   }
                   label="Altura (M)"
                   name="height"
@@ -489,7 +491,7 @@ const ServicesEditForm = () => {
                   name="width"
                   disabled={disableFields}
                   value={
-                    Number(product?.width) === 0 ? 0 : Number(product?.width)
+                    Number(product?.width) === 0 ? '' : Number(product?.width)
                   }
                   label="Largura (M)"
                   type="number"

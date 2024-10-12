@@ -31,6 +31,7 @@ const PricesForm = () => {
     formState: { errors },
     handleSubmit,
     setValue,
+    watch,
   } = useForm<CreateGlassPrice>({
     resolver: yupResolver(GlassPriceSchema),
   });
@@ -40,7 +41,6 @@ const PricesForm = () => {
 
   useEffect(() => {
     if (data) {
-      console.log('🚀 ~ useEffect ~ data:', data);
       setValue('category', data.category);
       setValue('constant', data.constant);
       setValue('glassType', data.glassType);
@@ -76,7 +76,6 @@ const PricesForm = () => {
               >
                 <MenuItem value="COMUM">Comum</MenuItem>
                 <MenuItem value="TEMPERADO">Temperado</MenuItem>
-                <MenuItem value="DIVERSOS">Diversos</MenuItem>
               </Select>
               {errors.category && (
                 <Typography variant="caption" color={'error'}>
@@ -117,24 +116,26 @@ const PricesForm = () => {
         />
 
         <SectionHeader label={'Cálculos'} />
-        <Controller
-          name="constant"
-          control={control}
-          render={({ field }) => (
-            <FormControl sx={textFieldStyles}>
-              <TextField
-                label={'Constante de cálculo'}
-                type="number"
-                error={Boolean(errors.constant)}
-                helperText={errors.constant?.message}
-                {...field}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-            </FormControl>
-          )}
-        />
+        {watch('category') === 'COMUM' && (
+          <Controller
+            name="constant"
+            control={control}
+            render={({ field }) => (
+              <FormControl sx={textFieldStyles}>
+                <TextField
+                  label={'Constante de cálculo'}
+                  type="number"
+                  error={Boolean(errors.constant)}
+                  helperText={errors.constant?.message}
+                  {...field}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </FormControl>
+            )}
+          />
+        )}
         <Controller
           name="sellerMargin"
           control={control}

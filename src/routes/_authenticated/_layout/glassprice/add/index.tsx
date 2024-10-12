@@ -31,6 +31,7 @@ const PricesForm = () => {
   const {
     control,
     formState: { errors },
+    watch,
     handleSubmit,
   } = useForm<CreateGlassPrice>({
     resolver: yupResolver(GlassPriceSchema),
@@ -64,7 +65,6 @@ const PricesForm = () => {
               >
                 <MenuItem value="COMUM">Comum</MenuItem>
                 <MenuItem value="TEMPERADO">Temperado</MenuItem>
-                <MenuItem value="DIVERSOS">Diversos</MenuItem>
               </Select>
               {errors.category && (
                 <Typography variant="caption" color={'error'}>
@@ -105,21 +105,26 @@ const PricesForm = () => {
         />
 
         <SectionHeader label={'Cálculos'} />
-        <Controller
-          name="constant"
-          control={control}
-          render={({ field }) => (
-            <FormControl sx={textFieldStyles}>
-              <TextField
-                label={'Constante de cálculo'}
-                type="number"
-                error={Boolean(errors.constant)}
-                helperText={errors.constant?.message}
-                {...field}
-              />
-            </FormControl>
-          )}
-        />
+        {watch('category') === 'COMUM' && (
+          <Controller
+            name="constant"
+            control={control}
+            render={({ field }) => (
+              <FormControl sx={textFieldStyles}>
+                <TextField
+                  label={'Constante de cálculo'}
+                  type="number"
+                  error={Boolean(errors.constant)}
+                  helperText={errors.constant?.message}
+                  {...field}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </FormControl>
+            )}
+          />
+        )}
         <Controller
           name="sellerMargin"
           control={control}

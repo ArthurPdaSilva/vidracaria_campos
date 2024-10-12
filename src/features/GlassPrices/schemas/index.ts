@@ -14,10 +14,19 @@ export const GlassPriceSchema = Yup.object().shape({
     ])
     .required('Campo obrigatório'),
   price: Yup.number().required('Campo obrigatório'),
-  constant: Yup.number().required('Campo obrigatório'),
   sellerMargin: Yup.number().required('Campo obrigatório'),
   millimeter: Yup.number().required('Campo obrigatório'),
   category: Yup.string()
-    .oneOf(['COMUM', 'TEMPERADO', 'DIVERSOS'])
+    .oneOf(['COMUM', 'TEMPERADO'])
     .required('Campo obrigatório'),
+  constant: Yup.number()
+    .transform((value, originalValue) => {
+      return originalValue === '' ? undefined : value;
+    })
+    .nullable()
+    .when(['category'], ([category], schema) => {
+      return category === 'TEMPERADO'
+        ? schema.nullable()
+        : schema.required('Campo obrigatório');
+    }),
 });

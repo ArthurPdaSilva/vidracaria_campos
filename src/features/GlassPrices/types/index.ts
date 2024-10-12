@@ -1,4 +1,8 @@
-import { Category, GlassVariant } from '@/features/Products/types';
+import {
+  Category,
+  CategoryPrices,
+  GlassVariant,
+} from '@/features/Products/types';
 
 export interface GlassPrice {
   id?: string;
@@ -14,8 +18,8 @@ export interface GlassPrice {
 export interface CreateGlassPrice {
   glassType: GlassVariant;
   price: number;
-  constant: number;
+  constant?: number | null;
   sellerMargin: number;
   millimeter: number;
-  category: Category;
+  category: CategoryPrices;
 }

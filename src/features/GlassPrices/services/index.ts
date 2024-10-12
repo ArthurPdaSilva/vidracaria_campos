@@ -21,7 +21,7 @@ const useCreateGlassPrice = () => {
 
   return useMutation({
     mutationFn: async (price: CreateGlassPrice) => {
-      const res = await api.post(`/api/glass-prices`, price, {
+      const res = await api.post(`/glass-prices`, price, {
         ...config,
       });
       return res.data;
@@ -42,7 +42,7 @@ const useUpdateGlassPrice = () => {
   const navigate = useNavigate();
   return useMutation({
     mutationFn: async (data: { price: CreateGlassPrice; id: string }) => {
-      const res = await api.patch(`/api/glass-prices/${data.id}`, data.price, {
+      const res = await api.patch(`/glass-prices/${data.id}`, data.price, {
         ...config,
       });
       return res.data;
@@ -63,7 +63,7 @@ const useGetGlassPriceById = (id: string) => {
   return useQuery({
     queryKey: ['/glass-prices', id],
     queryFn: async () => {
-      const res = await api.get(`/api/glass-prices/${id}`, {
+      const res = await api.get(`/glass-prices/${id}`, {
         ...config,
       });
       return res.data;
@@ -75,7 +75,7 @@ const useGetAllGlassPrice = () => {
   return useQuery({
     queryKey: ['/all-glass-prices'],
     queryFn: async () => {
-      const res = await api.get(`/api/glass-prices`, {
+      const res = await api.get(`/glass-prices`, {
         ...config,
       });
       return res.data;
@@ -86,7 +86,7 @@ const useGetAllGlassPrice = () => {
 const useDeleteGlassPrice = () => {
   return useMutation({
     mutationFn: async (id: string) => {
-      const res = await api.delete(`/api/glass-prices/${id}`, {
+      const res = await api.delete(`/glass-prices/${id}`, {
         ...config,
       });
       return res.data;
