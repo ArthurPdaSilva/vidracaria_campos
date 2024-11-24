@@ -48,7 +48,7 @@ const ProductsCreateForm = () => {
     } else {
       setValue('unitOfMeasure', 'METRO');
     }
-    if (watch('category') !== 'COMUM') {
+    if (watch('category') !== 'COMUM' && watch('category') !== 'TEMPERADO') {
       setValue('glassType', undefined);
     }
   }, [watch('category')]);
@@ -125,7 +125,8 @@ const ProductsCreateForm = () => {
             )}
           />
         </Box>
-        {watch('category') === 'COMUM' && (
+        {(watch('category') === 'COMUM' ||
+          watch('category') === 'TEMPERADO') && (
           <Controller
             name="glassType"
             control={control}

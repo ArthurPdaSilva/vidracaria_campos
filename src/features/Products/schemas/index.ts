@@ -22,10 +22,16 @@ export const EditProductSchema = Yup.object().shape({
       'BOX_FUME',
       'BOX_VERDE',
     ])
-    .test('is-required-if-common', 'Campo obrigatório', function (value) {
-      const { category } = this.parent;
-      return category !== 'COMUM' || (category === 'COMUM' && !!value);
-    }),
+    .test(
+      'is-required-if-common-or-temperado',
+      'Campo obrigatório',
+      function (value) {
+        const { category } = this.parent;
+        return category === 'COMUM' || category === 'TEMPERADO'
+          ? !!value
+          : true;
+      },
+    ),
 });
 
 export const CreateProductSchema = Yup.object({
@@ -47,8 +53,14 @@ export const CreateProductSchema = Yup.object({
       'BOX_FUME',
       'BOX_VERDE',
     ])
-    .test('is-required-if-common', 'Campo obrigatório', function (value) {
-      const { category } = this.parent;
-      return category !== 'COMUM' || (category === 'COMUM' && !!value);
-    }),
+    .test(
+      'is-required-if-common-or-temperado',
+      'Campo obrigatório',
+      function (value) {
+        const { category } = this.parent;
+        return category === 'COMUM' || category === 'TEMPERADO'
+          ? !!value
+          : true;
+      },
+    ),
 });
