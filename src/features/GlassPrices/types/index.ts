@@ -23,3 +23,14 @@ export interface CreateGlassPrice {
   millimeter: number;
   category: CategoryPrices;
 }
+
+export interface UpdateGlassPrice {
+  id: string;
+  userId: string;
+  glassType: GlassVariant;
+  price: number;
+  constant?: number | null;
+  sellerMargin: number;
+  millimeter: number;
+  category: CategoryPrices;
+}

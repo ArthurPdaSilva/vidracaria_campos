@@ -34,6 +34,14 @@ const PricesForm = () => {
     watch,
   } = useForm<CreateGlassPrice>({
     resolver: yupResolver(GlassPriceSchema),
+    defaultValues: {
+      category: 'COMUM',
+      constant: 0,
+      glassType: 'BOX_FUME',
+      millimeter: 0,
+      price: 0,
+      sellerMargin: 0,
+    },
   });
 
   const create = useUpdateGlassPrice();
@@ -50,8 +58,11 @@ const PricesForm = () => {
     }
   }, [data]);
 
-  const onSubmit = (data: CreateGlassPrice) => {
-    create.mutateAsync({ price: data, id });
+  const onSubmit = (dataSubmit: CreateGlassPrice) => {
+    create.mutateAsync({
+      price: { ...dataSubmit, id: data.id, userId: data.userId },
+      id,
+    });
   };
 
   return (

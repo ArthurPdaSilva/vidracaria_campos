@@ -3,7 +3,7 @@ import api, { config } from '@/services/api';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 import { enqueueSnackbar } from 'notistack';
-import { CreateGlassPrice } from '../types';
+import { CreateGlassPrice, UpdateGlassPrice } from '../types';
 
 const invalidateQueries = () => {
   queryClient.invalidateQueries({ queryKey: ['/all-products'] });
@@ -41,8 +41,8 @@ const useCreateGlassPrice = () => {
 const useUpdateGlassPrice = () => {
   const navigate = useNavigate();
   return useMutation({
-    mutationFn: async (data: { price: CreateGlassPrice; id: string }) => {
-      const res = await api.patch(`/glass-prices/${data.id}`, data.price, {
+    mutationFn: async (data: { price: UpdateGlassPrice; id: string }) => {
+      const res = await api.put(`/glass-prices/${data.id}`, data.price, {
         ...config,
       });
       return res.data;
