@@ -8,7 +8,13 @@ export const Route = createFileRoute('/_authenticated/_layout/glassprice/add/')(
 
 import { PageHeader } from '@/components/PageHeader';
 import { SectionHeader } from '@/components/SectionHeader';
+import { DepthsCommon } from '@/features/Dashboard/types';
+import { GlassPriceSchema } from '@/features/GlassPrices/schemas';
+import { useCreateGlassPrice } from '@/features/GlassPrices/services';
+import { CreateGlassPrice } from '@/features/GlassPrices/types';
+import { GlassVariants } from '@/features/Products/types';
 import { boxStyles, buttonStyles, formStyles, textFieldStyles } from '@/styles';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import {
   Box,
@@ -19,19 +25,15 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { GlassVariants } from '@/features/Products/types';
+import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { CreateGlassPrice } from '@/features/GlassPrices/types';
-import { GlassPriceSchema } from '@/features/GlassPrices/schemas';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { DepthsCommon } from '@/features/Dashboard/types';
-import { useCreateGlassPrice } from '@/features/GlassPrices/services';
 
 const PricesForm = () => {
   const {
     control,
     formState: { errors },
     watch,
+    setValue,
     handleSubmit,
   } = useForm<CreateGlassPrice>({
     resolver: yupResolver(GlassPriceSchema),
@@ -42,6 +44,17 @@ const PricesForm = () => {
   const onSubmit = (data: CreateGlassPrice) => {
     create.mutateAsync(data);
   };
+
+  useEffect(() => {
+    if (watch('category') == 'TEMPERADO') {
+      setValue('sellerMargin', 2);
+    }
+
+    if (watch('category') == 'COMUM') {
+      setValue('constant', 3.52);
+      setValue('sellerMargin', 2.1);
+    }
+  }, [watch('category')]);
 
   return (
     <Box sx={boxStyles}>
