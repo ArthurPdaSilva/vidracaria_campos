@@ -210,7 +210,7 @@ const useGenerateBudgetPdf = () => {
   return useMutation({
     mutationFn: async (data: { id: string; clientName: string }) => {
       const res = await api.post(
-        `/budget/printToPdf/${data.id}`,
+        `/reports/generatePdfBudgte/${data.id}`,
         {},
         {
           ...config,
