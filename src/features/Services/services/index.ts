@@ -68,6 +68,7 @@ const usePutServiceById = () => {
         discount: params.data.discount,
         observation: params.data.observation,
         downPayment: params.data.downPayment,
+        total: params.data.total,
         imgs: [
           ...params.imagesPersistedArr,
           ...urls.map((image: string) => ({ url: image, id: '' })),
@@ -145,6 +146,7 @@ const useCreateService = () => {
         observation: service.observation,
         paymentMethod: 'DINHEIRO',
         userManual: service.userManual,
+        total: service.total,
         items: service.products.map((product) => {
           return {
             idProduct: product.id,
