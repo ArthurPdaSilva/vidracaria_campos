@@ -126,7 +126,6 @@ const useCreateService = () => {
 
   return useMutation({
     mutationFn: async (service: CreateServiceValidation) => {
-      console.log('🚀 ~ mutationFn: ~ service:', service);
       const formData = new FormData();
       let urls = [];
 
@@ -276,6 +275,7 @@ const useCalculateProduct = () => {
 };
 
 export {
+  useCalculateProduct,
   useCreateService,
   useDeleteImageById,
   useDeleteServiceById,
@@ -286,5 +286,4 @@ export {
   useGetProducstByServiceId,
   useGetServiceById,
   usePutServiceById,
-  useCalculateProduct,
 };
