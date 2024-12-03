@@ -149,6 +149,9 @@ const PricesForm = () => {
                 error={Boolean(errors.sellerMargin)}
                 helperText={errors.sellerMargin?.message}
                 {...field}
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
             </FormControl>
           )}
