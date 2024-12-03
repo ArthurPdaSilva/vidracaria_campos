@@ -260,7 +260,7 @@ const useCalculateProduct = () => {
     mutationFn: async (product: ProductInfo) => {
       const res = await api.post(
         `/budget/calculatePriceItem`,
-        { ...product, idProduct: product.id },
+        { ...product, idProduct: product.id, quantity: product.actualQuantity },
         {
           ...config,
         },
