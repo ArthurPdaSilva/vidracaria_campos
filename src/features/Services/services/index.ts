@@ -156,6 +156,7 @@ const useCreateService = () => {
             width: product.width ?? 0,
             depth: product.depth ?? 0,
             name: product.name,
+            unitPrice: product.price,
             glassType: product.glassType,
           };
         }),
