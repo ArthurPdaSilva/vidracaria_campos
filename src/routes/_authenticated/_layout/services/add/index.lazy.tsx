@@ -98,7 +98,10 @@ const ServicesCreateForm = () => {
         ...watch('products'),
         {
           ...product,
-          price: await calcProdRequest(product),
+          price:
+            product.category === 'DIVERSOS'
+              ? product.price
+              : await calcProdRequest(product),
         },
       ]);
       setProduct(undefined);

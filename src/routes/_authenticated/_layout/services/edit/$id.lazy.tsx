@@ -137,35 +137,6 @@ const ServicesEditForm = () => {
     }
   }, [imagesPersisted]);
 
-  useEffect(() => {
-    setValue(
-      'products',
-      budgetItemsToEditTable(productsPersisted?.items || []),
-    );
-  }, [productsPersisted]);
-
-  const handleAddProduct = async () => {
-    let errors: string[] = [];
-    if (product) {
-      checkProduct(product, errors);
-      if (errors.length > 0) {
-        errors.forEach((error) => {
-          enqueueSnackbar(error, { variant: 'error' });
-        });
-        return;
-      }
-      setValue('products', [
-        ...watch('products'),
-        {
-          ...product,
-          price: await calcProdRequest(product),
-          glassType: product.glassType,
-        },
-      ]);
-      setProduct(undefined);
-    }
-  };
-
   const updateProdQtd = (prod: ProductInfo, newAmount: number): ProductInfo => {
     const amount = newAmount > 0 ? newAmount : 1;
     return {
@@ -174,6 +145,45 @@ const ServicesEditForm = () => {
       price: prod.price,
     };
   };
+
+  const handleAddProduct = async () => {
+    let errors: string[] = [];
+    if (product) {
+      checkProduct(product, errors);
+
+      if (errors.length > 0) {
+        errors.forEach((error) => {
+          enqueueSnackbar(error, { variant: 'error' });
+        });
+        return;
+      }
+
+      setValue('products', [
+        ...watch('products'),
+        {
+          ...product,
+          price:
+            product.category === 'DIVERSOS'
+              ? product.price
+              : await calcProdRequest(product),
+        },
+      ]);
+      setProduct(undefined);
+    }
+  };
+
+  useEffect(() => {
+    let discount = watch('discount');
+    if (watch('products')) {
+      setValue(
+        'total',
+        calcTotal({
+          products: watch('products') || [],
+          discount: discount ? discount : 0,
+        }),
+      );
+    }
+  }, [products, watch('products'), watch('discount')]);
 
   return (
     <Box sx={boxStyles}>

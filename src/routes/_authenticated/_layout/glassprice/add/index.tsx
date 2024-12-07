@@ -37,6 +37,9 @@ const PricesForm = () => {
     handleSubmit,
   } = useForm<CreateGlassPrice>({
     resolver: yupResolver(GlassPriceSchema),
+    defaultValues: {
+      constant: 0,
+    },
   });
 
   const create = useCreateGlassPrice();
