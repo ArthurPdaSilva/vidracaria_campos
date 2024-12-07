@@ -243,6 +243,11 @@ const useGenerateDashPdf = () => {
       a.click();
       URL.revokeObjectURL(url);
     },
+    onError() {
+      enqueueSnackbar('Erro ao gerar o PDF, tente novamente mais tarde.', {
+        variant: 'error',
+      });
+    },
   });
 };
 
