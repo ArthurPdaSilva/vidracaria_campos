@@ -66,7 +66,7 @@ export const ConfirmAction = ({
             variant="text"
             onClick={denyDispach}
             sx={{ marginLeft: '1em' }}
-            color="success"
+            color="inherit"
           >
             Não
           </Button>
