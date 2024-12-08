@@ -29,7 +29,7 @@ const MenuDesktop = () => {
 
   return (
     <Box
-      component={'header'}
+      component="header"
       style={{ ...headerStyles, width: colapsedMenu ? '60px' : '200px' }}
     >
       <nav style={{ ...navStyles, width: colapsedMenu ? '60px' : '200px' }}>

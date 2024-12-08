@@ -8,18 +8,13 @@ interface LogoItemProps {
 
 const LogoItem = ({ colapsed }: LogoItemProps) => {
   return (
-    <Grid
-      container
-      alignItems={'center'}
-      justifyContent={'center'}
-      height={'80px'}
-    >
+    <Grid container alignItems="center" justifyContent="center" height="80px">
       <Grid item>
         <img src={logo} alt="logo" style={{ maxWidth: '3em' }} loading="lazy" />
       </Grid>
       {!colapsed && (
         <Grid item>
-          <Typography variant="h5" textAlign={'center'}>
+          <Typography variant="h5" textAlign="center">
             Campos
           </Typography>
         </Grid>

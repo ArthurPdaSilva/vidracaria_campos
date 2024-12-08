@@ -109,10 +109,10 @@ const CustomerCreateForm = () => {
                     setValue('cpfcnpj', '');
                   }}
                 >
-                  <MenuItem value={'FISICA'} defaultChecked>
+                  <MenuItem value="FISICA" defaultChecked>
                     Física
                   </MenuItem>
-                  <MenuItem value={'JURIDICA'}>Jurídica</MenuItem>
+                  <MenuItem value="JURIDICA">Jurídica</MenuItem>
                 </Select>
               </FormControl>
             )}

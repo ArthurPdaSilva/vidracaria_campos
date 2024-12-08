@@ -71,12 +71,12 @@ export const LineChart = (props: propsLineChart) => {
   return (
     <Box
       borderRadius=".3em"
-      padding={'1em'}
-      boxShadow={'0px 4px 4px rgba(0, 0, 0, 0.25)'}
+      padding="1em"
+      boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
       flex={1}
-      overflow={'hidden'}
+      overflow="hidden"
     >
-      <Typography variant="h6" textAlign={'center'}>
+      <Typography variant="h6" textAlign="center">
         {props.title}
       </Typography>
       <LineChartImported {...config} />

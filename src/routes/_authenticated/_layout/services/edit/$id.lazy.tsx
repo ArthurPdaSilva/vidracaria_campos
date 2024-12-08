@@ -340,22 +340,16 @@ const ServicesEditForm = () => {
                   {...field}
                   value={watch('status')}
                 >
-                  <MenuItem value={'ORCADO'} key={'ORCADO'}>
+                  <MenuItem value="ORCADO" key="ORCADO">
                     Orçado
                   </MenuItem>
-                  <MenuItem
-                    value={'CONTRATADO_A_VISTA'}
-                    key={'CONTRATADO_A_VISTA'}
-                  >
+                  <MenuItem value="CONTRATADO_A_VISTA" key="CONTRATADO_A_VISTA">
                     Contratado a vista
                   </MenuItem>
-                  <MenuItem
-                    value={'CONTRATADO_A_PRAZO'}
-                    key={'CONTRATADO_A_PRAZO'}
-                  >
+                  <MenuItem value="CONTRATADO_A_PRAZO" key="CONTRATADO_A_PRAZO">
                     Contratado a prazo
                   </MenuItem>
-                  <MenuItem value={'FINALIZADO'} key={'FINALIZADO'}>
+                  <MenuItem value="FINALIZADO" key="FINALIZADO">
                     Finalizado
                   </MenuItem>
                 </Select>
@@ -388,16 +382,16 @@ const ServicesEditForm = () => {
                   {...field}
                   value={watch('paymentMethod')}
                 >
-                  <MenuItem value={'DINHEIRO'} key={'DINHEIRO'}>
+                  <MenuItem value="DINHEIRO" key="DINHEIRO">
                     Dinheiro
                   </MenuItem>
-                  <MenuItem value={'CREDITO'} key={'CREDITO'}>
+                  <MenuItem value="CREDITO" key="CREDITO">
                     Crédito
                   </MenuItem>
-                  <MenuItem value={'DEBITO'} key={'DEBITO'}>
+                  <MenuItem value="DEBITO" key="DEBITO">
                     Débito
                   </MenuItem>
-                  <MenuItem value={'PIX'} key={'PIX'}>
+                  <MenuItem value="PIX" key="PIX">
                     Pix
                   </MenuItem>
                 </Select>
@@ -525,7 +519,7 @@ const ServicesEditForm = () => {
                   labelId="select-depth-label"
                   name="depth"
                   disabled={disableFields}
-                  label={'Espessura'}
+                  label="Espessura"
                   value={product ? product.depth : ''}
                   onChange={(e) => {
                     product &&

@@ -16,24 +16,24 @@ export const ConfirmAction = ({
   return (
     <Modal open={open} onClose={denyDispach} sx={modalStyles}>
       <Box
-        display={'flex'}
-        justifyContent={'center'}
-        alignItems={'center'}
-        width={'fit-content'}
-        padding={'1em'}
-        flexDirection={'column'}
-        borderRadius={'0.3em'}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        width="fit-content"
+        padding="1em"
+        flexDirection="column"
+        borderRadius="0.3em"
         sx={{
           backgroundColor: '#fff',
         }}
       >
         <Box
-          display={'flex'}
-          flexDirection={'row'}
-          justifyContent={'space-between'}
-          alignItems={'center'}
-          width={'100%'}
-          borderBottom={'1px solid #ccc'}
+          display="flex"
+          flexDirection="row"
+          justifyContent="space-between"
+          alignItems="center"
+          width="100%"
+          borderBottom="1px solid #ccc"
         >
           <Typography variant="h6">Confirmação de ação</Typography>
           <IconButton onClick={denyDispach}>
@@ -53,11 +53,11 @@ export const ConfirmAction = ({
           A ação de exclusão não poderá ser desfeita.
         </Typography>
         <Box
-          display={'flex'}
-          justifyContent={'flex-end'}
-          width={'100%'}
-          gap={'1em'}
-          paddingTop={'1em'}
+          display="flex"
+          justifyContent="flex-end"
+          width="100%"
+          gap="1em"
+          paddingTop="1em"
           sx={{
             borderTop: '1px solid #ccc',
           }}

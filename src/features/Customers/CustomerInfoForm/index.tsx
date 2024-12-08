@@ -44,22 +44,22 @@ export const CustomerInfoForm = ({
             style={{ width: '11em' }}
             loading="lazy"
           />
-          <Typography variant="h5" fontWeight={'bold'}>
+          <Typography variant="h5" fontWeight="bold">
             {customer.name}
           </Typography>
-          <Typography variant="body2" fontWeight={'bold'} color={'GrayText'}>
+          <Typography variant="body2" fontWeight="bold" color="GrayText">
             Pessoa {customer.customerType}
           </Typography>
-          <Typography variant="body2" fontWeight={'bold'} color={'GrayText'}>
+          <Typography variant="body2" fontWeight="bold" color="GrayText">
             {customer.cpfcnpj}
           </Typography>
         </Box>
 
         <Box sx={boxContentStyles}>
-          <Typography variant="body2" fontWeight={'bold'} color={'GrayText'}>
+          <Typography variant="body2" fontWeight="bold" color="GrayText">
             Informações de Contato
           </Typography>
-          <Box display={'flex'}>
+          <Box display="flex">
             {customer.phone && (
               <Typography variant="body2" sx={textContentStyles}>
                 <LocalPhoneOutlinedIcon /> {customer.phone}
@@ -72,10 +72,10 @@ export const CustomerInfoForm = ({
         </Box>
 
         <Box sx={boxContentStyles}>
-          <Typography variant="body2" fontWeight={'bold'} color={'GrayText'}>
+          <Typography variant="body2" fontWeight="bold" color="GrayText">
             Endereço
           </Typography>
-          <Box display={'flex'} flexDirection={'row'} flexWrap={'wrap'}>
+          <Box display="flex" flexDirection="row" flexWrap="wrap">
             <Typography variant="body2" sx={addressContentStyles}>
               <AddressInfoSpan text="Rua" />
               {customer.address.address}

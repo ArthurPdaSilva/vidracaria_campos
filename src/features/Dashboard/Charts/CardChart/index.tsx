@@ -28,10 +28,10 @@ export const CardChart = (props: cardChartProps) => {
         loading="lazy"
       />
       <Box>
-        <Typography variant="h5" fontWeight={'bold'} textAlign={'end'}>
+        <Typography variant="h5" fontWeight="bold" textAlign="end">
           {props.title}
         </Typography>
-        <Typography variant="caption" textAlign={'end'}>
+        <Typography variant="caption" textAlign="end">
           {props.subtitle}
         </Typography>
       </Box>

@@ -45,8 +45,8 @@ const Dashboard = () => {
   if (isFetching) return <Loader open />;
 
   return (
-    <Box sx={mainStyles} component={'main'}>
-      <Typography variant="h4" fontWeight={'bold'}>
+    <Box sx={mainStyles} component="main">
+      <Typography variant="h4" fontWeight="bold">
         Relatórios
       </Typography>
       <Box sx={boxCards}>
@@ -86,7 +86,7 @@ const Dashboard = () => {
         flex={1}
         gap={1}
         maxWidth="500px"
-        borderRadius={'.5rem'}
+        borderRadius=".5rem"
       >
         <Typography variant="h6">Relatório de faturamento</Typography>
         <form

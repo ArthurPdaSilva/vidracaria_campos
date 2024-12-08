@@ -63,7 +63,7 @@ const PricesForm = () => {
     <Box sx={boxStyles}>
       <form style={formStyles} onSubmit={handleSubmit(onSubmit)}>
         <PageHeader title="Controle de preços" backTo="/glassprice" />
-        <SectionHeader label={'Informações'} />
+        <SectionHeader label="Informações" />
 
         <Controller
           name="category"
@@ -83,7 +83,7 @@ const PricesForm = () => {
                 <MenuItem value="TEMPERADO">Temperado</MenuItem>
               </Select>
               {errors.category && (
-                <Typography variant="caption" color={'error'}>
+                <Typography variant="caption" color="error">
                   {errors.category.message}
                 </Typography>
               )}
@@ -112,7 +112,7 @@ const PricesForm = () => {
                 ))}
               </Select>
               {errors.glassType && (
-                <Typography variant="caption" color={'error'}>
+                <Typography variant="caption" color="error">
                   {errors.glassType.message}
                 </Typography>
               )}
@@ -120,7 +120,7 @@ const PricesForm = () => {
           )}
         />
 
-        <SectionHeader label={'Cálculos'} />
+        <SectionHeader label="Cálculos" />
         {watch('category') === 'COMUM' && (
           <Controller
             name="constant"
@@ -128,7 +128,7 @@ const PricesForm = () => {
             render={({ field }) => (
               <FormControl sx={textFieldStyles}>
                 <TextField
-                  label={'Constante de cálculo'}
+                  label="Constante de cálculo"
                   type="number"
                   error={Boolean(errors.constant)}
                   helperText={errors.constant?.message}
@@ -147,7 +147,7 @@ const PricesForm = () => {
           render={({ field }) => (
             <FormControl sx={textFieldStyles}>
               <TextField
-                label={'Margem de venda'}
+                label="Margem de venda"
                 type="number"
                 error={Boolean(errors.sellerMargin)}
                 helperText={errors.sellerMargin?.message}
@@ -166,7 +166,7 @@ const PricesForm = () => {
           render={({ field }) => (
             <FormControl sx={textFieldStyles}>
               <TextField
-                label={'Valor'}
+                label="Valor"
                 type="number"
                 error={Boolean(errors.price)}
                 helperText={errors.price?.message}
@@ -186,7 +186,7 @@ const PricesForm = () => {
                 id="select-depth-label"
                 labelId="select-depth-label"
                 error={Boolean(errors.millimeter)}
-                label={'Espessura'}
+                label="Espessura"
                 {...field}
               >
                 {DepthsCommon.map((unit) => (
@@ -196,7 +196,7 @@ const PricesForm = () => {
                 ))}
               </Select>
               {errors.millimeter && (
-                <Typography variant="caption" color={'error'}>
+                <Typography variant="caption" color="error">
                   {errors.millimeter.message}
                 </Typography>
               )}

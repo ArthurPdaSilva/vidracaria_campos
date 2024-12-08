@@ -123,8 +123,8 @@ const CustomerUpdateForm = () => {
                   label="Pessoa"
                   {...field}
                 >
-                  <MenuItem value={'FISICA'}>Física</MenuItem>
-                  <MenuItem value={'JURIDICA'}>Jurídica</MenuItem>
+                  <MenuItem value="FISICA">Física</MenuItem>
+                  <MenuItem value="JURIDICA">Jurídica</MenuItem>
                 </Select>
               </FormControl>
             )}

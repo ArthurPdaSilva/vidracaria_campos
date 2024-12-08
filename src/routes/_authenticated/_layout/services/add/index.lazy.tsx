@@ -320,7 +320,7 @@ const ServicesCreateForm = () => {
                   id="select-depth-label"
                   labelId="select-depth-label"
                   name="depth"
-                  label={'Espessura'}
+                  label="Espessura"
                   value={product ? product.depth : ''}
                   onChange={(e) => {
                     product &&

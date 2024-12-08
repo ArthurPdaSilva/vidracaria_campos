@@ -30,7 +30,7 @@ export const GetLocationBreadcrumb = () => {
               fontWeight: 'bold',
               fontSize: '1rem',
             }}
-            color={'black'}
+            color="black"
           >
             {translate(location)}
           </Typography>
