@@ -71,28 +71,26 @@ const ServicesEditForm = () => {
   };
 
   useEffect(() => {
-    if (service) {
-      const formattedDate = dayjs(
-        service.deliveryForecast,
-        'DD-MM-YYYY',
-      ).format('YYYY-MM-DD');
-      setValue('deliveryForecast', formattedDate);
-      setValue('discount', service.discount);
-      setValue('images', service.images);
-      setValue('ownerName', service.ownerName);
-      setValue('observation', service.observation ?? undefined);
-      setValue('userManual', service.userManual);
-      setValue('downPayment', service.downPayment ?? undefined);
-      setValue('paymentMethod', service.paymentMethod ?? 'DINHEIRO');
-      setValue('total', service.total);
-      setValue('status', service.status);
-      setValue('id', service.id);
-      setValue(
-        'products',
-        budgetItemsToEditTable(productsPersisted?.items || []),
-      );
-    }
-  }, [service]);
+    if (!service || !productsPersisted) return;
+    const formattedDate = dayjs(service.deliveryForecast, 'DD-MM-YYYY').format(
+      'YYYY-MM-DD',
+    );
+    setValue('deliveryForecast', formattedDate);
+    setValue('discount', service.discount);
+    setValue('images', service.images);
+    setValue('ownerName', service.ownerName);
+    setValue('observation', service.observation ?? undefined);
+    setValue('userManual', service.userManual);
+    setValue('downPayment', service.downPayment ?? undefined);
+    setValue('paymentMethod', service.paymentMethod ?? 'DINHEIRO');
+    setValue('total', service.total);
+    setValue('status', service.status);
+    setValue('id', service.id);
+    setValue(
+      'products',
+      budgetItemsToEditTable(productsPersisted?.items || []),
+    );
+  }, [service, productsPersisted]);
 
   const {
     handleSubmit,
