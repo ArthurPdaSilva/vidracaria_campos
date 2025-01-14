@@ -7,6 +7,7 @@ import {
   EditServiceValidation,
   GetProductsByService,
   Image,
+  ProductInfo,
   ServiceValidationTable,
 } from '../types';
 
@@ -67,6 +68,7 @@ const usePutServiceById = () => {
         discount: params.data.discount,
         observation: params.data.observation,
         downPayment: params.data.downPayment,
+        total: params.data.total,
         imgs: [
           ...params.imagesPersistedArr,
           ...urls.map((image: string) => ({ url: image, id: '' })),
@@ -81,7 +83,7 @@ const usePutServiceById = () => {
           width: item.width,
           depth: item.depth,
           category: item.category,
-          type: item.type,
+          glassType: item.glassType,
         })),
       };
       return api
@@ -144,6 +146,7 @@ const useCreateService = () => {
         observation: service.observation,
         paymentMethod: 'DINHEIRO',
         userManual: service.userManual,
+        total: service.total,
         items: service.products.map((product) => {
           return {
             idProduct: product.id,
@@ -153,7 +156,8 @@ const useCreateService = () => {
             width: product.width ?? 0,
             depth: product.depth ?? 0,
             name: product.name,
-            type: product.type,
+            unitPrice: product.price,
+            glassType: product.glassType,
           };
         }),
       };
@@ -206,7 +210,7 @@ const useGenerateBudgetPdf = () => {
   return useMutation({
     mutationFn: async (data: { id: string; clientName: string }) => {
       const res = await api.post(
-        `/budget/printToPdf/${data.id}`,
+        `/reports/generatePdfBudget/${data.id}`,
         {},
         {
           ...config,
@@ -239,6 +243,11 @@ const useGenerateDashPdf = () => {
       a.click();
       URL.revokeObjectURL(url);
     },
+    onError() {
+      enqueueSnackbar('Erro ao gerar o PDF, tente novamente mais tarde.', {
+        variant: 'error',
+      });
+    },
   });
 };
 
@@ -254,7 +263,27 @@ const useGetImagesByServiceId = (id?: string) => {
   });
 };
 
+const useCalculateProduct = () => {
+  return useMutation({
+    mutationFn: async (product: ProductInfo) => {
+      const res = await api.post(
+        `/budget/calculatePriceItem`,
+        { ...product, idProduct: product.id, quantity: product.actualQuantity },
+        {
+          ...config,
+        },
+      );
+      return res.data;
+    },
+    onError: (err) => {
+      const message = (err as unknown as any)?.response?.data;
+      enqueueSnackbar(message, { variant: 'error' });
+    },
+  });
+};
+
 export {
+  useCalculateProduct,
   useCreateService,
   useDeleteImageById,
   useDeleteServiceById,

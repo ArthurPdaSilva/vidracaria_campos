@@ -15,9 +15,9 @@ export const TableContainer = ({
   title,
 }: TableHeaderProps) => {
   return (
-    <Box sx={mainStyles} component={'main'}>
+    <Box sx={mainStyles} component="main">
       <Box sx={{ ...headerTablePageStyles, flexWrap: 'wrap' }}>
-        <Typography variant="h4" fontWeight={'bold'}>
+        <Typography variant="h4" fontWeight="bold">
           {title}
         </Typography>
         {rightActionComponent}

@@ -1,22 +1,24 @@
+import { AddCircleOutlineRoundedIcon } from '@/assets/images/icons';
 import { PageHeader } from '@/components/PageHeader';
 import { SectionHeader } from '@/components/SectionHeader';
-import { TableProductInfo } from '@/components/TableInfoProduct';
 import { useGetAllCustomers } from '@/features/Customers/services';
 import { AddressValidation } from '@/features/Customers/types';
 import { DepthsCommon } from '@/features/Dashboard/types';
 import { useGetAllProducts } from '@/features/Products/services';
 import { ImageInput } from '@/features/Services/components/ImageInput';
+import { TableProductInfo } from '@/features/Services/components/TableInfoProduct';
 import { CreateServiceSchema } from '@/features/Services/schemas';
-import { useCreateService } from '@/features/Services/services';
+import {
+  useCalculateProduct,
+  useCreateService,
+} from '@/features/Services/services';
 import {
   CreateServiceValidation,
   ProductInfo,
 } from '@/features/Services/types';
-import { useBudgetItem } from '@/features/Services/utils/budgetItem';
 import { calcTotal } from '@/features/Services/utils/calcTotal';
 import { checkProduct } from '@/features/Services/utils/checkProduct';
 import { formatCurrency } from '@/features/Services/utils/convertMoney';
-import { useGetIcons } from '@/hooks/useGetIcons';
 import { boxStyles, buttonStyles, formStyles, textFieldStyles } from '@/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
@@ -24,6 +26,7 @@ import {
   Autocomplete,
   Box,
   Chip,
+  CircularProgress,
   FormControl,
   FormHelperText,
   IconButton,
@@ -42,11 +45,11 @@ const ServicesCreateForm = () => {
   const { data: customers } = useGetAllCustomers();
   const { data: products } = useGetAllProducts();
   const create = useCreateService();
-  const { AddCircleOutlineRoundedIcon } = useGetIcons();
   const [customerAddress, setCustomerAddress] = useState<AddressValidation>();
   const [product, setProduct] = useState<ProductInfo>();
   const [images, setImages] = useState<File[]>([]);
-  const { calculateTotal } = useBudgetItem();
+  const { mutateAsync: calcProdRequest, isPending: loadingCalc } =
+    useCalculateProduct();
 
   const onSubmit: SubmitHandler<CreateServiceValidation> = (data) => {
     create.mutate({ ...data, files: images });
@@ -79,7 +82,7 @@ const ServicesCreateForm = () => {
     };
   };
 
-  const handleAddProduct = () => {
+  const handleAddProduct = async () => {
     let errors: string[] = [];
     if (product) {
       checkProduct(product, errors);
@@ -95,7 +98,10 @@ const ServicesCreateForm = () => {
         ...watch('products'),
         {
           ...product,
-          price: calculateTotal(product),
+          price:
+            product.category === 'DIVERSOS'
+              ? product.price
+              : await calcProdRequest(product),
         },
       ]);
       setProduct(undefined);
@@ -244,7 +250,7 @@ const ServicesCreateForm = () => {
                     price: prodSelected?.price,
                     width: prodSelected?.width,
                     category: prodSelected.category,
-                    type: prodSelected.type,
+                    glassType: prodSelected.glassType,
                     rowId: uuidv4(),
                   });
               }}
@@ -252,7 +258,8 @@ const ServicesCreateForm = () => {
             >
               {products?.map((product) => (
                 <MenuItem value={product.id} key={product.id}>
-                  {product.name} - {product.category}
+                  {product.name} {product.glassType ? product.glassType : ''} -{' '}
+                  {product.category}
                 </MenuItem>
               ))}
             </Select>
@@ -264,7 +271,7 @@ const ServicesCreateForm = () => {
                   id="heightTxt"
                   name="height"
                   value={
-                    Number(product?.height) === 0 ? 0 : Number(product?.height)
+                    Number(product?.height) === 0 ? '' : Number(product?.height)
                   }
                   label="Altura (M)"
                   type="number"
@@ -288,7 +295,7 @@ const ServicesCreateForm = () => {
                   id="widthTxt"
                   name="width"
                   value={
-                    Number(product?.width) === 0 ? 0 : Number(product?.width)
+                    Number(product?.width) === 0 ? '' : Number(product?.width)
                   }
                   label="Largura (M)"
                   type="number"
@@ -313,7 +320,7 @@ const ServicesCreateForm = () => {
                   id="select-depth-label"
                   labelId="select-depth-label"
                   name="depth"
-                  label={'Espessura'}
+                  label="Espessura"
                   value={product ? product.depth : ''}
                   onChange={(e) => {
                     product &&
@@ -333,7 +340,11 @@ const ServicesCreateForm = () => {
             </>
           )}
           <IconButton onClick={handleAddProduct}>
-            <AddCircleOutlineRoundedIcon />
+            {loadingCalc ? (
+              <CircularProgress />
+            ) : (
+              <AddCircleOutlineRoundedIcon />
+            )}
           </IconButton>
         </Box>
 

@@ -2,6 +2,7 @@ import { Box, Divider, Typography } from '@mui/material';
 
 interface SectionHeaderProps {
   label: string;
+  isSubsection?: boolean;
 }
 
 const CustomDivider = () => {
@@ -15,20 +16,26 @@ const CustomDivider = () => {
   );
 };
 
-export const SectionHeader = ({ label }: SectionHeaderProps) => {
+export const SectionHeader = ({
+  label,
+  isSubsection = false,
+}: SectionHeaderProps) => {
   return (
     <Box
       sx={{
         width: '100%',
-        mt: 4,
-        mb: 3,
+        mt: !isSubsection ? 4 : 0,
+        mb: !isSubsection ? 3 : 0,
         display: 'flex',
         gap: 3,
         alignItems: 'center',
         justifyContent: 'flex-start',
       }}
     >
-      <Typography component={'h1'} variant="h6">
+      <Typography
+        component={isSubsection ? 'h6' : 'h1'}
+        variant={isSubsection ? 'subtitle2' : 'h6'}
+      >
         {label}
       </Typography>
       <CustomDivider />

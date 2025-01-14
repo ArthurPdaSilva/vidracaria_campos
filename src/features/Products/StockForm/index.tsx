@@ -134,11 +134,11 @@ export const StockForm = ({ onClose, open, variant }: StockFormProps) => {
             />
           </Box>
           <Box
-            display={'flex'}
-            justifyContent={'flex-end'}
-            width={'100%'}
-            gap={'1em'}
-            paddingTop={'1em'}
+            display="flex"
+            justifyContent="flex-end"
+            width="100%"
+            gap="1em"
+            paddingTop="1em"
             sx={{
               borderTop: '1px solid #ccc',
             }}

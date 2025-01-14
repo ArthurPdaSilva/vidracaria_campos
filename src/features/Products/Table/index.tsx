@@ -26,11 +26,11 @@ export const Table = () => {
         enableHiding: true,
       },
       {
-        accessorKey: 'type',
+        accessorKey: 'glassType',
         header: 'Variação',
         enableHiding: true,
         Cell: (options) => {
-          return <>{options.row.original.type ?? '-'}</>;
+          return <>{options.row.original.glassType ?? '-'}</>;
         },
       },
       {

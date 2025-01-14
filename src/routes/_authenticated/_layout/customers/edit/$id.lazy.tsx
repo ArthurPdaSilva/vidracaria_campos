@@ -123,8 +123,8 @@ const CustomerUpdateForm = () => {
                   label="Pessoa"
                   {...field}
                 >
-                  <MenuItem value={'FISICA'}>Física</MenuItem>
-                  <MenuItem value={'JURIDICA'}>Jurídica</MenuItem>
+                  <MenuItem value="FISICA">Física</MenuItem>
+                  <MenuItem value="JURIDICA">Jurídica</MenuItem>
                 </Select>
               </FormControl>
             )}
@@ -228,6 +228,9 @@ const CustomerUpdateForm = () => {
                 sx={textFieldStyles}
                 placeholder="Digite o nome do bairro"
                 {...field}
+                InputLabelProps={{
+                  shrink: !!field.value,
+                }}
               />
             )}
           />

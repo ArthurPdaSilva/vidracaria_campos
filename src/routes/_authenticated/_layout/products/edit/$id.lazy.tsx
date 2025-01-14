@@ -46,7 +46,7 @@ const ProducstUpdateForm = () => {
       category: 'COMUM',
       unitOfMeasure: 'CENTIMETRO',
       price: 0,
-      type: 'CANELADO',
+      glassType: 'CANELADO',
     },
   });
 
@@ -56,8 +56,8 @@ const ProducstUpdateForm = () => {
     } else {
       setValue('unitOfMeasure', 'METRO');
     }
-    if (watch('category') !== 'COMUM') {
-      setValue('type', undefined);
+    if (watch('category') !== 'COMUM' && watch('category') !== 'TEMPERADO') {
+      setValue('glassType', undefined);
     }
   }, [watch('category')]);
 
@@ -68,7 +68,7 @@ const ProducstUpdateForm = () => {
       setValue('category', product.data.category || 'COMUM');
       setValue('unitOfMeasure', product.data.unitOfMeasure || 'CENTIMETRO');
       setValue('price', product.data.price || 1);
-      setValue('type', product.data.type || 'CANELADO');
+      setValue('glassType', product.data.glassType || 'CANELADO');
     }
   }, [product.data, setValue]);
 
@@ -175,9 +175,10 @@ const ProducstUpdateForm = () => {
           </Box>
         )}
 
-        {watch('category') === 'COMUM' && (
+        {(watch('category') === 'COMUM' ||
+          watch('category') === 'TEMPERADO') && (
           <Controller
-            name="type"
+            name="glassType"
             control={control}
             render={({ field }) => (
               <FormControl sx={textFieldStyles}>
@@ -186,7 +187,7 @@ const ProducstUpdateForm = () => {
                   type="text"
                   id="variant"
                   label="Variação"
-                  error={!!errors.type}
+                  error={!!errors.glassType}
                   placeholder="Digite a variação do produto"
                   {...field}
                 >

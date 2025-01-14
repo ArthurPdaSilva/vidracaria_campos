@@ -1,9 +1,8 @@
-import { useGetIcons } from '@/hooks/useGetIcons';
+import { NavigateNextIcon } from '@/assets/images/icons';
 import { Box, Breadcrumbs, Link, Typography } from '@mui/material';
 import useTranslate from '../../hooks/useTranslate';
 
 export const GetLocationBreadcrumb = () => {
-  const { NavigateNextIcon } = useGetIcons();
   const locationArr = window.location.pathname
     .split('/')
     .filter((location) => location.length > 0);
@@ -31,7 +30,7 @@ export const GetLocationBreadcrumb = () => {
               fontWeight: 'bold',
               fontSize: '1rem',
             }}
-            color={'black'}
+            color="black"
           >
             {translate(location)}
           </Typography>

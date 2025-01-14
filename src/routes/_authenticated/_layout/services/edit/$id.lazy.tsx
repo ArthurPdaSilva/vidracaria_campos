@@ -1,11 +1,13 @@
+import { AddCircleOutlineRoundedIcon } from '@/assets/images/icons';
 import { PageHeader } from '@/components/PageHeader';
 import { SectionHeader } from '@/components/SectionHeader';
-import { TableProductInfo } from '@/components/TableInfoProduct';
 import { DepthsCommon } from '@/features/Dashboard/types';
 import { useGetAllProducts } from '@/features/Products/services';
 import { ImageInput } from '@/features/Services/components/ImageInput';
+import { TableProductInfo } from '@/features/Services/components/TableInfoProduct';
 import { EditServiceSchema } from '@/features/Services/schemas';
 import {
+  useCalculateProduct,
   useGetImagesByServiceId,
   useGetProducstByServiceId,
   useGetServiceById,
@@ -17,7 +19,6 @@ import { useBudgetItem } from '@/features/Services/utils/budgetItem';
 import { calcTotal } from '@/features/Services/utils/calcTotal';
 import { checkProduct } from '@/features/Services/utils/checkProduct';
 import { formatCurrency } from '@/features/Services/utils/convertMoney';
-import { useGetIcons } from '@/hooks/useGetIcons';
 import { boxStyles, buttonStyles, formStyles, textFieldStyles } from '@/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
@@ -25,6 +26,7 @@ import {
   Alert,
   Box,
   Chip,
+  CircularProgress,
   FormControl,
   IconButton,
   InputLabel,
@@ -45,15 +47,15 @@ dayjs.extend(customParseFormat);
 const ServicesEditForm = () => {
   const { id } = Route.useParams();
   const [images, setImages] = useState<File[]>([]);
-
   const { data: products } = useGetAllProducts();
   const { data: service } = useGetServiceById(id);
   const { mutate: putService, isPending } = usePutServiceById();
   const { data: productsPersisted } = useGetProducstByServiceId(id);
   const { data: imagesPersisted } = useGetImagesByServiceId(id);
-  const { calculateTotal, budgetItemsToEditTable } = useBudgetItem();
+  const { mutateAsync: calcProdRequest, isPending: loadingCalc } =
+    useCalculateProduct();
+  const { budgetItemsToEditTable } = useBudgetItem();
   const [product, setProduct] = useState<ProductInfo>();
-  const { AddCircleOutlineRoundedIcon } = useGetIcons();
   const [persistedImagesState, setPersitedImagesState] = useState<any[]>([]);
   const onSubmit: SubmitHandler<EditServiceValidation> = (data) => {
     putService({
@@ -69,28 +71,26 @@ const ServicesEditForm = () => {
   };
 
   useEffect(() => {
-    if (service) {
-      const formattedDate = dayjs(
-        service.deliveryForecast,
-        'DD-MM-YYYY',
-      ).format('YYYY-MM-DD');
-      setValue('deliveryForecast', formattedDate);
-      setValue('discount', service.discount);
-      setValue('images', service.images);
-      setValue('ownerName', service.ownerName);
-      setValue('observation', service.observation ?? undefined);
-      setValue('userManual', service.userManual);
-      setValue('downPayment', service.downPayment ?? undefined);
-      setValue('paymentMethod', service.paymentMethod ?? 'DINHEIRO');
-      setValue('total', service.total);
-      setValue('status', service.status);
-      setValue('id', service.id);
-      setValue(
-        'products',
-        budgetItemsToEditTable(productsPersisted?.items || []),
-      );
-    }
-  }, [service]);
+    if (!service || !productsPersisted) return;
+    const formattedDate = dayjs(service.deliveryForecast, 'DD-MM-YYYY').format(
+      'YYYY-MM-DD',
+    );
+    setValue('deliveryForecast', formattedDate);
+    setValue('discount', service.discount);
+    setValue('images', service.images);
+    setValue('ownerName', service.ownerName);
+    setValue('observation', service.observation ?? undefined);
+    setValue('userManual', service.userManual);
+    setValue('downPayment', service.downPayment ?? undefined);
+    setValue('paymentMethod', service.paymentMethod ?? 'DINHEIRO');
+    setValue('total', service.total);
+    setValue('status', service.status);
+    setValue('id', service.id);
+    setValue(
+      'products',
+      budgetItemsToEditTable(productsPersisted?.items || []),
+    );
+  }, [service, productsPersisted]);
 
   const {
     handleSubmit,
@@ -135,35 +135,6 @@ const ServicesEditForm = () => {
     }
   }, [imagesPersisted]);
 
-  useEffect(() => {
-    setValue(
-      'products',
-      budgetItemsToEditTable(productsPersisted?.items || []),
-    );
-  }, [productsPersisted]);
-
-  const handleAddProduct = () => {
-    let errors: string[] = [];
-    if (product) {
-      checkProduct(product, errors);
-      if (errors.length > 0) {
-        errors.forEach((error) => {
-          enqueueSnackbar(error, { variant: 'error' });
-        });
-        return;
-      }
-      setValue('products', [
-        ...watch('products'),
-        {
-          ...product,
-          price: calculateTotal(product),
-          type: product.type,
-        },
-      ]);
-      setProduct(undefined);
-    }
-  };
-
   const updateProdQtd = (prod: ProductInfo, newAmount: number): ProductInfo => {
     const amount = newAmount > 0 ? newAmount : 1;
     return {
@@ -172,6 +143,45 @@ const ServicesEditForm = () => {
       price: prod.price,
     };
   };
+
+  const handleAddProduct = async () => {
+    let errors: string[] = [];
+    if (product) {
+      checkProduct(product, errors);
+
+      if (errors.length > 0) {
+        errors.forEach((error) => {
+          enqueueSnackbar(error, { variant: 'error' });
+        });
+        return;
+      }
+
+      setValue('products', [
+        ...watch('products'),
+        {
+          ...product,
+          price:
+            product.category === 'DIVERSOS'
+              ? product.price
+              : await calcProdRequest(product),
+        },
+      ]);
+      setProduct(undefined);
+    }
+  };
+
+  useEffect(() => {
+    let discount = watch('discount');
+    if (watch('products')) {
+      setValue(
+        'total',
+        calcTotal({
+          products: watch('products') || [],
+          discount: discount ? discount : 0,
+        }),
+      );
+    }
+  }, [products, watch('products'), watch('discount')]);
 
   return (
     <Box sx={boxStyles}>
@@ -330,22 +340,16 @@ const ServicesEditForm = () => {
                   {...field}
                   value={watch('status')}
                 >
-                  <MenuItem value={'ORCADO'} key={'ORCADO'}>
+                  <MenuItem value="ORCADO" key="ORCADO">
                     Orçado
                   </MenuItem>
-                  <MenuItem
-                    value={'CONTRATADO_A_VISTA'}
-                    key={'CONTRATADO_A_VISTA'}
-                  >
+                  <MenuItem value="CONTRATADO_A_VISTA" key="CONTRATADO_A_VISTA">
                     Contratado a vista
                   </MenuItem>
-                  <MenuItem
-                    value={'CONTRATADO_A_PRAZO'}
-                    key={'CONTRATADO_A_PRAZO'}
-                  >
+                  <MenuItem value="CONTRATADO_A_PRAZO" key="CONTRATADO_A_PRAZO">
                     Contratado a prazo
                   </MenuItem>
-                  <MenuItem value={'FINALIZADO'} key={'FINALIZADO'}>
+                  <MenuItem value="FINALIZADO" key="FINALIZADO">
                     Finalizado
                   </MenuItem>
                 </Select>
@@ -378,16 +382,16 @@ const ServicesEditForm = () => {
                   {...field}
                   value={watch('paymentMethod')}
                 >
-                  <MenuItem value={'DINHEIRO'} key={'DINHEIRO'}>
+                  <MenuItem value="DINHEIRO" key="DINHEIRO">
                     Dinheiro
                   </MenuItem>
-                  <MenuItem value={'CREDITO'} key={'CREDITO'}>
+                  <MenuItem value="CREDITO" key="CREDITO">
                     Crédito
                   </MenuItem>
-                  <MenuItem value={'DEBITO'} key={'DEBITO'}>
+                  <MenuItem value="DEBITO" key="DEBITO">
                     Débito
                   </MenuItem>
-                  <MenuItem value={'PIX'} key={'PIX'}>
+                  <MenuItem value="PIX" key="PIX">
                     Pix
                   </MenuItem>
                 </Select>
@@ -435,7 +439,7 @@ const ServicesEditForm = () => {
                     price: prodSelected.price,
                     width: prodSelected.width,
                     idProduct: prodSelected.idProduct,
-                    type: prodSelected.type,
+                    glassType: prodSelected.glassType,
                     rowId: uuidv4(),
                   });
               }}
@@ -458,7 +462,9 @@ const ServicesEditForm = () => {
                   id="heightTxt"
                   disabled={disableFields}
                   value={
-                    Number(product?.height) === 0 ? 0 : Number(product?.height)
+                    Number(product?.height) === 0
+                      ? '0'
+                      : Number(product?.height)
                   }
                   label="Altura (M)"
                   name="height"
@@ -487,7 +493,7 @@ const ServicesEditForm = () => {
                   name="width"
                   disabled={disableFields}
                   value={
-                    Number(product?.width) === 0 ? 0 : Number(product?.width)
+                    Number(product?.width) === 0 ? '' : Number(product?.width)
                   }
                   label="Largura (M)"
                   type="number"
@@ -513,7 +519,7 @@ const ServicesEditForm = () => {
                   labelId="select-depth-label"
                   name="depth"
                   disabled={disableFields}
-                  label={'Espessura'}
+                  label="Espessura"
                   value={product ? product.depth : ''}
                   onChange={(e) => {
                     product &&
@@ -533,7 +539,11 @@ const ServicesEditForm = () => {
             </>
           )}
           <IconButton onClick={handleAddProduct} disabled={disableFields}>
-            <AddCircleOutlineRoundedIcon />
+            {loadingCalc ? (
+              <CircularProgress />
+            ) : (
+              <AddCircleOutlineRoundedIcon />
+            )}
           </IconButton>
         </Box>
         <TableProductInfo
@@ -601,6 +611,9 @@ const ServicesEditForm = () => {
               rows={3}
               sx={{
                 resize: 'none',
+              }}
+              InputLabelProps={{
+                shrink: !!field.value,
               }}
             />
           )}

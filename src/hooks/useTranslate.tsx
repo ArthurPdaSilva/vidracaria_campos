@@ -5,6 +5,7 @@ const useTranslate = () => {
     products: 'Produtos',
     services: 'Serviços',
     customers: 'Clientes',
+    glassprice: 'Preços',
   } as const;
 
   type LibKeys = keyof typeof lib;

@@ -1,16 +1,34 @@
 export type Category = 'COMUM' | 'TEMPERADO' | 'DIVERSOS';
+export type CategoryPrices = 'COMUM' | 'TEMPERADO';
 export type UnitOfMeasure = 'CENTIMETRO' | 'METRO' | 'MILIMETRO' | 'UNIDADE';
 
 export interface ProductBase {
   name: string;
   unitOfMeasure: UnitOfMeasure;
   category: Category;
-  type?: GlassVariant;
+  glassType?: GlassVariant;
 }
 
-export type GlassVariant = 'CANELADO' | 'INCOLOR' | 'FUME' | 'ESPELHO';
+export type GlassVariant =
+  | 'CANELADO'
+  | 'INCOLOR'
+  | 'FUME'
+  | 'ESPELHO'
+  | 'VERDE'
+  | 'BOX_INCOLOR'
+  | 'BOX_FUME'
+  | 'BOX_VERDE';
 
-export const GlassVariants = ['Canelado', 'Incolor', 'Fume', 'Espelho'];
+export const GlassVariants = [
+  'CANELADO',
+  'INCOLOR',
+  'FUME',
+  'ESPELHO',
+  'VERDE',
+  'BOX_INCOLOR',
+  'BOX_FUME',
+  'BOX_VERDE',
+];
 
 export interface ProductEditAndList extends ProductBase {
   id: string;
@@ -24,7 +42,7 @@ export interface EditProductValidation extends ProductEditAndList {}
 
 export interface ProductValidation extends ProductEditAndList {
   actualQuantity: number;
-  type: GlassVariant;
+  glassType: GlassVariant;
   idProduct?: string;
 }
 

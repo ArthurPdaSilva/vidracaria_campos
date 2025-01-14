@@ -23,9 +23,10 @@ import PrintIcon from '@mui/icons-material/Print';
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-
+import AttachMoneyRoundedIcon from '@mui/icons-material/AttachMoneyRounded';
 export const useGetIcons = () => {
   return {
+    AttachMoneyRoundedIcon,
     AddOutlinedIcon,
     RemoveOutlinedIcon,
     LogoutOutlinedIcon,

@@ -2,8 +2,12 @@ import { clearToken } from '@/utils/tokens';
 import { Box, Button, Drawer, IconButton } from '@mui/material/';
 import { useNavigate, useRouter } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
+import {
+  LogoutOutlinedIcon,
+  MenuOpenRoundedIcon,
+  MenuOutlinedIcon,
+} from '../../assets/images/icons';
 import queryClient from '../../config/queryClient';
-import { useGetIcons } from '../../hooks/useGetIcons';
 import LogoItem from './LogoItem';
 import { MenuListItem } from './MenuListItem';
 import {
@@ -15,7 +19,6 @@ import {
 
 const MenuDesktop = () => {
   const navigate = useNavigate();
-  const { LogoutOutlinedIcon, MenuOpenRoundedIcon } = useGetIcons();
   const [colapsedMenu, setColapsedMenu] = useState(false);
 
   const logout = () => {
@@ -26,7 +29,7 @@ const MenuDesktop = () => {
 
   return (
     <Box
-      component={'header'}
+      component="header"
       style={{ ...headerStyles, width: colapsedMenu ? '60px' : '200px' }}
     >
       <nav style={{ ...navStyles, width: colapsedMenu ? '60px' : '200px' }}>
@@ -61,7 +64,6 @@ const MenuDesktop = () => {
 };
 
 const MenuMobile = () => {
-  const { MenuOutlinedIcon } = useGetIcons();
   const [open, setOpen] = useState(false);
   const router = useRouter();
 

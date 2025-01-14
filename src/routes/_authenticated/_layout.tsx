@@ -4,7 +4,7 @@ import { Outlet, createFileRoute } from '@tanstack/react-router';
 
 const LayoutComponent = () => {
   return (
-    <Box display={'flex'} flexDirection={'row'} overflow={'hidden'}>
+    <Box display="flex" flexDirection="row" overflow="hidden">
       <Menu />
       <Outlet />
     </Box>
