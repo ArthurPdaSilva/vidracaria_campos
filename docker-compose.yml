@@ -1,0 +1,12 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:80' # Porta 3000 no host será redirecionada para a porta 80 no container
+    volumes:
+      - /app/node_modules
+      - ./src:/app/src
+    environment:
+      - VITE_URL=http://localhost:8080
