@@ -294,9 +294,7 @@ const ServicesCreateForm = () => {
                 <TextField
                   id="widthTxt"
                   name="width"
-                  value={
-                    Number(product?.width) === 0 ? '' : Number(product?.width)
-                  }
+                  value={Number(product?.width)}
                   label="Largura (M)"
                   type="number"
                   InputLabelProps={{
