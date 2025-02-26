@@ -1,5 +1,4 @@
 import { QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { SnackbarProvider } from 'notistack';
 import queryClient from './config/queryClient';
@@ -22,7 +21,6 @@ export const App = () => {
   const authentication = useAuth();
   return (
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
       <SnackbarProvider maxSnack={3}>
         <RouterProvider router={router} context={{ authentication }} />
       </SnackbarProvider>
